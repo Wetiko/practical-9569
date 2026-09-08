@@ -1,0 +1,3371 @@
+[
+  {
+    "id": "first-match",
+    "title": "Find the first match",
+    "topic": "Algorithms",
+    "level": "Foundation",
+    "minutes": 15,
+    "ref": "1.2.3 / 2.3.2",
+    "description": "A sorted list of student scores can contain duplicates. Implement first_match(scores, target) using binary search. Return the first matching index, or -1 if absent. Do not use index() or linear scanning. Scores are integers; the list may be empty.",
+    "starter": "def first_match(scores, target):\n    # Return the first matching index, or -1.\n    pass\n",
+    "solution": "def first_match(scores, target):\n    low, high, result = 0, len(scores) - 1, -1\n    while low <= high:\n        mid = (low + high) // 2\n        if scores[mid] >= target:\n            if scores[mid] == target:\n                result = mid\n            high = mid - 1\n        else:\n            low = mid + 1\n    return result\n",
+    "tests": [
+      {
+        "label": "Repeated score",
+        "expr": "first_match([42,58,58,71,90],58)",
+        "expected": 1
+      },
+      {
+        "label": "Not present",
+        "expr": "first_match([20,40,60],30)",
+        "expected": -1
+      },
+      {
+        "label": "Empty list",
+        "expr": "first_match([],5)",
+        "expected": -1
+      },
+      {
+        "label": "All equal",
+        "expr": "first_match([7,7,7],7)",
+        "expected": 0
+      },
+      {
+        "label": "Last value",
+        "expr": "first_match([-3,0,8],8)",
+        "expected": 2
+      }
+    ],
+    "hints": [
+      "Keep a variable for the best matching index so far.",
+      "After finding a match, continue searching to its left."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 704",
+    "sourceUrl": "https://leetcode.com/problems/binary-search/"
+  },
+  {
+    "id": "insertion-sort",
+    "title": "Insertion sort: score ordering",
+    "topic": "Algorithms",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "1.2.1 / 2.3.1",
+    "description": "Implement insertion sort in sort_values(values). Return a new list of integers in ascending order without changing the input. Do not use sorted() or list.sort(). Explain the worst-case time complexity in a comment. Output tests cannot verify your algorithm choice; compare your approach with the solution.",
+    "starter": "def sort_values(values):\n    pass\n",
+    "solution": "def sort_values(values):\n    a = values[:]\n    for i in range(1, len(a)):\n        key, j = a[i], i - 1\n        while j >= 0 and a[j] > key:\n            a[j + 1] = a[j]\n            j -= 1\n        a[j + 1] = key\n    return a\n",
+    "tests": [
+      {
+        "label": "Unsorted scores",
+        "expr": "sort_values([71,42,90,58])",
+        "expected": [
+          42,
+          58,
+          71,
+          90
+        ]
+      },
+      {
+        "label": "Repeated scores",
+        "expr": "sort_values([3,1,3,1])",
+        "expected": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "sort_values([])",
+        "expected": []
+      },
+      {
+        "label": "Negative values",
+        "expr": "sort_values([0,-9,4,-2])",
+        "expected": [
+          -9,
+          -2,
+          0,
+          4
+        ]
+      },
+      {
+        "label": "Single value",
+        "expr": "sort_values([7])",
+        "expected": [
+          7
+        ]
+      },
+      {
+        "label": "Input preserved",
+        "expr": "(lambda a: (sort_values(a), a))([2,1])",
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Divide the task into a small operation that you repeat.",
+      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "bubble-sort",
+    "title": "Bubble sort: score ordering",
+    "topic": "Algorithms",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "1.2.1 / 2.3.1",
+    "description": "Implement bubble sort in sort_values(values). Return a new list of integers in ascending order without changing the input. Do not use sorted() or list.sort(). Explain the worst-case time complexity in a comment. Output tests cannot verify your algorithm choice; compare your approach with the solution.",
+    "starter": "def sort_values(values):\n    pass\n",
+    "solution": "def sort_values(values):\n    a = values[:]\n    for end in range(len(a)-1, 0, -1):\n        changed = False\n        for j in range(end):\n            if a[j] > a[j+1]:\n                a[j], a[j+1] = a[j+1], a[j]\n                changed = True\n        if not changed:\n            break\n    return a\n",
+    "tests": [
+      {
+        "label": "Unsorted scores",
+        "expr": "sort_values([71,42,90,58])",
+        "expected": [
+          42,
+          58,
+          71,
+          90
+        ]
+      },
+      {
+        "label": "Repeated scores",
+        "expr": "sort_values([3,1,3,1])",
+        "expected": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "sort_values([])",
+        "expected": []
+      },
+      {
+        "label": "Negative values",
+        "expr": "sort_values([0,-9,4,-2])",
+        "expected": [
+          -9,
+          -2,
+          0,
+          4
+        ]
+      },
+      {
+        "label": "Single value",
+        "expr": "sort_values([7])",
+        "expected": [
+          7
+        ]
+      },
+      {
+        "label": "Input preserved",
+        "expr": "(lambda a: (sort_values(a), a))([2,1])",
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Divide the task into a small operation that you repeat.",
+      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "quick-sort",
+    "title": "Quick sort: score ordering",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.2.1 / 2.3.1",
+    "description": "Implement quick sort in sort_values(values). Return a new list of integers in ascending order without changing the input. Do not use sorted() or list.sort(). Explain the worst-case time complexity in a comment. Output tests cannot verify your algorithm choice; compare your approach with the solution.",
+    "starter": "def sort_values(values):\n    pass\n",
+    "solution": "def sort_values(values):\n    if len(values) <= 1:\n        return values[:]\n    pivot = values[len(values)//2]\n    left = [v for v in values if v < pivot]\n    equal = [v for v in values if v == pivot]\n    right = [v for v in values if v > pivot]\n    return sort_values(left) + equal + sort_values(right)\n",
+    "tests": [
+      {
+        "label": "Unsorted scores",
+        "expr": "sort_values([71,42,90,58])",
+        "expected": [
+          42,
+          58,
+          71,
+          90
+        ]
+      },
+      {
+        "label": "Repeated scores",
+        "expr": "sort_values([3,1,3,1])",
+        "expected": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "sort_values([])",
+        "expected": []
+      },
+      {
+        "label": "Negative values",
+        "expr": "sort_values([0,-9,4,-2])",
+        "expected": [
+          -9,
+          -2,
+          0,
+          4
+        ]
+      },
+      {
+        "label": "Single value",
+        "expr": "sort_values([7])",
+        "expected": [
+          7
+        ]
+      },
+      {
+        "label": "Input preserved",
+        "expr": "(lambda a: (sort_values(a), a))([2,1])",
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Divide the task into a small operation that you repeat.",
+      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "merge-sort",
+    "title": "Merge sort: score ordering",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.2.1 / 2.3.1",
+    "description": "Implement merge sort in sort_values(values). Return a new list of integers in ascending order without changing the input. Do not use sorted() or list.sort(). Explain the worst-case time complexity in a comment. Output tests cannot verify your algorithm choice; compare your approach with the solution.",
+    "starter": "def sort_values(values):\n    pass\n",
+    "solution": "def sort_values(values):\n    if len(values) <= 1:\n        return values[:]\n    mid = len(values)//2\n    left, right = sort_values(values[:mid]), sort_values(values[mid:])\n    result, i, j = [], 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i]); i += 1\n        else:\n            result.append(right[j]); j += 1\n    return result + left[i:] + right[j:]\n",
+    "tests": [
+      {
+        "label": "Unsorted scores",
+        "expr": "sort_values([71,42,90,58])",
+        "expected": [
+          42,
+          58,
+          71,
+          90
+        ]
+      },
+      {
+        "label": "Repeated scores",
+        "expr": "sort_values([3,1,3,1])",
+        "expected": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "sort_values([])",
+        "expected": []
+      },
+      {
+        "label": "Negative values",
+        "expr": "sort_values([0,-9,4,-2])",
+        "expected": [
+          -9,
+          -2,
+          0,
+          4
+        ]
+      },
+      {
+        "label": "Single value",
+        "expr": "sort_values([7])",
+        "expected": [
+          7
+        ]
+      },
+      {
+        "label": "Input preserved",
+        "expr": "(lambda a: (sort_values(a), a))([2,1])",
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Divide the task into a small operation that you repeat.",
+      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "linear-search",
+    "title": "Locate a student record",
+    "topic": "Algorithms",
+    "level": "Foundation",
+    "minutes": 10,
+    "ref": "1.2.3",
+    "description": "Implement locate(records, student_id). Each record is [id, name]. Use linear search and return the first matching name, or None when absent. IDs are integers.",
+    "starter": "def locate(records, student_id):\n    pass\n",
+    "solution": "def locate(records, student_id):\n    for record in records:\n        if record[0] == student_id:\n            return record[1]\n    return None\n",
+    "tests": [
+      {
+        "label": "Found",
+        "expr": "locate([[11,'Ari'],[20,'Mei']],20)",
+        "expected": "Mei"
+      },
+      {
+        "label": "Missing",
+        "expr": "locate([[11,'Ari']],99)",
+        "expected": null
+      },
+      {
+        "label": "Empty",
+        "expr": "locate([],0)",
+        "expected": null
+      },
+      {
+        "label": "First duplicate",
+        "expr": "locate([[1,'A'],[1,'B']],1)",
+        "expected": "A"
+      }
+    ],
+    "hints": [
+      "Compare the ID field, not the whole record."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "hash-table",
+    "title": "Resolve hash collisions",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "1.2.3",
+    "description": "Implement build_table(keys, size). Start with size slots containing None. Hash non-negative integer keys with key % size and use linear probing with wraparound. Ignore duplicate keys. Raise ValueError if a new key cannot fit. Return the table. size is a positive integer.",
+    "starter": "def build_table(keys, size):\n    pass\n",
+    "solution": "def build_table(keys, size):\n    table = [None] * size\n    for key in keys:\n        for step in range(size):\n            pos = (key + step) % size\n            if table[pos] == key:\n                break\n            if table[pos] is None:\n                table[pos] = key\n                break\n        else:\n            raise ValueError('Table full')\n    return table\n",
+    "tests": [
+      {
+        "label": "Collision",
+        "expr": "build_table([7,12,2],5)",
+        "expected": [
+          null,
+          null,
+          7,
+          12,
+          2
+        ]
+      },
+      {
+        "label": "Wraparound",
+        "expr": "build_table([4,9,14],5)",
+        "expected": [
+          9,
+          14,
+          null,
+          null,
+          4
+        ]
+      },
+      {
+        "label": "Duplicate",
+        "expr": "build_table([2,2],3)",
+        "expected": [
+          null,
+          null,
+          2
+        ]
+      },
+      {
+        "label": "Full table error",
+        "expr": "raises_full()",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "Probe at most size slots.",
+      "Use (hash + step) % size to wrap to the beginning."
+    ],
+    "setup": "def raises_full():\n    try:\n        build_table([1,2,3],2)\n    except ValueError:\n        return True\n    return False",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "stack",
+    "title": "Bracket checker",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.3.3 / 2.3.3",
+    "description": "Implement balanced(text) with a stack. Return True only if (), [] and {} are correctly nested and matched. Ignore all other characters. The empty string is balanced.",
+    "starter": "def balanced(text):\n    pass\n",
+    "solution": "def balanced(text):\n    stack = []\n    closing = {')':'(', ']':'[', '}':'{'}\n    for ch in text:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in closing:\n            if not stack or stack.pop() != closing[ch]:\n                return False\n    return not stack\n",
+    "tests": [
+      {
+        "label": "Nested",
+        "expr": "balanced('a*(b+[c])')",
+        "expected": true
+      },
+      {
+        "label": "Wrong order",
+        "expr": "balanced('([)]')",
+        "expected": false
+      },
+      {
+        "label": "Empty",
+        "expr": "balanced('')",
+        "expected": true
+      },
+      {
+        "label": "Extra close",
+        "expr": "balanced('x]')",
+        "expected": false
+      },
+      {
+        "label": "Unclosed",
+        "expr": "balanced('((')",
+        "expected": false
+      }
+    ],
+    "hints": [
+      "Push opening brackets.",
+      "An unmatched closing bracket must fail immediately."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 20",
+    "sourceUrl": "https://leetcode.com/problems/valid-parentheses/"
+  },
+  {
+    "id": "queue",
+    "title": "Circular queue simulator",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "1.3.3",
+    "description": "Implement simulate(capacity, operations) with a fixed-size circular queue. Operations are [\"put\", value] or [\"get\"]. A successful put returns True, a full queue returns False, and get returns the oldest value or None when empty. Return the list of operation results. capacity is positive; queued values are integers. Use head, tail and count, not pop(0).",
+    "starter": "def simulate(capacity, operations):\n    pass\n",
+    "solution": "def simulate(capacity, operations):\n    data = [None] * capacity\n    head = tail = count = 0\n    result = []\n    for op in operations:\n        if op[0] == 'put':\n            if count == capacity:\n                result.append(False)\n            else:\n                data[tail] = op[1]\n                tail = (tail + 1) % capacity\n                count += 1\n                result.append(True)\n        else:\n            if count == 0:\n                result.append(None)\n            else:\n                result.append(data[head])\n                head = (head + 1) % capacity\n                count -= 1\n    return result\n",
+    "tests": [
+      {
+        "label": "FIFO",
+        "expr": "simulate(2,[['put',4],['put',8],['get'],['get']])",
+        "expected": [
+          true,
+          true,
+          4,
+          8
+        ]
+      },
+      {
+        "label": "Overflow",
+        "expr": "simulate(1,[['put',3],['put',4]])",
+        "expected": [
+          true,
+          false
+        ]
+      },
+      {
+        "label": "Wraparound",
+        "expr": "simulate(2,[['put',1],['put',2],['get'],['put',3],['get'],['get'],['get']])",
+        "expected": [
+          true,
+          true,
+          1,
+          true,
+          2,
+          3,
+          null
+        ]
+      },
+      {
+        "label": "Empty operations",
+        "expr": "simulate(2,[])",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Track count to distinguish full from empty.",
+      "Advance indices modulo capacity."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 622",
+    "sourceUrl": "https://leetcode.com/problems/design-circular-queue/"
+  },
+  {
+    "id": "linked-list",
+    "title": "Follow the links",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.3.5",
+    "description": "An array-backed linked list stores nodes as [value, next_index]. -1 is the null pointer. Implement read_list(nodes, head) to return reachable values in order. Raise ValueError for a cycle or any pointer outside the array other than -1. Unreachable nodes can be ignored.",
+    "starter": "def read_list(nodes, head):\n    pass\n",
+    "solution": "def read_list(nodes, head):\n    result, seen = [], set()\n    while head != -1:\n        if head in seen or not 0 <= head < len(nodes):\n            raise ValueError('Invalid pointer or cycle')\n        seen.add(head)\n        value, head = nodes[head]\n        result.append(value)\n    return result\n",
+    "tests": [
+      {
+        "label": "Pointer order",
+        "expr": "read_list([['B',2],['A',0],['C',-1]],1)",
+        "expected": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "read_list([],-1)",
+        "expected": []
+      },
+      {
+        "label": "Cycle",
+        "expr": "invalid([[1,0]],0)",
+        "expected": true
+      },
+      {
+        "label": "Invalid pointer",
+        "expr": "invalid([[1,8]],0)",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "The array position does not determine the logical order.",
+      "Keep visited indices to detect a cycle."
+    ],
+    "setup": "def invalid(nodes, head):\n    try:\n        read_list(nodes, head)\n    except ValueError:\n        return True\n    return False",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "bst",
+    "title": "Build a binary search tree",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "1.3.6 / 1.3.7",
+    "description": "Implement traversals(values). Insert integers in order into a BST; ignore duplicates. Return [preorder, inorder, postorder], each a list. Use nodes and recursive traversal, not sorting. Empty input returns three empty lists.",
+    "starter": "def traversals(values):\n    pass\n",
+    "solution": "def traversals(values):\n    def insert(node, value):\n        if node is None:\n            return [value, None, None]\n        if value < node[0]:\n            node[1] = insert(node[1], value)\n        elif value > node[0]:\n            node[2] = insert(node[2], value)\n        return node\n    root = None\n    for value in values:\n        root = insert(root, value)\n    pre, ino, post = [], [], []\n    def walk(node):\n        if node is None:\n            return\n        pre.append(node[0])\n        walk(node[1])\n        ino.append(node[0])\n        walk(node[2])\n        post.append(node[0])\n    walk(root)\n    return [pre, ino, post]\n",
+    "tests": [
+      {
+        "label": "Balanced tree",
+        "expr": "traversals([4,2,6,1,3])",
+        "expected": [
+          [
+            4,
+            2,
+            1,
+            3,
+            6
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          [
+            1,
+            3,
+            2,
+            6,
+            4
+          ]
+        ]
+      },
+      {
+        "label": "Duplicate",
+        "expr": "traversals([2,2,1])",
+        "expected": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "traversals([])",
+        "expected": [
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "label": "Skewed",
+        "expr": "traversals([1,2,3])",
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "A node can contain a value and references to its two children.",
+      "Pre-order visits before children; in-order between them; post-order after them."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "recursion",
+    "title": "Recursive digit sum",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 10,
+    "ref": "2.2.5",
+    "description": "Implement digit_sum(n) recursively for a non-negative integer. Return the sum of its decimal digits. Do not convert n to a string. Handle zero as the base case.",
+    "starter": "def digit_sum(n):\n    pass\n",
+    "solution": "def digit_sum(n):\n    if n < 10:\n        return n\n    return n % 10 + digit_sum(n // 10)\n",
+    "tests": [
+      {
+        "label": "Normal",
+        "expr": "digit_sum(9569)",
+        "expected": 29
+      },
+      {
+        "label": "Zero",
+        "expr": "digit_sum(0)",
+        "expected": 0
+      },
+      {
+        "label": "Trailing zeros",
+        "expr": "digit_sum(10000)",
+        "expected": 1
+      },
+      {
+        "label": "One digit",
+        "expr": "digit_sum(7)",
+        "expected": 7
+      }
+    ],
+    "hints": [
+      "n % 10 gives the last digit.",
+      "n // 10 removes the last digit."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "validation",
+    "title": "Validate candidate IDs",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 15,
+    "ref": "2.4.2",
+    "description": "Implement valid_id(text). A valid ID is exactly 6 ASCII digits. Its last digit equals the sum of the first five digits modulo 10. Return a Boolean. Spaces, signs and non-ASCII numerals are invalid.",
+    "starter": "def valid_id(text):\n    pass\n",
+    "solution": "def valid_id(text):\n    if len(text) != 6 or any(ch not in '0123456789' for ch in text):\n        return False\n    return sum(int(ch) for ch in text[:5]) % 10 == int(text[5])\n",
+    "tests": [
+      {
+        "label": "Valid",
+        "expr": "valid_id('123455')",
+        "expected": true
+      },
+      {
+        "label": "Wrong check digit",
+        "expr": "valid_id('123456')",
+        "expected": false
+      },
+      {
+        "label": "All zero",
+        "expr": "valid_id('000000')",
+        "expected": true
+      },
+      {
+        "label": "Length",
+        "expr": "valid_id('123')",
+        "expected": false
+      },
+      {
+        "label": "Unicode",
+        "expr": "valid_id('\uff11\uff12\uff13\uff14\uff15\uff15')",
+        "expected": false
+      },
+      {
+        "label": "Whitespace",
+        "expr": "valid_id('12345 ')",
+        "expected": false
+      }
+    ],
+    "hints": [
+      "Check format and length before converting digits.",
+      "Test normal, abnormal and boundary data separately."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "bases",
+    "title": "Convert between number bases",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.1.2",
+    "description": "Implement convert(number, base). number is a non-negative decimal integer; base is 2 or 16. Return its representation as a string, using uppercase A\u2013F. Do not use bin(), hex() or format(). Zero must produce \"0\".",
+    "starter": "def convert(number, base):\n    pass\n",
+    "solution": "def convert(number, base):\n    digits = '0123456789ABCDEF'\n    if number == 0:\n        return '0'\n    result = ''\n    while number:\n        result = digits[number % base] + result\n        number //= base\n    return result\n",
+    "tests": [
+      {
+        "label": "Binary",
+        "expr": "convert(13,2)",
+        "expected": "1101"
+      },
+      {
+        "label": "Hexadecimal",
+        "expr": "convert(255,16)",
+        "expected": "FF"
+      },
+      {
+        "label": "Zero",
+        "expr": "convert(0,2)",
+        "expected": "0"
+      },
+      {
+        "label": "Power of base",
+        "expr": "convert(256,16)",
+        "expected": "100"
+      }
+    ],
+    "hints": [
+      "Repeated division produces digits from right to left."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "files",
+    "title": "Clean a results file",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "2.3.4 / 2.4.2",
+    "description": "Implement summarise(path). Read a CSV file with header name,score. Ignore records with a missing name, a non-integer score, or a score outside 0\u2013100. Return [valid_count, total_score]. Strip surrounding spaces. Use the supplied file in the Files tab; each test starts with fresh files.",
+    "starter": "import csv\n\ndef summarise(path):\n    pass\n",
+    "solution": "import csv\n\ndef summarise(path):\n    count = total = 0\n    with open(path, newline='') as source:\n        for row in csv.DictReader(source):\n            try:\n                score = int(row['score'])\n                if not row['name'].strip() or not 0 <= score <= 100:\n                    continue\n                count += 1\n                total += score\n            except (ValueError, TypeError, KeyError):\n                continue\n    return [count, total]\n",
+    "tests": [
+      {
+        "label": "Mixed records",
+        "expr": "summarise('results.csv')",
+        "expected": [
+          3,
+          178
+        ]
+      },
+      {
+        "label": "No data",
+        "expr": "summarise('empty.csv')",
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "label": "Boundaries",
+        "expr": "summarise('bounds.csv')",
+        "expected": [
+          2,
+          100
+        ]
+      }
+    ],
+    "hints": [
+      "csv.DictReader uses the header as field names.",
+      "Validate each record before adding to the total."
+    ],
+    "setup": "",
+    "files": {
+      "results.csv": "name,score\nAri,78\nMei,100\nJo,0\nKai,101\n,50\nSam,absent\n",
+      "empty.csv": "name,score\n",
+      "bounds.csv": "name,score\nA,0\nB,100\nC,-1\nD,101\n"
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "write-file",
+    "title": "Write a sequential report",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.3.4",
+    "description": "Implement write_report(records, path). records is a list of [name, score] pairs with unique names. Sort by name ascending and write name,score followed by a newline for every record, without a header. Return the number of records. You may use sorted() in this file-processing exercise.",
+    "starter": "def write_report(records, path):\n    pass\n",
+    "solution": "def write_report(records, path):\n    with open(path, 'w') as target:\n        for name, score in sorted(records):\n            target.write(f'{name},{score}\\n')\n    return len(records)\n",
+    "tests": [
+      {
+        "label": "Sorted report",
+        "expr": "check_report([['Mei',80],['Ari',70]])",
+        "expected": [
+          2,
+          "Ari,70\nMei,80\n"
+        ]
+      },
+      {
+        "label": "Empty report",
+        "expr": "check_report([])",
+        "expected": [
+          0,
+          ""
+        ]
+      },
+      {
+        "label": "Single row",
+        "expr": "check_report([['A',0]])",
+        "expected": [
+          1,
+          "A,0\n"
+        ]
+      }
+    ],
+    "hints": [
+      "Open the output in write mode.",
+      "Remember the final newline."
+    ],
+    "setup": "def check_report(records):\n    count = write_report(records, 'out.csv')\n    with open('out.csv') as f:\n        return [count, f.read()]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "oop",
+    "title": "Library loans and inheritance",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "2.5.1\u20132.5.4",
+    "description": "Define Book(title) with a private or protected title attribute and loan_days() returning 14. Define ReferenceBook inheriting Book and overriding loan_days() to return 0. Both classes must provide get_title(). Implement loan_periods(books) using polymorphic method calls to return each loan period.",
+    "starter": "class Book:\n    pass\n\nclass ReferenceBook(Book):\n    pass\n\ndef loan_periods(books):\n    pass\n",
+    "solution": "class Book:\n    def __init__(self, title):\n        self._title = title\n    def get_title(self):\n        return self._title\n    def loan_days(self):\n        return 14\n\nclass ReferenceBook(Book):\n    def loan_days(self):\n        return 0\n\ndef loan_periods(books):\n    return [book.loan_days() for book in books]\n",
+    "tests": [
+      {
+        "label": "Mixed objects",
+        "expr": "loan_periods([Book('A'),ReferenceBook('B')])",
+        "expected": [
+          14,
+          0
+        ]
+      },
+      {
+        "label": "Inherited title",
+        "expr": "ReferenceBook('Guide').get_title()",
+        "expected": "Guide"
+      },
+      {
+        "label": "Inheritance",
+        "expr": "issubclass(ReferenceBook,Book)",
+        "expected": true
+      },
+      {
+        "label": "Empty",
+        "expr": "loan_periods([])",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Put the shared constructor and getter in the parent class.",
+      "Call the same method on each object; do not branch on its type."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "sql-filter",
+    "title": "Filter the computing results",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Return name and score for Computing results with score >= 50. Order by score descending, then name ascending. Tables: Student(id, name, class) and Result(student_id, subject, score). Inspect the Files tab for the exact fixture. Write one SQLite SELECT query. Submission also tests a changed dataset.",
+    "starter": "-- Write your SQLite query here\nSELECT ",
+    "solution": "SELECT s.name, r.score\nFROM Student AS s JOIN Result AS r ON s.id = r.student_id\nWHERE r.subject = 'Computing' AND r.score >= 50\nORDER BY r.score DESC, s.name ASC;",
+    "tests": [
+      {
+        "label": "Sample database",
+        "expr": "conn.execute(code).fetchall()",
+        "expected": [
+          [
+            "Mei",
+            92
+          ],
+          [
+            "Ari",
+            78
+          ]
+        ]
+      },
+      {
+        "label": "Changed dataset",
+        "expr": "extra_query(code)",
+        "expected": [
+          [
+            "Mei",
+            92
+          ],
+          [
+            "Ari",
+            78
+          ],
+          [
+            "Kai",
+            50
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Join on Student.id = Result.student_id.",
+      "Check whether filters belong in WHERE, HAVING or the join condition."
+    ],
+    "setup": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n''')\n\ndef extra_query(code):\n    conn.execute(\"INSERT INTO Result VALUES (4,'Computing',50)\")\n    return conn.execute(code).fetchall()\n",
+    "files": {
+      "schema.sql": "\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n"
+    },
+    "kind": "sql",
+    "rubric": [],
+    "source": "W3Schools topic practice \u00b7 SQL joins",
+    "sourceUrl": "https://www.w3schools.com/sql/sql_join.asp"
+  },
+  {
+    "id": "sql-group",
+    "title": "Class averages",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Return class and average Computing score, including only classes whose average is >= 50. Order by class. Use GROUP BY and HAVING. Tables: Student(id, name, class) and Result(student_id, subject, score). Inspect the Files tab for the exact fixture. Write one SQLite SELECT query. Submission also tests a changed dataset.",
+    "starter": "-- Write your SQLite query here\nSELECT ",
+    "solution": "SELECT s.class, AVG(r.score)\nFROM Student s JOIN Result r ON s.id = r.student_id\nWHERE r.subject = 'Computing'\nGROUP BY s.class HAVING AVG(r.score) >= 50\nORDER BY s.class;",
+    "tests": [
+      {
+        "label": "Sample database",
+        "expr": "conn.execute(code).fetchall()",
+        "expected": [
+          [
+            "26A",
+            85.0
+          ]
+        ]
+      },
+      {
+        "label": "Changed dataset",
+        "expr": "extra_query(code)",
+        "expected": [
+          [
+            "26A",
+            85.0
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Join on Student.id = Result.student_id.",
+      "Check whether filters belong in WHERE, HAVING or the join condition."
+    ],
+    "setup": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n''')\n\ndef extra_query(code):\n    conn.execute(\"INSERT INTO Result VALUES (4,'Computing',50)\")\n    return conn.execute(code).fetchall()\n",
+    "files": {
+      "schema.sql": "\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n"
+    },
+    "kind": "sql",
+    "rubric": [],
+    "source": "W3Schools topic practice \u00b7 GROUP BY",
+    "sourceUrl": "https://www.w3schools.com/sql/sql_groupby.asp"
+  },
+  {
+    "id": "sql-join",
+    "title": "Find missing submissions",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Return id and name of every student with no Computing result. Order by id. A student with other subject results but no Computing result must also be included. Tables: Student(id, name, class) and Result(student_id, subject, score). Inspect the Files tab for the exact fixture. Write one SQLite SELECT query. Submission also tests a changed dataset.",
+    "starter": "-- Write your SQLite query here\nSELECT ",
+    "solution": "SELECT s.id, s.name FROM Student s\nLEFT JOIN Result r ON s.id = r.student_id AND r.subject = 'Computing'\nWHERE r.student_id IS NULL\nORDER BY s.id;",
+    "tests": [
+      {
+        "label": "Sample database",
+        "expr": "conn.execute(code).fetchall()",
+        "expected": [
+          [
+            4,
+            "Kai"
+          ]
+        ]
+      },
+      {
+        "label": "Changed dataset",
+        "expr": "extra_query(code)",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Join on Student.id = Result.student_id.",
+      "Check whether filters belong in WHERE, HAVING or the join condition."
+    ],
+    "setup": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n''')\n\ndef extra_query(code):\n    conn.execute(\"INSERT INTO Result VALUES (4,'Computing',50)\")\n    return conn.execute(code).fetchall()\n",
+    "files": {
+      "schema.sql": "\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n"
+    },
+    "kind": "sql",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "python-sql",
+    "title": "Parameterised student lookup",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Implement lookup(conn, name) using a parameterised SQLite query. Return a list of [id, class] records for an exact name match, ordered by id. conn is an open SQLite connection containing Student(id, name, class). Do not construct SQL with string concatenation or interpolation.",
+    "starter": "def lookup(conn, name):\n    pass\n",
+    "solution": "def lookup(conn, name):\n    return [list(row) for row in conn.execute(\n        'SELECT id, class FROM Student WHERE name = ? ORDER BY id', (name,))]\n",
+    "tests": [
+      {
+        "label": "Known student",
+        "expr": "lookup(conn,'Ari')",
+        "expected": [
+          [
+            1,
+            "26A"
+          ]
+        ]
+      },
+      {
+        "label": "Missing",
+        "expr": "lookup(conn,'Nobody')",
+        "expected": []
+      },
+      {
+        "label": "Quoted input",
+        "expr": "lookup(conn, \"' OR 1=1 --\")",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Use ? placeholders and a tuple of parameter values."
+    ],
+    "setup": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.executescript('''\nCREATE TABLE Student(id INTEGER PRIMARY KEY, name TEXT, class TEXT);\nCREATE TABLE Result(student_id INTEGER, subject TEXT, score INTEGER);\nINSERT INTO Student VALUES (1,'Ari','26A'),(2,'Mei','26A'),(3,'Jo','26B'),(4,'Kai','26B');\nINSERT INTO Result VALUES (1,'Computing',78),(1,'Math',85),(2,'Computing',92),(3,'Computing',45),(3,'Math',60);\n''')\n",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "flask-lab",
+    "title": "Build the results portal",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 45,
+    "ref": "4.2.3 / 4.2.4",
+    "description": "Build a Flask application that lists student results from SQLite at GET /. At POST /add, validate a non-empty name and an integer score from 0\u2013100, insert with parameters, and redirect to /. Invalid data must return HTTP 400 without inserting. Display results in an HTML table with labels and readable CSS. Extend it with an image upload saved under a generated safe filename and display the image. Download the local lab to run Flask on your computer. This lab is self-assessed; browser Python cannot host a Flask server.",
+    "starter": "from flask import Flask, request, redirect, render_template\nimport sqlite3\n\napp = Flask(__name__)\n\n# Implement routes and templates in the downloaded lab.\n",
+    "solution": "from flask import Flask, request, redirect, render_template\nimport sqlite3\napp = Flask(__name__)\n\ndef connect():\n    db = sqlite3.connect('results.db')\n    db.execute('CREATE TABLE IF NOT EXISTS Result(name TEXT, score INTEGER)')\n    return db\n\n@app.get('/')\ndef index():\n    with connect() as db:\n        rows = db.execute('SELECT name, score FROM Result ORDER BY name').fetchall()\n    return render_template('index.html', rows=rows)\n\n@app.post('/add')\ndef add():\n    name = request.form.get('name', '').strip()\n    try:\n        score = int(request.form.get('score', ''))\n    except ValueError:\n        return 'Invalid score', 400\n    if not name or not 0 <= score <= 100:\n        return 'Invalid data', 400\n    with connect() as db:\n        db.execute('INSERT INTO Result VALUES (?, ?)', (name, score))\n    return redirect('/')\n\nif __name__ == '__main__':\n    app.run()\n",
+    "tests": [],
+    "hints": [
+      "First build GET / with a static table, then connect it to SQLite.",
+      "Validate on the server even when the HTML input has limits.",
+      "The downloadable solution includes templates, CSS, an upload route, and tests."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "GET / renders a table with persisted records.",
+      "POST /add saves valid input and redirects.",
+      "Invalid, missing, and out-of-range values return 400 without insertion.",
+      "SQL uses parameters; template output is escaped.",
+      "Form controls have labels and the table has headings.",
+      "Image upload validates content and uses a generated filename.",
+      "An uploaded image is displayed; records persist after restarting."
+    ],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "mongo-lab",
+    "title": "Manage a document collection",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 30,
+    "ref": "3.3.8",
+    "description": "Using PyMongo and a local MongoDB server, write manage(collection) that inserts the supplied students, updates Ari\u2019s score to 81, removes records with scores below 50, and returns names with scores >= 80 sorted alphabetically. Use the supplied practice-only collection. Download the lab for fixtures, runnable checks and a reference solution. This requires MongoDB on your computer.",
+    "starter": "def manage(collection):\n    # See students.json in the download.\n    pass\n",
+    "solution": "def manage(collection):\n    collection.insert_many([\n        {'name':'Ari','score':78},\n        {'name':'Mei','score':92},\n        {'name':'Jo','score':45}])\n    collection.update_one({'name':'Ari'}, {'$set':{'score':81}})\n    collection.delete_many({'score':{'$lt':50}})\n    return [doc['name'] for doc in collection.find(\n        {'score':{'$gte':80}}, {'_id':0,'name':1}).sort('name',1)]\n",
+    "tests": [],
+    "hints": [
+      "Use $set to change only the score field.",
+      "Query operators such as $gte belong inside the field value."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Connect to a local practice MongoDB database.",
+      "Insert the three supplied documents.",
+      "Update Ari to 81 with $set.",
+      "Delete scores below 50.",
+      "Return [\"Ari\", \"Mei\"] in sorted order.",
+      "Pass the downloaded checks against a fresh collection."
+    ],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "socket-lab",
+    "title": "The line-based echo service",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "4.1.6",
+    "description": "Implement a TCP client and iterative server on 127.0.0.1:5055. Each connection sends one UTF-8 line terminated by newline; the server responds with the uppercase line plus newline, then closes the connection. The server must accept the next client. Handle data split across recv() calls. Download the lab to run sockets locally. Browser Python cannot create raw TCP connections.",
+    "starter": "import socket\n\n# Implement the client and server in separate downloaded files.\n",
+    "solution": "# server.py\nimport socket\nwith socket.socket() as server:\n    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    server.bind(('127.0.0.1', 5055))\n    server.listen()\n    while True:\n        connection, address = server.accept()\n        with connection:\n            data = b''\n            while b'\\n' not in data:\n                chunk = connection.recv(1024)\n                if not chunk:\n                    break\n                data += chunk\n            if b'\\n' in data:\n                line = data.split(b'\\n', 1)[0].decode('utf-8')\n                connection.sendall((line.upper() + '\\n').encode('utf-8'))\n",
+    "tests": [],
+    "hints": [
+      "TCP is a byte stream: a recv call is not a complete message.",
+      "Read until the newline delimiter before decoding a complete message."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Bind only to 127.0.0.1:5055 for this exercise.",
+      "Read until newline across multiple recv calls.",
+      "Respond in uppercase with a final newline.",
+      "Use sendall and UTF-8 encoding.",
+      "Close each accepted connection.",
+      "Serve a second client without restarting the server."
+    ],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "merge-streams",
+    "title": "Merge two sorted registers",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.2.1",
+    "description": "Implement merge(a, b). Both integer lists are sorted ascending. Return a new sorted list containing every value, including duplicates. Use two pointers, not a built-in sort.",
+    "starter": "def merge(a, b):\n    pass\n",
+    "solution": "def merge(a, b):\n    out, i, j = [], 0, 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]: out.append(a[i]); i += 1\n        else: out.append(b[j]); j += 1\n    return out + a[i:] + b[j:]\n",
+    "tests": [
+      {
+        "label": "Interleaved",
+        "expr": "merge([1,4,9],[2,4,8])",
+        "expected": [
+          1,
+          2,
+          4,
+          4,
+          8,
+          9
+        ]
+      },
+      {
+        "label": "Empty left",
+        "expr": "merge([],[1])",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "Both empty",
+        "expr": "merge([],[])",
+        "expected": []
+      },
+      {
+        "label": "Negative",
+        "expr": "merge([-5,0],[-4,-1])",
+        "expected": [
+          -5,
+          -4,
+          -1,
+          0
+        ]
+      }
+    ],
+    "hints": [
+      "Consume the smaller current value, then append leftovers."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 88",
+    "sourceUrl": "https://leetcode.com/problems/merge-sorted-array/"
+  },
+  {
+    "id": "insert-position",
+    "title": "Find the insertion boundary",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.2.3",
+    "description": "Implement insertion_index(values, target) for a sorted integer list. Return the first index with a value >= target, or len(values). Use binary search.",
+    "starter": "def insertion_index(values, target):\n    pass\n",
+    "solution": "def insertion_index(values, target):\n    lo, hi = 0, len(values)\n    while lo < hi:\n        mid = (lo + hi)//2\n        if values[mid] < target: lo = mid + 1\n        else: hi = mid\n    return lo\n",
+    "tests": [
+      {
+        "label": "Middle",
+        "expr": "insertion_index([1,4,7],5)",
+        "expected": 2
+      },
+      {
+        "label": "Before first",
+        "expr": "insertion_index([1,4],0)",
+        "expected": 0
+      },
+      {
+        "label": "After last",
+        "expr": "insertion_index([1,4],8)",
+        "expected": 2
+      },
+      {
+        "label": "Duplicates",
+        "expr": "insertion_index([1,4,4],4)",
+        "expected": 1
+      },
+      {
+        "label": "Empty",
+        "expr": "insertion_index([],3)",
+        "expected": 0
+      }
+    ],
+    "hints": [
+      "Use a half-open interval [lo, hi)."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 35",
+    "sourceUrl": "https://leetcode.com/problems/search-insert-position/"
+  },
+  {
+    "id": "anagram",
+    "title": "Rearranged inventory labels",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "2.2.2",
+    "description": "Implement same_letters(a, b). Return whether the strings contain the same characters with the same frequencies. Inputs contain lowercase ASCII letters. Do not sort; count the characters.",
+    "starter": "def same_letters(a, b):\n    pass\n",
+    "solution": "def same_letters(a, b):\n    counts = {}\n    for ch in a: counts[ch] = counts.get(ch,0) + 1\n    for ch in b: counts[ch] = counts.get(ch,0) - 1\n    return all(v == 0 for v in counts.values())\n",
+    "tests": [
+      {
+        "label": "Rearranged",
+        "expr": "same_letters('silent','listen')",
+        "expected": true
+      },
+      {
+        "label": "Different count",
+        "expr": "same_letters('aab','abb')",
+        "expected": false
+      },
+      {
+        "label": "Empty",
+        "expr": "same_letters('','')",
+        "expected": true
+      },
+      {
+        "label": "Different length",
+        "expr": "same_letters('a','aa')",
+        "expected": false
+      }
+    ],
+    "hints": [
+      "A dictionary can map each character to its frequency."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 242",
+    "sourceUrl": "https://leetcode.com/problems/valid-anagram/"
+  },
+  {
+    "id": "min-stack",
+    "title": "Track the minimum on a stack",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.3.3",
+    "description": "Implement min_stack(operations). Each operation is [\"push\", integer], [\"pop\"] or [\"min\"]. Return one result per operation: None for push, removed value for pop, and minimum for min. Empty pop/min returns None. Each operation should take O(1) time.",
+    "starter": "def min_stack(operations):\n    pass\n",
+    "solution": "def min_stack(operations):\n    stack, out = [], []\n    for op in operations:\n        if op[0] == 'push':\n            value = op[1]\n            stack.append((value, min(value,stack[-1][1]) if stack else value))\n            out.append(None)\n        elif op[0] == 'pop': out.append(stack.pop()[0] if stack else None)\n        else: out.append(stack[-1][1] if stack else None)\n    return out\n",
+    "tests": [
+      {
+        "label": "Restored minimum",
+        "expr": "min_stack([['push',5],['push',2],['min'],['pop'],['min']])",
+        "expected": [
+          null,
+          null,
+          2,
+          2,
+          5
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "min_stack([['pop'],['min']])",
+        "expected": [
+          null,
+          null
+        ]
+      },
+      {
+        "label": "Repeated minimum",
+        "expr": "min_stack([['push',2],['push',2],['pop'],['min']])",
+        "expected": [
+          null,
+          null,
+          2,
+          2
+        ]
+      },
+      {
+        "label": "Negative",
+        "expr": "min_stack([['push',-5],['push',3],['min']])",
+        "expected": [
+          null,
+          null,
+          -5
+        ]
+      }
+    ],
+    "hints": [
+      "Store the minimum so far alongside each pushed value."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 155",
+    "sourceUrl": "https://leetcode.com/problems/min-stack/"
+  },
+  {
+    "id": "two-stack-queue",
+    "title": "A queue built from two stacks",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.3.3",
+    "description": "Implement queue_ops(operations) with two stacks. Operations are [\"put\", value], [\"get\"], [\"peek\"]. Return None for put, oldest value for get/peek, or None if empty. Use only end-of-list append/pop and top access.",
+    "starter": "def queue_ops(operations):\n    pass\n",
+    "solution": "def queue_ops(operations):\n    incoming, outgoing, out = [], [], []\n    for op in operations:\n        if op[0] == 'put': incoming.append(op[1]); out.append(None)\n        else:\n            if not outgoing:\n                while incoming: outgoing.append(incoming.pop())\n            if not outgoing: out.append(None)\n            elif op[0] == 'get': out.append(outgoing.pop())\n            else: out.append(outgoing[-1])\n    return out\n",
+    "tests": [
+      {
+        "label": "FIFO",
+        "expr": "queue_ops([['put',8],['put',3],['get'],['peek']])",
+        "expected": [
+          null,
+          null,
+          8,
+          3
+        ]
+      },
+      {
+        "label": "Interleaved",
+        "expr": "queue_ops([['put',1],['get'],['put',2],['get']])",
+        "expected": [
+          null,
+          1,
+          null,
+          2
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "queue_ops([['get'],['peek']])",
+        "expected": [
+          null,
+          null
+        ]
+      },
+      {
+        "label": "Repeated peek",
+        "expr": "queue_ops([['put',5],['peek'],['peek']])",
+        "expected": [
+          null,
+          5,
+          5
+        ]
+      }
+    ],
+    "hints": [
+      "Transfer incoming items only when the outgoing stack is empty."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 232",
+    "sourceUrl": "https://leetcode.com/problems/implement-queue-using-stacks/"
+  },
+  {
+    "id": "reverse-links",
+    "title": "Reverse an array-backed list",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.3.5",
+    "description": "Implement reverse_links(nodes, head). Nodes are [value, next_index], with -1 for null. Reverse the reachable links in place and return the new head. Unreachable nodes must be unchanged. The list is acyclic with valid pointers.",
+    "starter": "def reverse_links(nodes, head):\n    pass\n",
+    "solution": "def reverse_links(nodes, head):\n    previous = -1\n    while head != -1:\n        nxt = nodes[head][1]\n        nodes[head][1] = previous\n        previous, head = head, nxt\n    return previous\n",
+    "tests": [
+      {
+        "label": "Three nodes",
+        "expr": "reverse_check([['A',2],['C',-1],['B',1]],0)",
+        "expected": [
+          1,
+          [
+            [
+              "A",
+              -1
+            ],
+            [
+              "C",
+              2
+            ],
+            [
+              "B",
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "reverse_check([],-1)",
+        "expected": [
+          -1,
+          []
+        ]
+      },
+      {
+        "label": "One node",
+        "expr": "reverse_check([['A',-1]],0)",
+        "expected": [
+          0,
+          [
+            [
+              "A",
+              -1
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Unreachable",
+        "expr": "reverse_check([['A',-1],['Z',-1]],0)",
+        "expected": [
+          0,
+          [
+            [
+              "A",
+              -1
+            ],
+            [
+              "Z",
+              -1
+            ]
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Save the next pointer before overwriting it."
+    ],
+    "setup": "def reverse_check(nodes, head):\n    return [reverse_links(nodes, head), nodes]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 206",
+    "sourceUrl": "https://leetcode.com/problems/reverse-linked-list/"
+  },
+  {
+    "id": "valid-bst",
+    "title": "Check the whole BST invariant",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.3.6",
+    "description": "Implement is_bst(tree). A tree is None or [integer, left, right]. Every descendant in the left subtree must be smaller, and every right descendant larger. Duplicates are invalid.",
+    "starter": "def is_bst(tree):\n    pass\n",
+    "solution": "def is_bst(tree):\n    def visit(node, low, high):\n        if node is None: return True\n        value, left, right = node\n        return low < value < high and visit(left,low,value) and visit(right,value,high)\n    return visit(tree,float('-inf'),float('inf'))\n",
+    "tests": [
+      {
+        "label": "Valid",
+        "expr": "is_bst([5,[2,None,None],[8,None,None]])",
+        "expected": true
+      },
+      {
+        "label": "Deep violation",
+        "expr": "is_bst([5,[2,None,[6,None,None]],None])",
+        "expected": false
+      },
+      {
+        "label": "Duplicate",
+        "expr": "is_bst([5,[5,None,None],None])",
+        "expected": false
+      },
+      {
+        "label": "Empty",
+        "expr": "is_bst(None)",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "Pass lower and upper bounds through recursive calls."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 LeetCode 98",
+    "sourceUrl": "https://leetcode.com/problems/validate-binary-search-tree/"
+  },
+  {
+    "id": "runner-up",
+    "title": "Find the second distinct score",
+    "topic": "Algorithms",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "2.2.3",
+    "description": "Implement runner_up(scores). Return the second largest distinct integer, or None if fewer than two distinct values exist. Use one pass without sorting.",
+    "starter": "def runner_up(scores):\n    pass\n",
+    "solution": "def runner_up(scores):\n    first = second = None\n    for score in scores:\n        if first is None or score > first: second, first = first, score\n        elif score != first and (second is None or score > second): second = score\n    return second\n",
+    "tests": [
+      {
+        "label": "Repeated winner",
+        "expr": "runner_up([8,9,9,4])",
+        "expected": 8
+      },
+      {
+        "label": "All equal",
+        "expr": "runner_up([5,5])",
+        "expected": null
+      },
+      {
+        "label": "Empty",
+        "expr": "runner_up([])",
+        "expected": null
+      },
+      {
+        "label": "Negative",
+        "expr": "runner_up([-8,-2,-5])",
+        "expected": -5
+      }
+    ],
+    "hints": [
+      "Track two distinct maximum values."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted concept \u00b7 HackerRank runner-up",
+    "sourceUrl": "https://www.hackerrank.com/challenges/find-second-maximum-number-in-a-list/problem"
+  },
+  {
+    "id": "word-count",
+    "title": "Build a word-frequency report",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "2.2.2 / 2.3.4",
+    "description": "Implement word_counts(path). Read whitespace-separated words, compare them case-insensitively, and return [word, count] pairs ordered alphabetically. Inputs contain letters and whitespace only.",
+    "starter": "def word_counts(path):\n    pass\n",
+    "solution": "def word_counts(path):\n    with open(path) as f: words = f.read().lower().split()\n    counts = {}\n    for word in words: counts[word] = counts.get(word,0) + 1\n    return [[word,counts[word]] for word in sorted(counts)]\n",
+    "tests": [
+      {
+        "label": "Mixed case",
+        "expr": "word_counts('words.txt')",
+        "expected": [
+          [
+            "blue",
+            2
+          ],
+          [
+            "green",
+            1
+          ],
+          [
+            "red",
+            2
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "word_counts('blank.txt')",
+        "expected": []
+      },
+      {
+        "label": "Whitespace",
+        "expr": "word_counts('spaces.txt')",
+        "expected": [
+          [
+            "one",
+            2
+          ],
+          [
+            "two",
+            1
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Split with no separator to handle arbitrary whitespace."
+    ],
+    "setup": "",
+    "files": {
+      "words.txt": "Blue red BLUE green red",
+      "blank.txt": "",
+      "spaces.txt": "One\n\tTWO one"
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "W3Schools topic practice \u00b7 File handling",
+    "sourceUrl": "https://www.w3schools.com/python/python_file_handling.asp"
+  },
+  {
+    "id": "polymorphic-fees",
+    "title": "Calculate membership fees",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.5.3 / 2.5.4",
+    "description": "Define Member(name, monthly_fee), with annual_fee() returning 12 times the fee. StudentMember inherits Member and pays 50% of that annual fee. Implement total_fees(members) by calling annual_fee() on each object.",
+    "starter": "class Member:\n    pass\n\nclass StudentMember(Member):\n    pass\n\ndef total_fees(members):\n    pass\n",
+    "solution": "class Member:\n    def __init__(self, name, monthly_fee):\n        self.name, self.monthly_fee = name, monthly_fee\n    def annual_fee(self): return self.monthly_fee * 12\nclass StudentMember(Member):\n    def annual_fee(self): return super().annual_fee() * 0.5\ndef total_fees(members):\n    return sum(member.annual_fee() for member in members)\n",
+    "tests": [
+      {
+        "label": "Mixed",
+        "expr": "total_fees([Member('A',10),StudentMember('B',10)])",
+        "expected": 180.0
+      },
+      {
+        "label": "Zero",
+        "expr": "StudentMember('A',0).annual_fee()",
+        "expected": 0.0
+      },
+      {
+        "label": "Empty",
+        "expr": "total_fees([])",
+        "expected": 0
+      },
+      {
+        "label": "Inheritance",
+        "expr": "issubclass(StudentMember,Member)",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "Use super() to reuse the parent calculation."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "W3Schools topic practice \u00b7 Polymorphism",
+    "sourceUrl": "https://www.w3schools.com/python/python_polymorphism.asp"
+  },
+  {
+    "id": "matrix-totals",
+    "title": "Summarise a seating grid",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "2.2.1",
+    "description": "Implement totals(grid). For a rectangular integer grid return [row_totals, column_totals]. An empty grid returns [[], []].",
+    "starter": "def totals(grid):\n    pass\n",
+    "solution": "def totals(grid):\n    if not grid: return [[],[]]\n    return [[sum(row) for row in grid],[sum(row[j] for row in grid) for j in range(len(grid[0]))]]\n",
+    "tests": [
+      {
+        "label": "Rectangle",
+        "expr": "totals([[1,2,3],[4,5,6]])",
+        "expected": [
+          [
+            6,
+            15
+          ],
+          [
+            5,
+            7,
+            9
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "totals([])",
+        "expected": [
+          [],
+          []
+        ]
+      },
+      {
+        "label": "Single",
+        "expr": "totals([[8]])",
+        "expected": [
+          [
+            8
+          ],
+          [
+            8
+          ]
+        ]
+      },
+      {
+        "label": "Zero columns",
+        "expr": "totals([[],[]])",
+        "expected": [
+          [
+            0,
+            0
+          ],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "Initialise one accumulator for each column."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "transpose",
+    "title": "Transpose a marks table",
+    "topic": "Python & files",
+    "level": "Foundation",
+    "minutes": 20,
+    "ref": "2.2.1",
+    "description": "Implement transpose(grid) to swap rows and columns of a rectangular grid. Return a new list of lists. [] produces [].",
+    "starter": "def transpose(grid):\n    pass\n",
+    "solution": "def transpose(grid):\n    if not grid: return []\n    return [[grid[i][j] for i in range(len(grid))] for j in range(len(grid[0]))]\n",
+    "tests": [
+      {
+        "label": "Rectangle",
+        "expr": "transpose([[1,2,3],[4,5,6]])",
+        "expected": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      {
+        "label": "One row",
+        "expr": "transpose([[1,2]])",
+        "expected": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "transpose([])",
+        "expected": []
+      },
+      {
+        "label": "One column",
+        "expr": "transpose([[1],[2]])",
+        "expected": [
+          [
+            1,
+            2
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "The output row index is the input column index."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "gcd",
+    "title": "Recursive greatest common divisor",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.2.5",
+    "description": "Implement gcd(a, b) recursively using Euclid\u2019s algorithm. Inputs are non-negative integers. Define gcd(0,0) as 0. Do not import math.gcd.",
+    "starter": "def gcd(a, b):\n    pass\n",
+    "solution": "def gcd(a, b):\n    return a if b == 0 else gcd(b,a % b)\n",
+    "tests": [
+      {
+        "label": "Common factor",
+        "expr": "gcd(84,30)",
+        "expected": 6
+      },
+      {
+        "label": "Coprime",
+        "expr": "gcd(17,9)",
+        "expected": 1
+      },
+      {
+        "label": "Zero",
+        "expr": "gcd(0,7)",
+        "expected": 7
+      },
+      {
+        "label": "Both zero",
+        "expr": "gcd(0,0)",
+        "expected": 0
+      }
+    ],
+    "hints": [
+      "gcd(a,b) equals gcd(b,a mod b) when b is nonzero."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "recursive-binary",
+    "title": "Binary search, recursively",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.2.3 / 2.2.5",
+    "description": "Implement recursive_search(values, target, low, high), using inclusive bounds and recursion. The ascending integer list has unique values. Return the matching index or -1.",
+    "starter": "def recursive_search(values, target, low, high):\n    pass\n",
+    "solution": "def recursive_search(values, target, low, high):\n    if low > high: return -1\n    mid = (low+high)//2\n    if values[mid] == target: return mid\n    if values[mid] < target: return recursive_search(values,target,mid+1,high)\n    return recursive_search(values,target,low,mid-1)\n",
+    "tests": [
+      {
+        "label": "Found",
+        "expr": "recursive_search([2,5,9,12],9,0,3)",
+        "expected": 2
+      },
+      {
+        "label": "Missing",
+        "expr": "recursive_search([2,5],4,0,1)",
+        "expected": -1
+      },
+      {
+        "label": "Empty",
+        "expr": "recursive_search([],3,0,-1)",
+        "expected": -1
+      },
+      {
+        "label": "First",
+        "expr": "recursive_search([2,5],2,0,1)",
+        "expected": 0
+      }
+    ],
+    "hints": [
+      "low > high is the not-found base case."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "caesar",
+    "title": "Shift letters and digits",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.2.2 / 3.2.2",
+    "description": "Implement shift(text, amount). Rotate A\u2013Z, a\u2013z and 0\u20139 within their own ranges. Leave other characters unchanged. amount may be negative or exceed 26. This is a programming exercise, not secure encryption.",
+    "starter": "def shift(text, amount):\n    pass\n",
+    "solution": "def shift(text, amount):\n    out = ''\n    for ch in text:\n        for alphabet in ['ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz','0123456789']:\n            if ch in alphabet:\n                out += alphabet[(alphabet.index(ch)+amount)%len(alphabet)]\n                break\n        else: out += ch\n    return out\n",
+    "tests": [
+      {
+        "label": "Wrap",
+        "expr": "shift('Zz9!',1)",
+        "expected": "Aa0!"
+      },
+      {
+        "label": "Negative",
+        "expr": "shift('Aa0',-1)",
+        "expected": "Zz9"
+      },
+      {
+        "label": "Large",
+        "expr": "shift('Ab8',53)",
+        "expected": "Bc1"
+      },
+      {
+        "label": "Empty",
+        "expr": "shift('',5)",
+        "expected": ""
+      }
+    ],
+    "hints": [
+      "Use a separate modulus for letters and digits."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 HCI 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "base-decode",
+    "title": "Decode fixed-width base-7 text",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.1.2 / 3.2.2",
+    "description": "Implement decode7(code). Each group of three digits is a base-7 ASCII code. Convert to characters and join them. Raise ValueError if length is not divisible by three or any character is outside 0\u20136. Empty input returns an empty string.",
+    "starter": "def decode7(code):\n    pass\n",
+    "solution": "def decode7(code):\n    if len(code)%3 or any(ch not in '0123456' for ch in code): raise ValueError('Invalid code')\n    return ''.join(chr(int(code[i:i+3],7)) for i in range(0,len(code),3))\n",
+    "tests": [
+      {
+        "label": "Two letters",
+        "expr": "decode7('122123')",
+        "expected": "AB"
+      },
+      {
+        "label": "Lowercase",
+        "expr": "decode7('166200')",
+        "expected": "ab"
+      },
+      {
+        "label": "Empty",
+        "expr": "decode7('')",
+        "expected": ""
+      },
+      {
+        "label": "Invalid",
+        "expr": "bad_decode()",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "Process slices with a step of three."
+    ],
+    "setup": "def bad_decode():\n    try: decode7('777')\n    except ValueError: return True\n    return False",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 RVHS 2025 Task 3",
+    "sourceUrl": ""
+  },
+  {
+    "id": "rle",
+    "title": "Compress repeated characters",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.2.2",
+    "description": "Implement encode(text). Input contains lowercase ASCII letters only. Replace runs of at least three identical letters with % followed by the letter and decimal run length. Leave shorter runs unchanged.",
+    "starter": "def encode(text):\n    pass\n",
+    "solution": "def encode(text):\n    out, i = '', 0\n    while i < len(text):\n        j = i+1\n        while j < len(text) and text[j] == text[i]: j += 1\n        count = j-i\n        out += '%'+text[i]+str(count) if count >= 3 else text[i:j]\n        i = j\n    return out\n",
+    "tests": [
+      {
+        "label": "Mixed",
+        "expr": "encode('aaaabbcccccde')",
+        "expected": "%a4bb%c5de"
+      },
+      {
+        "label": "Long run",
+        "expr": "encode('x'*12)",
+        "expected": "%x12"
+      },
+      {
+        "label": "Short",
+        "expr": "encode('aabb')",
+        "expected": "aabb"
+      },
+      {
+        "label": "Empty",
+        "expr": "encode('')",
+        "expected": ""
+      }
+    ],
+    "hints": [
+      "Use one index for the run start and another for its end."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "rle-decode",
+    "title": "Expand a compressed message",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.2.2",
+    "description": "Implement decode(text). Lowercase letters are literal; %letterN repeats the letter N times, where N is one or more digits. Input is valid. Parse multi-digit counts fully.",
+    "starter": "def decode(text):\n    pass\n",
+    "solution": "def decode(text):\n    out, i = '', 0\n    while i < len(text):\n        if text[i] != '%': out += text[i]; i += 1\n        else:\n            ch, j = text[i+1], i+2\n            while j < len(text) and text[j].isdigit(): j += 1\n            out += ch * int(text[i+2:j]); i = j\n    return out\n",
+    "tests": [
+      {
+        "label": "Mixed",
+        "expr": "decode('%a4bb%c5de')",
+        "expected": "aaaabbcccccde"
+      },
+      {
+        "label": "Long",
+        "expr": "decode('%x12')",
+        "expected": "xxxxxxxxxxxx"
+      },
+      {
+        "label": "Literal",
+        "expr": "decode('abcd')",
+        "expected": "abcd"
+      },
+      {
+        "label": "Empty",
+        "expr": "decode('')",
+        "expected": ""
+      }
+    ],
+    "hints": [
+      "Read digits until the first non-digit."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "magic-square",
+    "title": "Audit a magic square",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "2.2.1 / 2.4.4",
+    "description": "Implement is_magic(grid). Return True only for a nonempty n\u00d7n grid containing each integer 1 through n\u00b2 exactly once, with equal row, column and both diagonal sums. Reject ragged grids.",
+    "starter": "def is_magic(grid):\n    pass\n",
+    "solution": "def is_magic(grid):\n    n = len(grid)\n    if not n or any(len(row) != n for row in grid): return False\n    if sorted(v for row in grid for v in row) != list(range(1,n*n+1)): return False\n    target = n*(n*n+1)//2\n    return all(sum(row)==target for row in grid) and all(sum(grid[i][j] for i in range(n))==target for j in range(n)) and sum(grid[i][i] for i in range(n))==target and sum(grid[i][n-1-i] for i in range(n))==target\n",
+    "tests": [
+      {
+        "label": "Valid",
+        "expr": "is_magic([[8,1,6],[3,5,7],[4,9,2]])",
+        "expected": true
+      },
+      {
+        "label": "Repeated values",
+        "expr": "is_magic([[1,1],[1,1]])",
+        "expected": false
+      },
+      {
+        "label": "Ragged",
+        "expr": "is_magic([[1,2],[3]])",
+        "expected": false
+      },
+      {
+        "label": "Single",
+        "expr": "is_magic([[1]])",
+        "expected": true
+      },
+      {
+        "label": "Empty",
+        "expr": "is_magic([])",
+        "expected": false
+      }
+    ],
+    "hints": [
+      "Checking sums alone does not prove that all required values occur."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 ACJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "make-magic",
+    "title": "Construct an odd-order magic square",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "2.2.1 / 2.2.3",
+    "description": "Implement make_magic(n) for positive odd n. Start with 1 in the top middle cell. Move up one and right one with wraparound. If occupied, move down one from the previous position instead. Continue to n\u00b2. Return the grid.",
+    "starter": "def make_magic(n):\n    pass\n",
+    "solution": "def make_magic(n):\n    a = [[0]*n for _ in range(n)]\n    r, c = 0, n//2\n    for value in range(1,n*n+1):\n        a[r][c] = value\n        nr, nc = (r-1)%n, (c+1)%n\n        if a[nr][nc]: r = (r+1)%n\n        else: r,c = nr,nc\n    return a\n",
+    "tests": [
+      {
+        "label": "Three",
+        "expr": "make_magic(3)",
+        "expected": [
+          [
+            8,
+            1,
+            6
+          ],
+          [
+            3,
+            5,
+            7
+          ],
+          [
+            4,
+            9,
+            2
+          ]
+        ]
+      },
+      {
+        "label": "Single",
+        "expr": "make_magic(1)",
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Five",
+        "expr": "make_magic(5)",
+        "expected": [
+          [
+            17,
+            24,
+            1,
+            8,
+            15
+          ],
+          [
+            23,
+            5,
+            7,
+            14,
+            16
+          ],
+          [
+            4,
+            6,
+            13,
+            20,
+            22
+          ],
+          [
+            10,
+            12,
+            19,
+            21,
+            3
+          ],
+          [
+            11,
+            18,
+            25,
+            2,
+            9
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Calculate the candidate next cell before changing the current position."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 ACJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "history",
+    "title": "Browser history with two stacks",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "1.3.3 / 2.5.1",
+    "description": "Implement navigate(home, actions). Actions are [\"visit\", url], [\"back\"] or [\"forward\"]. Return the current URL after each action. Back/forward on empty history leaves the page unchanged. A new visit clears forward history. Use two stacks.",
+    "starter": "def navigate(home, actions):\n    pass\n",
+    "solution": "def navigate(home, actions):\n    back, forward, out, current = [], [], [], home\n    for action in actions:\n        if action[0] == 'visit':\n            back.append(current); current = action[1]; forward.clear()\n        elif action[0] == 'back' and back:\n            forward.append(current); current = back.pop()\n        elif action[0] == 'forward' and forward:\n            back.append(current); current = forward.pop()\n        out.append(current)\n    return out\n",
+    "tests": [
+      {
+        "label": "Back and forward",
+        "expr": "navigate('home',[['visit','a'],['visit','b'],['back'],['forward']])",
+        "expected": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      {
+        "label": "Cleared forward",
+        "expr": "navigate('home',[['visit','a'],['back'],['visit','b'],['forward']])",
+        "expected": [
+          "a",
+          "home",
+          "b",
+          "b"
+        ]
+      },
+      {
+        "label": "No history",
+        "expr": "navigate('home',[['back'],['forward']])",
+        "expected": [
+          "home",
+          "home"
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "navigate('home',[])",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Every successful back action pushes the old current page onto forward history."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 HCI 2025 Task 3 / JPJC 2025 Task 2",
+    "sourceUrl": ""
+  },
+  {
+    "id": "scheduler",
+    "title": "Schedule a day of announcements",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "1.3.3 / 2.3.4",
+    "description": "Implement schedule(items, budget). Each item is [title, priority, duration], with priority High, Medium or Low and positive duration. Process High then Medium then Low, FIFO within a priority. Schedule an item if it fits the remaining budget; otherwise defer it and keep scanning. Return [scheduled_titles, deferred_titles] in processing order. budget is non-negative.",
+    "starter": "def schedule(items, budget):\n    pass\n",
+    "solution": "def schedule(items, budget):\n    accepted, deferred = [], []\n    for priority in ['High','Medium','Low']:\n        for title,p,duration in items:\n            if p != priority: continue\n            if duration <= budget:\n                accepted.append(title); budget -= duration\n            else: deferred.append(title)\n    return [accepted,deferred]\n",
+    "tests": [
+      {
+        "label": "Priority then FIFO",
+        "expr": "schedule([['A','Low',20],['B','High',40],['C','High',30]],60)",
+        "expected": [
+          [
+            "B",
+            "A"
+          ],
+          [
+            "C"
+          ]
+        ]
+      },
+      {
+        "label": "Exact budget",
+        "expr": "schedule([['A','High',60]],60)",
+        "expected": [
+          [
+            "A"
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Too long then short",
+        "expr": "schedule([['A','High',100],['B','High',10]],20)",
+        "expected": [
+          [
+            "B"
+          ],
+          [
+            "A"
+          ]
+        ]
+      },
+      {
+        "label": "No budget",
+        "expr": "schedule([['A','Low',1]],0)",
+        "expected": [
+          [],
+          [
+            "A"
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Maintain separate FIFO groups; write down what happens when an item does not fit."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 RI 2025 Task 4",
+    "sourceUrl": ""
+  },
+  {
+    "id": "team-codes",
+    "title": "Validate and sort team codes",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "1.2.1 / 2.4.2",
+    "description": "Implement organise(codes). A valid code is exactly two uppercase ASCII letters followed by 1\u20132 ASCII digits, representing 1\u201399 with no leading zero. Discard invalid codes, preserve duplicates, and use insertion sort by (number, two-letter prefix). Return [even_codes, odd_codes], each in that order.",
+    "starter": "def organise(codes):\n    pass\n",
+    "solution": "def organise(codes):\n    valid = []\n    for code in codes:\n        if 3 <= len(code) <= 4 and all('A'<=c<='Z' for c in code[:2]) and all('0'<=c<='9' for c in code[2:]) and code[2]!='0': valid.append(code)\n    def key(code): return (int(code[2:]),code[:2])\n    for i in range(1,len(valid)):\n        value,j = valid[i],i-1\n        while j>=0 and key(valid[j])>key(value): valid[j+1]=valid[j];j-=1\n        valid[j+1]=value\n    return [[c for c in valid if int(c[2:])%2==0],[c for c in valid if int(c[2:])%2==1]]\n",
+    "tests": [
+      {
+        "label": "Tie-break",
+        "expr": "organise(['ZZ4','AA4','BB3','AA1'])",
+        "expected": [
+          [
+            "AA4",
+            "ZZ4"
+          ],
+          [
+            "AA1",
+            "BB3"
+          ]
+        ]
+      },
+      {
+        "label": "Invalid",
+        "expr": "organise(['aa2','A1','AA0','AA01','AA100','AB9'])",
+        "expected": [
+          [],
+          [
+            "AB9"
+          ]
+        ]
+      },
+      {
+        "label": "Duplicates",
+        "expr": "organise(['AB2','AB2'])",
+        "expected": [
+          [
+            "AB2",
+            "AB2"
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "organise([])",
+        "expected": [
+          [],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "Validate before converting; sort by a pair of keys."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 RI 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "squads",
+    "title": "Form balanced-role squads",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "2.2.4 / 2.3.4",
+    "description": "Implement form_squads(candidates). Each record is [name, role, score]; names are unique. Group by role and sort each group by descending score, then name. Form as many complete squads as possible, one candidate from every role, in alphabetical role order. Return [squads, leftover_names], with leftovers alphabetical. Each squad contains names only. Empty input returns [[], []].",
+    "starter": "def form_squads(candidates):\n    pass\n",
+    "solution": "def form_squads(candidates):\n    groups = {}\n    for name,role,score in candidates: groups.setdefault(role,[]).append((name,score))\n    if not groups: return [[],[]]\n    for values in groups.values(): values.sort(key=lambda x:(-x[1],x[0]))\n    size = min(map(len,groups.values()))\n    squads = [[groups[role][i][0] for role in sorted(groups)] for i in range(size)]\n    left = sorted(name for values in groups.values() for name,score in values[size:])\n    return [squads,left]\n",
+    "tests": [
+      {
+        "label": "Uneven roles",
+        "expr": "form_squads([['A','Medic',90],['B','Medic',80],['C','Lead',70]])",
+        "expected": [
+          [
+            [
+              "C",
+              "A"
+            ]
+          ],
+          [
+            "B"
+          ]
+        ]
+      },
+      {
+        "label": "Tie",
+        "expr": "form_squads([['B','X',50],['A','X',50],['C','Y',60]])",
+        "expected": [
+          [
+            [
+              "A",
+              "C"
+            ]
+          ],
+          [
+            "B"
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "form_squads([])",
+        "expected": [
+          [],
+          []
+        ]
+      },
+      {
+        "label": "Single role",
+        "expr": "form_squads([['A','X',4],['B','X',8]])",
+        "expected": [
+          [
+            [
+              "B"
+            ],
+            [
+              "A"
+            ]
+          ],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "The smallest role group determines the number of full squads."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 NJC 2025 Task 2",
+    "sourceUrl": ""
+  },
+  {
+    "id": "weighted-check",
+    "title": "A weighted account check letter",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.4.2 / 3.2.2",
+    "description": "Implement valid_account(text). It must contain six ASCII digits and one lowercase ASCII letter. Multiply the digits by weights [1,4,3,8,5,12], sum, take modulo 26, and map 0 to a through 25 to z. Return whether the last letter matches.",
+    "starter": "def valid_account(text):\n    pass\n",
+    "solution": "def valid_account(text):\n    if len(text)!=7 or any(c not in '0123456789' for c in text[:6]) or not 'a'<=text[6]<='z': return False\n    total = sum(int(d)*w for d,w in zip(text[:6],[1,4,3,8,5,12]))\n    return text[6] == chr(97+total%26)\n",
+    "tests": [
+      {
+        "label": "Correct",
+        "expr": "valid_account('987654b')",
+        "expected": true
+      },
+      {
+        "label": "Wrong letter",
+        "expr": "valid_account('987654a')",
+        "expected": false
+      },
+      {
+        "label": "All zero",
+        "expr": "valid_account('000000a')",
+        "expected": true
+      },
+      {
+        "label": "Malformed",
+        "expr": "valid_account('12345Aa')",
+        "expected": false
+      }
+    ],
+    "hints": [
+      "Separate format validation from the check-letter calculation."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted exercise \u00b7 HCI 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "voucher",
+    "title": "Choose an eligible add-on",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "1.2.1 / 1.2.3",
+    "description": "Implement eligible(items, selected_price, threshold). items are [name, integer_price] pairs. Return all items whose price plus selected_price meets the threshold, ordered by price then name. Use your own merge sort and a binary-search lower boundary. Do not mutate items or use built-in sorting.",
+    "starter": "def eligible(items, selected_price, threshold):\n    pass\n",
+    "solution": "def eligible(items, selected_price, threshold):\n    def merge_sort(a):\n        if len(a)<2: return a[:]\n        m=len(a)//2; l=merge_sort(a[:m]); r=merge_sort(a[m:]); out=[];i=j=0\n        while i<len(l) and j<len(r):\n            if (l[i][1],l[i][0]) <= (r[j][1],r[j][0]): out.append(l[i]);i+=1\n            else: out.append(r[j]);j+=1\n        return out+l[i:]+r[j:]\n    a=merge_sort(items);lo=0;hi=len(a)\n    while lo<hi:\n        mid=(lo+hi)//2\n        if a[mid][1]+selected_price < threshold:lo=mid+1\n        else:hi=mid\n    return a[lo:]\n",
+    "tests": [
+      {
+        "label": "Threshold",
+        "expr": "eligible([['Pen',5],['Bag',30],['Book',20]],10,30)",
+        "expected": [
+          [
+            "Book",
+            20
+          ],
+          [
+            "Bag",
+            30
+          ]
+        ]
+      },
+      {
+        "label": "Price tie",
+        "expr": "eligible([['Z',20],['A',20]],0,20)",
+        "expected": [
+          [
+            "A",
+            20
+          ],
+          [
+            "Z",
+            20
+          ]
+        ]
+      },
+      {
+        "label": "None",
+        "expr": "eligible([['A',2]],0,9)",
+        "expected": []
+      },
+      {
+        "label": "Empty",
+        "expr": "eligible([],10,5)",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Sort records by (price, name), then locate the first sufficient price."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 HCI 2025 Task 2",
+    "sourceUrl": ""
+  },
+  {
+    "id": "rank-ratings",
+    "title": "Find every record at a rating",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "1.2.1 / 1.2.3",
+    "description": "Implement matching(records, rating). Records are [id, score] with unique string IDs. Sort by score descending using your own quicksort, then use binary search to locate the matching range. Return matching IDs alphabetically; sorted() may be used only on the final ID list.",
+    "starter": "def matching(records, rating):\n    pass\n",
+    "solution": "def matching(records, rating):\n    def quick(a):\n        if len(a)<2:return a[:]\n        p=a[0][1]\n        return quick([x for x in a if x[1]>p])+[x for x in a if x[1]==p]+quick([x for x in a if x[1]<p])\n    a=quick(records)\n    lo,hi=0,len(a)\n    while lo<hi:\n        mid=(lo+hi)//2\n        if a[mid][1]>rating:lo=mid+1\n        else:hi=mid\n    start=lo;hi=len(a)\n    while lo<hi:\n        mid=(lo+hi)//2\n        if a[mid][1]>=rating:lo=mid+1\n        else:hi=mid\n    return sorted(x[0] for x in a[start:lo])\n",
+    "tests": [
+      {
+        "label": "Repeated rating",
+        "expr": "matching([['C',80],['A',80],['B',90]],80)",
+        "expected": [
+          "A",
+          "C"
+        ]
+      },
+      {
+        "label": "Absent",
+        "expr": "matching([['A',3]],2)",
+        "expected": []
+      },
+      {
+        "label": "Empty",
+        "expr": "matching([],90)",
+        "expected": []
+      },
+      {
+        "label": "Lowest",
+        "expr": "matching([['A',10],['B',20]],10)",
+        "expected": [
+          "A"
+        ]
+      }
+    ],
+    "hints": [
+      "Descending order reverses the binary-search comparisons."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 VJC 2025 Task 1 / NYJC 2025 Task 2",
+    "sourceUrl": ""
+  },
+  {
+    "id": "inventory-pipeline",
+    "title": "Import, sort, search an inventory",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "2.3.4 / 1.2.1 / 1.2.3",
+    "description": "Implement inventory(path, target). Read a headerless name,value CSV. Values are integers and names unique. Sort by name using your own quicksort, then binary-search target. Return [sorted_records, found_value], with -1 for a missing name.",
+    "starter": "def inventory(path, target):\n    pass\n",
+    "solution": "import csv\ndef inventory(path, target):\n    with open(path,newline='') as f: records=[[name,int(value)] for name,value in csv.reader(f)]\n    def quick(a):\n        if len(a)<2:return a[:]\n        p=a[0]\n        return quick([x for x in a[1:] if x[0]<p[0]])+[p]+quick([x for x in a[1:] if x[0]>=p[0]])\n    records=quick(records);lo=0;hi=len(records)-1\n    while lo<=hi:\n        mid=(lo+hi)//2\n        if records[mid][0]==target:return [records,records[mid][1]]\n        if records[mid][0]<target:lo=mid+1\n        else:hi=mid-1\n    return [records,-1]\n",
+    "tests": [
+      {
+        "label": "Found",
+        "expr": "inventory('stock.csv','Lens')",
+        "expected": [
+          [
+            [
+              "Adapter",
+              15
+            ],
+            [
+              "Lens",
+              250
+            ],
+            [
+              "Tripod",
+              80
+            ]
+          ],
+          250
+        ]
+      },
+      {
+        "label": "Absent",
+        "expr": "inventory('stock.csv','Cable')",
+        "expected": [
+          [
+            [
+              "Adapter",
+              15
+            ],
+            [
+              "Lens",
+              250
+            ],
+            [
+              "Tripod",
+              80
+            ]
+          ],
+          -1
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "inventory('none.csv','Lens')",
+        "expected": [
+          [],
+          -1
+        ]
+      }
+    ],
+    "hints": [
+      "Keep file parsing, sorting and searching as separate steps."
+    ],
+    "setup": "",
+    "files": {
+      "stock.csv": "Tripod,80\nLens,250\nAdapter,15\n",
+      "none.csv": ""
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 JPJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "json-summary",
+    "title": "Summarise device inventory",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8 / 2.3.4",
+    "description": "Implement device_summary(path). Read a JSON list of objects with category and cost fields. Return [category, count, total_cost] rows alphabetically by category. Costs are non-negative integers.",
+    "starter": "def device_summary(path):\n    pass\n",
+    "solution": "import json\ndef device_summary(path):\n    with open(path) as f: records=json.load(f)\n    groups={}\n    for item in records:\n        g=groups.setdefault(item['category'],[0,0]);g[0]+=1;g[1]+=item['cost']\n    return [[k]+groups[k] for k in sorted(groups)]\n",
+    "tests": [
+      {
+        "label": "Grouped",
+        "expr": "device_summary('devices.json')",
+        "expected": [
+          [
+            "Laptop",
+            2,
+            1700
+          ],
+          [
+            "Tablet",
+            1,
+            300
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "device_summary('none.json')",
+        "expected": []
+      },
+      {
+        "label": "Zero cost",
+        "expr": "device_summary('free.json')",
+        "expected": [
+          [
+            "Tablet",
+            1,
+            0
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Use json.load to parse the file into Python records."
+    ],
+    "setup": "",
+    "files": {
+      "devices.json": "[{\"category\":\"Laptop\",\"cost\":900},{\"category\":\"Tablet\",\"cost\":300},{\"category\":\"Laptop\",\"cost\":800}]",
+      "none.json": "[]",
+      "free.json": "[{\"category\":\"Tablet\",\"cost\":0}]"
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 DHS 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "sliding-board",
+    "title": "Validate a sliding-tile move",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.2.1 / 2.5.1",
+    "description": "Implement move(board, direction). board is a flat list of nine integers with 0 as the blank. direction moves the blank up/down/left/right. Return a new board after a legal move; otherwise return an unchanged copy. The input must stay unchanged.",
+    "starter": "def move(board, direction):\n    pass\n",
+    "solution": "def move(board, direction):\n    out=board[:];p=out.index(0);r,c=divmod(p,3)\n    dr,dc={'up':(-1,0),'down':(1,0),'left':(0,-1),'right':(0,1)}[direction]\n    nr,nc=r+dr,c+dc\n    if 0<=nr<3 and 0<=nc<3:\n        q=nr*3+nc;out[p],out[q]=out[q],out[p]\n    return out\n",
+    "tests": [
+      {
+        "label": "Up",
+        "expr": "move([1,2,3,4,0,5,6,7,8],'up')",
+        "expected": [
+          1,
+          0,
+          3,
+          4,
+          2,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "label": "Illegal left",
+        "expr": "move([0,1,2,3,4,5,6,7,8],'left')",
+        "expected": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "label": "Bottom boundary",
+        "expr": "move([1,2,3,4,5,6,7,8,0],'down')",
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          0
+        ]
+      },
+      {
+        "label": "Right",
+        "expr": "move([1,2,3,4,0,5,6,7,8],'right')",
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "hints": [
+      "Convert the blank index into row and column before testing a move."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 NYJC 2025 Task 1",
+    "sourceUrl": ""
+  },
+  {
+    "id": "socket-parser",
+    "title": "Reassemble messages from chunks",
+    "topic": "Web & networks",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "4.1.6",
+    "description": "Implement collect_lines(chunks). chunks contains byte strings received over TCP. Messages end with b\"\\n\". Return [decoded_complete_lines, remaining_bytes_as_integer_list]. Decode complete lines as UTF-8 and retain an incomplete final line. A character may span chunks.",
+    "starter": "def collect_lines(chunks):\n    pass\n",
+    "solution": "def collect_lines(chunks):\n    buffer=b'';lines=[]\n    for chunk in chunks:\n        buffer+=chunk\n        while b'\\n' in buffer:\n            line,buffer=buffer.split(b'\\n',1);lines.append(line.decode('utf-8'))\n    return [lines,list(buffer)]\n",
+    "tests": [
+      {
+        "label": "Split message",
+        "expr": "collect_lines([b'hel',b'lo\\nwor',b'ld\\n'])",
+        "expected": [
+          [
+            "hello",
+            "world"
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Partial",
+        "expr": "collect_lines([b'ab'])",
+        "expected": [
+          [],
+          [
+            97,
+            98
+          ]
+        ]
+      },
+      {
+        "label": "Empty line",
+        "expr": "collect_lines([b'\\n'])",
+        "expected": [
+          [
+            ""
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Split UTF8",
+        "expr": "collect_lines([bytes([195]),bytes([169,10])])",
+        "expected": [
+          [
+            "\u00e9"
+          ],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "Buffer bytes and decode only complete messages."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 RI 2025 Task 2 / DHS 2025 Task 2",
+    "sourceUrl": ""
+  },
+  {
+    "id": "transaction",
+    "title": "Transfer credits atomically",
+    "topic": "Databases",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "3.3.8",
+    "description": "Implement transfer(conn, source, target, amount). Wallet(id, balance) stores integer balances. For a positive integer amount, transfer only if both distinct IDs exist and the source has enough funds. Return True on success, False otherwise. Invalid requests leave all balances unchanged. Use SQL parameters and a transaction.",
+    "starter": "def transfer(conn, source, target, amount):\n    pass\n",
+    "solution": "def transfer(conn, source, target, amount):\n    if source==target or type(amount) is not int or amount<=0:return False\n    with conn:\n        a=conn.execute('SELECT balance FROM Wallet WHERE id=?',(source,)).fetchone()\n        b=conn.execute('SELECT balance FROM Wallet WHERE id=?',(target,)).fetchone()\n        if a is None or b is None or a[0]<amount:return False\n        conn.execute('UPDATE Wallet SET balance=balance-? WHERE id=?',(amount,source))\n        conn.execute('UPDATE Wallet SET balance=balance+? WHERE id=?',(amount,target))\n    return True\n",
+    "tests": [
+      {
+        "label": "Valid",
+        "expr": "transfer_check(1,2,30)",
+        "expected": [
+          true,
+          [
+            [
+              70
+            ],
+            [
+              50
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Insufficient",
+        "expr": "transfer_check(1,2,150)",
+        "expected": [
+          false,
+          [
+            [
+              100
+            ],
+            [
+              20
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Missing target",
+        "expr": "transfer_check(1,9,10)",
+        "expected": [
+          false,
+          [
+            [
+              100
+            ],
+            [
+              20
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Negative",
+        "expr": "transfer_check(1,2,-10)",
+        "expected": [
+          false,
+          [
+            [
+              100
+            ],
+            [
+              20
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Same account",
+        "expr": "transfer_check(1,1,10)",
+        "expected": [
+          false,
+          [
+            [
+              100
+            ],
+            [
+              20
+            ]
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Validate all preconditions before either UPDATE."
+    ],
+    "setup": "import sqlite3\ndef transfer_check(a,b,n):\n    conn=sqlite3.connect(':memory:')\n    conn.executescript('CREATE TABLE Wallet(id INTEGER PRIMARY KEY,balance INTEGER); INSERT INTO Wallet VALUES(1,100),(2,20);')\n    result=transfer(conn,a,b,n)\n    return [result,conn.execute('SELECT balance FROM Wallet ORDER BY id').fetchall()]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 4",
+    "sourceUrl": ""
+  },
+  {
+    "id": "linked-free",
+    "title": "Allocate and recycle list nodes",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 45,
+    "ref": "1.3.4 / 1.3.5",
+    "description": "Implement manage_list(capacity, operations) using an array-backed singly linked list and a free list. Operations are [\"insert\", integer] and [\"delete\", integer]. Keep values ascending and unique. Insert returns False for duplicates/full capacity; delete returns False if absent. Return [operation_results, final_values]. Deleted slots must be reusable. capacity is positive. Do not use list.insert/remove or a dynamic data list for storage.",
+    "starter": "def manage_list(capacity, operations):\n    pass\n",
+    "solution": "def manage_list(capacity, operations):\n    data=[None]*capacity; links=list(range(1,capacity))+[-1];head=-1;free=0;results=[]\n    for op,value in operations:\n        prev=-1;cur=head\n        while cur!=-1 and data[cur]<value:prev,cur=cur,links[cur]\n        found=cur!=-1 and data[cur]==value\n        if op=='insert':\n            if found or free==-1:results.append(False);continue\n            slot=free;free=links[slot];data[slot]=value;links[slot]=cur\n            if prev==-1:head=slot\n            else:links[prev]=slot\n            results.append(True)\n        else:\n            if not found:results.append(False);continue\n            if prev==-1:head=links[cur]\n            else:links[prev]=links[cur]\n            data[cur]=None;links[cur]=free;free=cur;results.append(True)\n    values=[];cur=head\n    while cur!=-1:values.append(data[cur]);cur=links[cur]\n    return [results,values]\n",
+    "tests": [
+      {
+        "label": "Ordered",
+        "expr": "manage_list(3,[['insert',4],['insert',1],['insert',3]])",
+        "expected": [
+          [
+            true,
+            true,
+            true
+          ],
+          [
+            1,
+            3,
+            4
+          ]
+        ]
+      },
+      {
+        "label": "Recycle",
+        "expr": "manage_list(2,[['insert',2],['insert',1],['delete',1],['insert',3]])",
+        "expected": [
+          [
+            true,
+            true,
+            true,
+            true
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "label": "Full duplicate",
+        "expr": "manage_list(1,[['insert',1],['insert',2],['insert',1]])",
+        "expected": [
+          [
+            true,
+            false,
+            false
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Missing delete",
+        "expr": "manage_list(2,[['delete',9]])",
+        "expected": [
+          [
+            false
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Delete head and tail",
+        "expr": "manage_list(2,[['insert',1],['insert',2],['delete',1],['delete',2]])",
+        "expected": [
+          [
+            true,
+            true,
+            true,
+            true
+          ],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "Unlink from the active list, then prepend the released slot to the free list."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Adapted workflow \u00b7 VJC 2025 Task 2 / ACJC 2025 Task 3",
+    "sourceUrl": ""
+  },
+  {
+    "id": "merge-objects",
+    "title": "Sort birthday records stably",
+    "topic": "Algorithms",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "1.2.1 / 2.5.1",
+    "description": "Implement sort_birthdays(records). Each [name, YYYYMMDD] pair contains a valid date string. Use a stable merge sort by date ascending: preserve input order for equal dates. Return a new list. No built-in sort.",
+    "starter": "def sort_birthdays(records):\n    pass\n",
+    "solution": "def sort_birthdays(records):\n    if len(records)<2:return records[:]\n    m=len(records)//2;l=sort_birthdays(records[:m]);r=sort_birthdays(records[m:]);out=[];i=j=0\n    while i<len(l) and j<len(r):\n        if l[i][1]<=r[j][1]:out.append(l[i]);i+=1\n        else:out.append(r[j]);j+=1\n    return out+l[i:]+r[j:]\n",
+    "tests": [
+      {
+        "label": "Ordered dates",
+        "expr": "sort_birthdays([['A','20080402'],['B','20070101']])",
+        "expected": [
+          [
+            "B",
+            "20070101"
+          ],
+          [
+            "A",
+            "20080402"
+          ]
+        ]
+      },
+      {
+        "label": "Stability",
+        "expr": "sort_birthdays([['Z','20080101'],['A','20080101'],['B','20070101']])",
+        "expected": [
+          [
+            "B",
+            "20070101"
+          ],
+          [
+            "Z",
+            "20080101"
+          ],
+          [
+            "A",
+            "20080101"
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "sort_birthdays([])",
+        "expected": []
+      },
+      {
+        "label": "Single",
+        "expr": "sort_birthdays([['A','20080101']])",
+        "expected": [
+          [
+            "A",
+            "20080101"
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Choose from the left half when the keys are equal."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Paper-inspired \u00b7 NJC 2025 Task 3",
+    "sourceUrl": ""
+  },
+  {
+    "id": "postfix",
+    "title": "Evaluate a postfix expression",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 20,
+    "ref": "1.3.3 / 2.2.3",
+    "description": "Implement evaluate(tokens). Tokens are integer strings or +, -, *. Use a stack. Pop the right operand before the left operand. Raise ValueError for insufficient operands or if the final stack does not contain exactly one result.",
+    "starter": "def evaluate(tokens):\n    pass\n",
+    "solution": "def evaluate(tokens):\n    stack=[]\n    for token in tokens:\n        if token not in ['+','-','*']:stack.append(int(token));continue\n        if len(stack)<2:raise ValueError('Missing operands')\n        b=stack.pop();a=stack.pop()\n        stack.append(a+b if token=='+' else a-b if token=='-' else a*b)\n    if len(stack)!=1:raise ValueError('Invalid expression')\n    return stack[0]\n",
+    "tests": [
+      {
+        "label": "Nested",
+        "expr": "evaluate(['3','4','+','2','*'])",
+        "expected": 14
+      },
+      {
+        "label": "Operand order",
+        "expr": "evaluate(['3','8','-'])",
+        "expected": -5
+      },
+      {
+        "label": "Negative",
+        "expr": "evaluate(['-3','2','*'])",
+        "expected": -6
+      },
+      {
+        "label": "Invalid",
+        "expr": "bad_postfix()",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "The last operand popped is the left operand."
+    ],
+    "setup": "def bad_postfix():\n    try:evaluate(['2','+'])\n    except ValueError:return True\n    return False",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  },
+  {
+    "id": "bst-path",
+    "title": "Find a path through a BST",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.3.6",
+    "description": "Implement find_path(tree, target). A node is [value,left,right] or None, and the tree is a valid BST with distinct integer values. Return the list of values from the root to the target; return [] if absent.",
+    "starter": "def find_path(tree, target):\n    pass\n",
+    "solution": "def find_path(tree, target):\n    path=[]\n    while tree is not None:\n        value,left,right=tree;path.append(value)\n        if value==target:return path\n        tree=left if target<value else right\n    return []\n",
+    "tests": [
+      {
+        "label": "Left child",
+        "expr": "find_path([5,[2,None,None],[8,None,None]],2)",
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "label": "Root",
+        "expr": "find_path([5,None,None],5)",
+        "expected": [
+          5
+        ]
+      },
+      {
+        "label": "Absent",
+        "expr": "find_path([5,None,None],9)",
+        "expected": []
+      },
+      {
+        "label": "Empty",
+        "expr": "find_path(None,1)",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Only one child can contain the target in a BST."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus drill",
+    "sourceUrl": ""
+  }
+]

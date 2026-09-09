@@ -47,3 +47,27 @@
 
 .coverage-point[data-highlighted="true"] {outline:3px solid var(--primary);outline-offset:4px;scroll-margin:100px}
 @media (prefers-reduced-transparency: reduce) {[data-slot="dialog-overlay"] {backdrop-filter:none!important}}
+
+/* One fixed canvas behind all views; opaque reading surfaces keep their contrast. */
+:root {--canvas-display:none;--surface-edge:transparent}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme=light]) {--canvas-display:block;--surface:#202024;--surface-edge:#ffffff0b}
+}
+:root[data-theme=dark] {--canvas-display:block;--surface:#202024;--surface-edge:#ffffff0b}
+main {isolation:isolate;--ambient-accent:#82b7ff}
+main[data-ambient-topic="Data structures"],main[data-ambient-topic=progress] {--ambient-accent:#bd9aff}
+main[data-ambient-topic="Python & files"] {--ambient-accent:#69bdc8}
+main[data-ambient-topic=Databases] {--ambient-accent:#87aadd}
+main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambient-accent:#eea964}
+.page-atmosphere {display:var(--canvas-display);position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse 100% 85% at 48% -10%,#191b22,var(--background) 82%)}
+.canvas-glow {position:absolute;inset:0;opacity:.06}
+.canvas-glow i {position:absolute;display:block;width:65vw;height:65vh;left:-15%;top:-12%;border-radius:50%;filter:blur(65px);background:color-mix(in srgb,var(--ambient-accent) 65%,var(--hero-tone));animation:ambient-drift 32s ease-in-out infinite alternate;will-change:transform}
+.canvas-glow i:nth-child(2) {left:60%;top:22%;background:color-mix(in srgb,#bd9aff 45%,var(--hero-tone));animation-delay:-12s}
+.canvas-glow i:nth-child(3) {left:20%;top:65%;width:50vw;height:40vh;background:color-mix(in srgb,#93cfff 40%,var(--hero-tone));animation-delay:-21s}
+.canvas-grain {position:absolute;inset:0;background:url('../public/canvas-grain.svg') repeat;opacity:.03;mix-blend-mode:soft-light}
+.problem,.coding,.problem-list,.insight-panel,.history-panel,.examsetup,.examsession,.paper-grid article,.topic-ring-card {box-shadow:inset 0 1px 0 var(--surface-edge),var(--shadow)}
+.mongo-note {margin:22px 0;padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--code-bg);font-size:.8125rem}
+.mongo-note p {margin:6px 0 0}
+@media (prefers-reduced-motion:reduce) {.canvas-glow i {animation:none;will-change:auto}}
+.motion-paused .canvas-glow i {animation-play-state:paused;will-change:auto}
+@media (prefers-reduced-transparency:reduce), (prefers-contrast:more) {.page-atmosphere {display:none}}

@@ -85,3 +85,26 @@ The supplied implementation audit is addressed across Discover, the editor, Prog
 - The main JavaScript chunk still triggers Vite's size advisory (about 590 kB before compression). The editor, charts, palette and solution guides load separately. Full assistive-technology and all operating-system preference testing remains outside this browser review.
 
 The earlier notes above describe the previous redesign; this section supersedes their statements that the backup schema and worker were unchanged.
+
+## Dark canvas and MongoDB emulation
+
+### Design review — good; improved depth with protected reading surfaces
+
+The dark-background prompt extends the existing atmosphere rather than introducing another visual system. The review used the pinned skill's Accessibility, Color, Layout, Typography, Dark Mode, Materials and Motion references. The relevant principles are sufficient text contrast, clear base/elevated planes, and optional decorative motion.
+
+- A single fixed, pointer-transparent, screen-reader-hidden canvas now sits behind every view. Its soft radial top-light fades from `#191b22` into the existing `#101012` background.
+- Three blurred blobs reuse `ambient-drift`, `--hero-tone` and color mixing at a combined 6% opacity, on a slower 32-second cycle. The first tint follows the active topic or section. A locally generated SVG grain tile uses 3% opacity and soft-light blending; it never overlays text or controls.
+- Dark elevated surfaces move to `#202024`, with a faint inner top edge on cards and workspace panels. Reading and code surfaces stay opaque. Light mode does not show the canvas and retains white surfaces.
+- Reduced motion stops drift and clears `will-change`; the existing pause button also pauses the new layer. Increased contrast and reduced transparency remove the decorative canvas entirely.
+- Measured secondary-text contrast is 7.52:1 on the raised surface. A deliberately conservative upper bound for the brightest gradient, accent and grain combination gives 6.80:1 on the canvas, above the 4.5:1 body-text requirement.
+- Browser review covered dark workspace/Progress, section tint, pause state, light-mode fallback and a 390 × 844 viewport with no horizontal overflow. OS-level media preferences were verified in CSS, not changed on the user's computer. No browser console errors were observed.
+
+### MongoDB-style practice
+
+The worker adds an independent `mongo` package-loading path. It installs `mongomock==4.3.0`, `packaging==24.2`, `sentinels==1.1.0` and `pytz==2025.2` through micropip only when needed. Python and SQL execution paths are preserved: only SQL skips execution of the student's code. The existing package-loading window remains separate from the 10-second code-execution limit, and Stop remains available.
+
+The exact Pyodide 0.28.2 runtime was checked first. A two-test nested-query pilot then passed through the real browser editor before expanding the bank. The five new exercises cover insert/find, nested filters and projections, `$set` updates, deletion/counts, and `$match`/`$group`/`$avg`/`$sum`/`$sort` aggregation. Each has four tests, hints, fixtures/setup helpers and brief line explanations. Mutation exercises check stored data as well as return values; edge cases include empty input, missing fields, boundaries, unchanged updates and tied averages.
+
+There are now 65 exercises, including 62 auto-graded exercises and the existing three labs. Databases has 11 exercises; the original MongoDB lab and its downloadable archive are unchanged. New copy clearly describes emulation, fresh per-test collections, the `mongomock`/`pymongo` naming difference and the limits of this approach. This follows [mongomock's documented scope](https://pypi.org/project/mongomock/4.3.0/), which does not promise a perfect MongoDB replica. Package loading follows [Pyodide's micropip guidance](https://pyodide.org/en/0.28.2/usage/loading-packages.html).
+
+Validation: typecheck/build and `npm test` pass. New tests exercise all 20 Mongo reference checks, reject unfinished starters, verify collection isolation, preserve output on exceptions, and run existing Python/SQLite references. Browser checks confirm pilot grading, four-test aggregation submission, raw output and database progress. Tests use a separate localhost origin. No private papers or school resources were added. Runtime packages are fetched on demand, with no new frontend npm dependency.

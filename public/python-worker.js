@@ -20,6 +20,8 @@ class _LimitedOutput(io.StringIO):
         return super().write(text)
 for _case in _payload['tests']:
     _capture = _LimitedOutput()
+    _stderr = _LimitedOutput()
+    _raw = ''
     _old_dir = os.getcwd()
     try:
         with tempfile.TemporaryDirectory() as _folder, contextlib.chdir(_folder):
@@ -34,15 +36,16 @@ for _case in _payload['tests']:
             _builtins = dict(vars(builtins))
             _builtins['input'] = _input
             _ns = {'__builtins__': _builtins, '__name__':'__practice__', 'code': _payload['code']}
-            with contextlib.redirect_stdout(_capture), contextlib.redirect_stderr(_capture):
+            with contextlib.redirect_stdout(_capture), contextlib.redirect_stderr(_stderr):
                 if _problem['kind'] != 'sql':
                     exec(compile(_payload['code'], 'solution.py', 'exec'), _ns)
                 exec(_problem.get('setup', ''), _ns)
                 _actual = eval(_case['expr'], _ns)
+                _raw = repr(_actual)[:12000]
                 _actual = json.loads(json.dumps(_actual))
-            _results.append({'label':_case['label'], 'passed':_actual == _case['expected'], 'actual':_actual, 'expected':_case['expected'], 'expression':_case['expr'], 'stdout':_capture.getvalue()[:12000]})
+            _results.append({'label':_case['label'], 'passed':_actual == _case['expected'], 'actual':_actual, 'expected':_case['expected'], 'expression':_case['expr'], 'raw':_raw, 'stdout':_capture.getvalue()[:12000], 'stderr':_stderr.getvalue()[:12000]})
     except BaseException as _error:
-        _results.append({'label':_case['label'], 'passed':False, 'error':''.join(traceback.format_exception(type(_error),_error,_error.__traceback__))[-6000:], 'expected':_case['expected'], 'expression':_case['expr'], 'stdout':_capture.getvalue()[:12000]})
+        _results.append({'label':_case['label'], 'passed':False, 'error':''.join(traceback.format_exception(type(_error),_error,_error.__traceback__))[-6000:], 'expected':_case['expected'], 'expression':_case['expr'], 'raw':_raw, 'stdout':_capture.getvalue()[:12000], 'stderr':_stderr.getvalue()[:12000]})
     finally:
         os.chdir(_old_dir)
 json.dumps(_results)

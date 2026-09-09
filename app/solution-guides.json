@@ -1,0 +1,2282 @@
+{
+  "first-match": [
+    {
+      "line": 1,
+      "text": "Define first_match(scores, target)."
+    },
+    {
+      "line": 2,
+      "text": "Start with the entire list; -1 means no match has been found."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while low is at most high."
+    },
+    {
+      "line": 4,
+      "text": "Choose the middle index using integer division."
+    },
+    {
+      "line": 5,
+      "text": "Check whether scores[mid] is at least target."
+    },
+    {
+      "line": 6,
+      "text": "Check whether scores[mid] equals target."
+    },
+    {
+      "line": 7,
+      "text": "Remember this match, but keep searching left for an earlier duplicate."
+    },
+    {
+      "line": 8,
+      "text": "Discard the middle and everything to its right."
+    },
+    {
+      "line": 9,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 10,
+      "text": "Discard the middle and everything to its left."
+    },
+    {
+      "line": 11,
+      "text": "Return the earliest matching index, or -1."
+    }
+  ],
+  "insertion-sort": [
+    {
+      "line": 1,
+      "text": "Define sort_values(values)."
+    },
+    {
+      "line": 2,
+      "text": "Copy values into a so the input is not changed."
+    },
+    {
+      "line": 3,
+      "text": "Process each i in range(1, the length of a)."
+    },
+    {
+      "line": 4,
+      "text": "Set (key, j) to (a[i], i - 1)."
+    },
+    {
+      "line": 5,
+      "text": "Repeat while j is at least 0 and a[j] is greater than key."
+    },
+    {
+      "line": 6,
+      "text": "Set a[j + 1] to a[j]."
+    },
+    {
+      "line": 7,
+      "text": "Decrease j by 1."
+    },
+    {
+      "line": 8,
+      "text": "Set a[j + 1] to key."
+    },
+    {
+      "line": 9,
+      "text": "Return a."
+    }
+  ],
+  "bubble-sort": [
+    {
+      "line": 1,
+      "text": "Define sort_values(values)."
+    },
+    {
+      "line": 2,
+      "text": "Copy values into a so the input is not changed."
+    },
+    {
+      "line": 3,
+      "text": "Process each end in range(len(a) - 1, 0, -1)."
+    },
+    {
+      "line": 4,
+      "text": "Set changed to False."
+    },
+    {
+      "line": 5,
+      "text": "Process each j in range(end)."
+    },
+    {
+      "line": 6,
+      "text": "Check whether a[j] is greater than a[j + 1]."
+    },
+    {
+      "line": 7,
+      "text": "Set (a[j], a[j + 1]) to (a[j + 1], a[j])."
+    },
+    {
+      "line": 8,
+      "text": "Set changed to True."
+    },
+    {
+      "line": 9,
+      "text": "Check whether not (changed)."
+    },
+    {
+      "line": 10,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 11,
+      "text": "Return a."
+    }
+  ],
+  "quick-sort": [
+    {
+      "line": 1,
+      "text": "Define sort_values(values)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether the length of values is at most 1."
+    },
+    {
+      "line": 3,
+      "text": "Return values[:]."
+    },
+    {
+      "line": 4,
+      "text": "Set pivot to values[len(values) // 2]."
+    },
+    {
+      "line": 5,
+      "text": "Set left to a list of v for v in values if v is less than pivot."
+    },
+    {
+      "line": 6,
+      "text": "Set equal to a list of v for v in values if v equals pivot."
+    },
+    {
+      "line": 7,
+      "text": "Set right to a list of v for v in values if v is greater than pivot."
+    },
+    {
+      "line": 8,
+      "text": "Return sort_values(left) + equal + sort_values(right)."
+    }
+  ],
+  "merge-sort": [
+    {
+      "line": 1,
+      "text": "Define sort_values(values)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether the length of values is at most 1."
+    },
+    {
+      "line": 3,
+      "text": "Return values[:]."
+    },
+    {
+      "line": 4,
+      "text": "Set mid to len(values) // 2."
+    },
+    {
+      "line": 5,
+      "text": "Set (left, right) to (sort_values(values[:mid]), sort_values(values[mid:]))."
+    },
+    {
+      "line": 6,
+      "text": "Set (result, i, j) to ([], 0, 0)."
+    },
+    {
+      "line": 7,
+      "text": "Repeat while i is less than the length of left and j is less than the length of right."
+    },
+    {
+      "line": 8,
+      "text": "Check whether left[i] is at most right[j]."
+    },
+    {
+      "line": 9,
+      "text": "Append left[i] to result. Increase i by 1."
+    },
+    {
+      "line": 10,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 11,
+      "text": "Append right[j] to result. Increase j by 1."
+    },
+    {
+      "line": 12,
+      "text": "Return result + left[i:] + right[j:]."
+    }
+  ],
+  "linear-search": [
+    {
+      "line": 1,
+      "text": "Define locate(records, student_id)."
+    },
+    {
+      "line": 2,
+      "text": "Process each record in records."
+    },
+    {
+      "line": 3,
+      "text": "Check whether record[0] equals student_id."
+    },
+    {
+      "line": 4,
+      "text": "Return record[1]."
+    },
+    {
+      "line": 5,
+      "text": "Return None."
+    }
+  ],
+  "hash-table": [
+    {
+      "line": 1,
+      "text": "Define build_table(keys, size)."
+    },
+    {
+      "line": 2,
+      "text": "Set table to [None] * size."
+    },
+    {
+      "line": 3,
+      "text": "Process each key in keys."
+    },
+    {
+      "line": 4,
+      "text": "Process each step in range(size)."
+    },
+    {
+      "line": 5,
+      "text": "Set pos to (key + step) % size."
+    },
+    {
+      "line": 6,
+      "text": "Check whether table[pos] equals key."
+    },
+    {
+      "line": 7,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 8,
+      "text": "Check whether table[pos] is None."
+    },
+    {
+      "line": 9,
+      "text": "Set table[pos] to key."
+    },
+    {
+      "line": 10,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 11,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 12,
+      "text": "Stop this call with ValueError('Table full')."
+    },
+    {
+      "line": 13,
+      "text": "Return table."
+    }
+  ],
+  "stack": [
+    {
+      "line": 1,
+      "text": "Define balanced(text)."
+    },
+    {
+      "line": 2,
+      "text": "Set stack to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Set closing to {')': '(', ']': '[', '}': '{'}."
+    },
+    {
+      "line": 4,
+      "text": "Process each ch in text."
+    },
+    {
+      "line": 5,
+      "text": "Check whether ch is in '([{'."
+    },
+    {
+      "line": 6,
+      "text": "Append ch to stack."
+    },
+    {
+      "line": 7,
+      "text": "Check whether ch is in closing."
+    },
+    {
+      "line": 8,
+      "text": "Check whether not (stack) or stack.pop() differs from closing[ch]."
+    },
+    {
+      "line": 9,
+      "text": "Return False."
+    },
+    {
+      "line": 10,
+      "text": "Return not (stack)."
+    }
+  ],
+  "queue": [
+    {
+      "line": 1,
+      "text": "Define simulate(capacity, operations)."
+    },
+    {
+      "line": 2,
+      "text": "Set data to [None] * capacity."
+    },
+    {
+      "line": 3,
+      "text": "Set head = tail = count to 0."
+    },
+    {
+      "line": 4,
+      "text": "Set result to an empty list."
+    },
+    {
+      "line": 5,
+      "text": "Process each op in operations."
+    },
+    {
+      "line": 6,
+      "text": "Check whether op[0] equals 'put'."
+    },
+    {
+      "line": 7,
+      "text": "Check whether count equals capacity."
+    },
+    {
+      "line": 8,
+      "text": "Append False to result."
+    },
+    {
+      "line": 9,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 10,
+      "text": "Set data[tail] to op[1]."
+    },
+    {
+      "line": 11,
+      "text": "Set tail to (tail + 1) % capacity."
+    },
+    {
+      "line": 12,
+      "text": "Increase count by 1."
+    },
+    {
+      "line": 13,
+      "text": "Append True to result."
+    },
+    {
+      "line": 14,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 15,
+      "text": "Check whether count equals 0."
+    },
+    {
+      "line": 16,
+      "text": "Append None to result."
+    },
+    {
+      "line": 17,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 18,
+      "text": "Append data[head] to result."
+    },
+    {
+      "line": 19,
+      "text": "Set head to (head + 1) % capacity."
+    },
+    {
+      "line": 20,
+      "text": "Decrease count by 1."
+    },
+    {
+      "line": 21,
+      "text": "Return result."
+    }
+  ],
+  "linked-list": [
+    {
+      "line": 1,
+      "text": "Define read_list(nodes, head)."
+    },
+    {
+      "line": 2,
+      "text": "Set (result, seen) to ([], set())."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while head differs from -1."
+    },
+    {
+      "line": 4,
+      "text": "Check whether head is in seen or not (0 is at most head and is less than the length of nodes)."
+    },
+    {
+      "line": 5,
+      "text": "Stop this call with ValueError('Invalid pointer or cycle')."
+    },
+    {
+      "line": 6,
+      "text": "Record head in seen."
+    },
+    {
+      "line": 7,
+      "text": "Set (value, head) to nodes[head]."
+    },
+    {
+      "line": 8,
+      "text": "Append value to result."
+    },
+    {
+      "line": 9,
+      "text": "Return result."
+    }
+  ],
+  "bst": [
+    {
+      "line": 1,
+      "text": "Define traversals(values)."
+    },
+    {
+      "line": 2,
+      "text": "Define insert(node, value)."
+    },
+    {
+      "line": 3,
+      "text": "Check whether node is None."
+    },
+    {
+      "line": 4,
+      "text": "Return [value, None, None]."
+    },
+    {
+      "line": 5,
+      "text": "Check whether value is less than node[0]."
+    },
+    {
+      "line": 6,
+      "text": "Set node[1] to insert(node[1], value)."
+    },
+    {
+      "line": 7,
+      "text": "Check whether value is greater than node[0]."
+    },
+    {
+      "line": 8,
+      "text": "Set node[2] to insert(node[2], value)."
+    },
+    {
+      "line": 9,
+      "text": "Return node."
+    },
+    {
+      "line": 10,
+      "text": "Set root to None."
+    },
+    {
+      "line": 11,
+      "text": "Process each value in values."
+    },
+    {
+      "line": 12,
+      "text": "Set root to insert(root, value)."
+    },
+    {
+      "line": 13,
+      "text": "Set (pre, ino, post) to ([], [], [])."
+    },
+    {
+      "line": 14,
+      "text": "Define walk(node)."
+    },
+    {
+      "line": 15,
+      "text": "Check whether node is None."
+    },
+    {
+      "line": 16,
+      "text": "Return to the caller."
+    },
+    {
+      "line": 17,
+      "text": "Append node[0] to pre."
+    },
+    {
+      "line": 18,
+      "text": "Call walk(node[1])."
+    },
+    {
+      "line": 19,
+      "text": "Append node[0] to ino."
+    },
+    {
+      "line": 20,
+      "text": "Call walk(node[2])."
+    },
+    {
+      "line": 21,
+      "text": "Append node[0] to post."
+    },
+    {
+      "line": 22,
+      "text": "Call walk(root)."
+    },
+    {
+      "line": 23,
+      "text": "Return [pre, ino, post]."
+    }
+  ],
+  "recursion": [
+    {
+      "line": 1,
+      "text": "Define digit_sum(n)."
+    },
+    {
+      "line": 2,
+      "text": "Base case: a one-digit number needs no further splitting."
+    },
+    {
+      "line": 3,
+      "text": "Return n."
+    },
+    {
+      "line": 4,
+      "text": "Add the last digit to the digit sum of the remaining digits."
+    }
+  ],
+  "validation": [
+    {
+      "line": 1,
+      "text": "Define valid_id(text)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether the length of text differs from 6 or any((ch not in '0123456789' for ch in text))."
+    },
+    {
+      "line": 3,
+      "text": "Return False."
+    },
+    {
+      "line": 4,
+      "text": "Compare the final digit with the sum of the first five digits modulo 10."
+    }
+  ],
+  "bases": [
+    {
+      "line": 1,
+      "text": "Define convert(number, base)."
+    },
+    {
+      "line": 2,
+      "text": "Set digits to '0123456789ABCDEF'."
+    },
+    {
+      "line": 3,
+      "text": "Check whether number equals 0."
+    },
+    {
+      "line": 4,
+      "text": "Return '0'."
+    },
+    {
+      "line": 5,
+      "text": "Set result to ''."
+    },
+    {
+      "line": 6,
+      "text": "Repeat while number."
+    },
+    {
+      "line": 7,
+      "text": "Set result to digits[number % base] + result."
+    },
+    {
+      "line": 8,
+      "text": "Integer-divide number by base."
+    },
+    {
+      "line": 9,
+      "text": "Return result."
+    }
+  ],
+  "files": [
+    {
+      "line": 1,
+      "text": "Import csv."
+    },
+    {
+      "line": 3,
+      "text": "Define summarise(path)."
+    },
+    {
+      "line": 4,
+      "text": "Set count = total to 0."
+    },
+    {
+      "line": 5,
+      "text": "Open a managed context for open(path, newline='') as source; clean it up on exit."
+    },
+    {
+      "line": 6,
+      "text": "Process each row in csv.DictReader(source)."
+    },
+    {
+      "line": 7,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 8,
+      "text": "Set score to row['score'] converted to an integer."
+    },
+    {
+      "line": 9,
+      "text": "Check whether not (row['name'].strip()) or not (0 is at most score and is at most 100)."
+    },
+    {
+      "line": 10,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 11,
+      "text": "Increase count by 1."
+    },
+    {
+      "line": 12,
+      "text": "Increase total by score."
+    },
+    {
+      "line": 13,
+      "text": "Handle (ValueError, TypeError, KeyError) rather than stopping the program."
+    },
+    {
+      "line": 14,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 15,
+      "text": "Return [count, total]."
+    }
+  ],
+  "write-file": [
+    {
+      "line": 1,
+      "text": "Define write_report(records, path)."
+    },
+    {
+      "line": 2,
+      "text": "Open a managed context for open(path, 'w') as target; clean it up on exit."
+    },
+    {
+      "line": 3,
+      "text": "Process each (name, score) in the sorted values of records."
+    },
+    {
+      "line": 4,
+      "text": "Write f'{name},{score}\\n' to the output file."
+    },
+    {
+      "line": 5,
+      "text": "Return the length of records."
+    }
+  ],
+  "oop": [
+    {
+      "line": 1,
+      "text": "Define Book as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, title)."
+    },
+    {
+      "line": 3,
+      "text": "Set self._title to title."
+    },
+    {
+      "line": 4,
+      "text": "Define get_title(self)."
+    },
+    {
+      "line": 5,
+      "text": "Return self._title."
+    },
+    {
+      "line": 6,
+      "text": "Define loan_days(self)."
+    },
+    {
+      "line": 7,
+      "text": "Return 14."
+    },
+    {
+      "line": 9,
+      "text": "Define ReferenceBook as a subclass of Book."
+    },
+    {
+      "line": 10,
+      "text": "Define loan_days(self)."
+    },
+    {
+      "line": 11,
+      "text": "Return 0."
+    },
+    {
+      "line": 13,
+      "text": "Define loan_periods(books)."
+    },
+    {
+      "line": 14,
+      "text": "Return a list of book.loan_days() for book in books."
+    }
+  ],
+  "sql-filter": [
+    {
+      "line": 1,
+      "text": "Select each student name and score."
+    },
+    {
+      "line": 2,
+      "text": "Join students to their results using the student ID."
+    },
+    {
+      "line": 3,
+      "text": "Keep Computing results of at least 50."
+    },
+    {
+      "line": 4,
+      "text": "Sort highest scores first; break ties alphabetically."
+    }
+  ],
+  "sql-group": [
+    {
+      "line": 1,
+      "text": "Select each class and its average score."
+    },
+    {
+      "line": 2,
+      "text": "Match each result to its student."
+    },
+    {
+      "line": 3,
+      "text": "Restrict the input rows to Computing."
+    },
+    {
+      "line": 4,
+      "text": "Group by class and keep averages of at least 50."
+    },
+    {
+      "line": 5,
+      "text": "List classes alphabetically."
+    }
+  ],
+  "sql-join": [
+    {
+      "line": 1,
+      "text": "Select each student ID and name."
+    },
+    {
+      "line": 2,
+      "text": "Keep every student, attaching only their Computing result if present."
+    },
+    {
+      "line": 3,
+      "text": "Keep unmatched students, whose result-side ID is NULL."
+    },
+    {
+      "line": 4,
+      "text": "Order the remaining students by ID."
+    }
+  ],
+  "python-sql": [
+    {
+      "line": 1,
+      "text": "Define lookup(conn, name)."
+    },
+    {
+      "line": 2,
+      "text": "Execute a parameterised lookup and turn each returned tuple into a list."
+    },
+    {
+      "line": 3,
+      "text": "Use ? to bind name safely, then order matching rows by ID."
+    }
+  ],
+  "flask-lab": [
+    {
+      "line": 1,
+      "text": "Import Flask, request, redirect, render_template from flask."
+    },
+    {
+      "line": 2,
+      "text": "Import sqlite3."
+    },
+    {
+      "line": 3,
+      "text": "Set app to Flask(__name__)."
+    },
+    {
+      "line": 5,
+      "text": "Define connect()."
+    },
+    {
+      "line": 6,
+      "text": "Set db to sqlite3.connect('results.db')."
+    },
+    {
+      "line": 7,
+      "text": "Execute 'CREATE TABLE IF NOT EXISTS Result(name TEXT, score INTEGER)'."
+    },
+    {
+      "line": 8,
+      "text": "Return db."
+    },
+    {
+      "line": 10,
+      "text": "Route GET requests for / to the following view."
+    },
+    {
+      "line": 11,
+      "text": "Define index()."
+    },
+    {
+      "line": 12,
+      "text": "Open a managed context for connect() as db; clean it up on exit."
+    },
+    {
+      "line": 13,
+      "text": "Set rows to db.execute('SELECT name, score FROM Result ORDER BY name').fetchall()."
+    },
+    {
+      "line": 14,
+      "text": "Return render_template('index.html', rows=rows)."
+    },
+    {
+      "line": 16,
+      "text": "Route POST requests for /add to the following handler."
+    },
+    {
+      "line": 17,
+      "text": "Define add()."
+    },
+    {
+      "line": 18,
+      "text": "Set name to request.form.get('name', '').strip()."
+    },
+    {
+      "line": 19,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 20,
+      "text": "Set score to request.form.get('score', '') converted to an integer."
+    },
+    {
+      "line": 21,
+      "text": "Handle ValueError rather than stopping the program."
+    },
+    {
+      "line": 22,
+      "text": "Return ('Invalid score', 400)."
+    },
+    {
+      "line": 23,
+      "text": "Check whether not (name) or not (0 is at most score and is at most 100)."
+    },
+    {
+      "line": 24,
+      "text": "Return ('Invalid data', 400)."
+    },
+    {
+      "line": 25,
+      "text": "Open a managed context for connect() as db; clean it up on exit."
+    },
+    {
+      "line": 26,
+      "text": "Execute 'INSERT INTO Result VALUES (?, ?)' with bound parameters (name, score)."
+    },
+    {
+      "line": 27,
+      "text": "Return redirect('/')."
+    },
+    {
+      "line": 29,
+      "text": "Check whether __name__ equals '__main__'."
+    },
+    {
+      "line": 30,
+      "text": "Call app.run()."
+    }
+  ],
+  "mongo-lab": [
+    {
+      "line": 1,
+      "text": "Define manage(collection)."
+    },
+    {
+      "line": 2,
+      "text": "Insert the following three documents in one operation."
+    },
+    {
+      "line": 3,
+      "text": "Create Ari’s initial score document."
+    },
+    {
+      "line": 4,
+      "text": "Create Mei’s initial score document."
+    },
+    {
+      "line": 5,
+      "text": "Create Jo’s initial score document."
+    },
+    {
+      "line": 6,
+      "text": "Update only Ari’s score to 81."
+    },
+    {
+      "line": 7,
+      "text": "Delete every document with a score below 50."
+    },
+    {
+      "line": 8,
+      "text": "Read the matching documents and collect their names."
+    },
+    {
+      "line": 9,
+      "text": "Keep scores of at least 80, return names without IDs, and sort by name."
+    }
+  ],
+  "socket-lab": [
+    {
+      "line": 1,
+      "text": "server.py"
+    },
+    {
+      "line": 2,
+      "text": "Import socket."
+    },
+    {
+      "line": 3,
+      "text": "Open a managed context for socket.socket() as server; clean it up on exit."
+    },
+    {
+      "line": 4,
+      "text": "Call server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)."
+    },
+    {
+      "line": 5,
+      "text": "Call server.bind(('127.0.0.1', 5055))."
+    },
+    {
+      "line": 6,
+      "text": "Call server.listen()."
+    },
+    {
+      "line": 7,
+      "text": "Repeat while True."
+    },
+    {
+      "line": 8,
+      "text": "Set (connection, address) to server.accept()."
+    },
+    {
+      "line": 9,
+      "text": "Open a managed context for connection; clean it up on exit."
+    },
+    {
+      "line": 10,
+      "text": "Set data to b''."
+    },
+    {
+      "line": 11,
+      "text": "Repeat while b'\\n' is not in data."
+    },
+    {
+      "line": 12,
+      "text": "Set chunk to connection.recv(1024)."
+    },
+    {
+      "line": 13,
+      "text": "Check whether not (chunk)."
+    },
+    {
+      "line": 14,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 15,
+      "text": "Increase data by chunk."
+    },
+    {
+      "line": 16,
+      "text": "Check whether b'\\n' is in data."
+    },
+    {
+      "line": 17,
+      "text": "Set line to data.split(b'\\n', 1)[0].decode('utf-8')."
+    },
+    {
+      "line": 18,
+      "text": "Call connection.sendall((line.upper() + '\\n').encode('utf-8'))."
+    }
+  ],
+  "merge-streams": [
+    {
+      "line": 1,
+      "text": "Define merge(a, b)."
+    },
+    {
+      "line": 2,
+      "text": "Set (out, i, j) to ([], 0, 0)."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while i is less than the length of a and j is less than the length of b."
+    },
+    {
+      "line": 4,
+      "text": "Check whether a[i] is at most b[j]. Append a[i] to out. Increase i by 1."
+    },
+    {
+      "line": 5,
+      "text": "Append b[j] to out. Increase j by 1."
+    },
+    {
+      "line": 6,
+      "text": "Return out + a[i:] + b[j:]."
+    }
+  ],
+  "insert-position": [
+    {
+      "line": 1,
+      "text": "Define insertion_index(values, target)."
+    },
+    {
+      "line": 2,
+      "text": "Set (lo, hi) to (0, len(values))."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while lo is less than hi."
+    },
+    {
+      "line": 4,
+      "text": "Set mid to (lo + hi) // 2."
+    },
+    {
+      "line": 5,
+      "text": "Check whether values[mid] is less than target. Set lo to mid + 1."
+    },
+    {
+      "line": 6,
+      "text": "Set hi to mid."
+    },
+    {
+      "line": 7,
+      "text": "Return lo."
+    }
+  ],
+  "anagram": [
+    {
+      "line": 1,
+      "text": "Define same_letters(a, b)."
+    },
+    {
+      "line": 2,
+      "text": "Set counts to an empty dictionary."
+    },
+    {
+      "line": 3,
+      "text": "Process each ch in a. Set counts[ch] to counts.get(ch, 0) + 1."
+    },
+    {
+      "line": 4,
+      "text": "Process each ch in b. Set counts[ch] to counts.get(ch, 0) - 1."
+    },
+    {
+      "line": 5,
+      "text": "Return all((v == 0 for v in counts.values()))."
+    }
+  ],
+  "min-stack": [
+    {
+      "line": 1,
+      "text": "Define min_stack(operations)."
+    },
+    {
+      "line": 2,
+      "text": "Set (stack, out) to ([], [])."
+    },
+    {
+      "line": 3,
+      "text": "Process each op in operations."
+    },
+    {
+      "line": 4,
+      "text": "Check whether op[0] equals 'push'."
+    },
+    {
+      "line": 5,
+      "text": "Set value to op[1]."
+    },
+    {
+      "line": 6,
+      "text": "Append (value, min(value, stack[-1][1]) if stack else value) to stack."
+    },
+    {
+      "line": 7,
+      "text": "Append None to out."
+    },
+    {
+      "line": 8,
+      "text": "Check whether op[0] equals 'pop'. Append stack.pop()[0] if stack; otherwise None to out."
+    },
+    {
+      "line": 9,
+      "text": "Append stack[-1][1] if stack; otherwise None to out."
+    },
+    {
+      "line": 10,
+      "text": "Return out."
+    }
+  ],
+  "two-stack-queue": [
+    {
+      "line": 1,
+      "text": "Define queue_ops(operations)."
+    },
+    {
+      "line": 2,
+      "text": "Set (incoming, outgoing, out) to ([], [], [])."
+    },
+    {
+      "line": 3,
+      "text": "Process each op in operations."
+    },
+    {
+      "line": 4,
+      "text": "Check whether op[0] equals 'put'. Append op[1] to incoming. Append None to out."
+    },
+    {
+      "line": 5,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 6,
+      "text": "Check whether not (outgoing)."
+    },
+    {
+      "line": 7,
+      "text": "Repeat while incoming. Append incoming.pop() to outgoing."
+    },
+    {
+      "line": 8,
+      "text": "Check whether not (outgoing). Append None to out."
+    },
+    {
+      "line": 9,
+      "text": "Check whether op[0] equals 'get'. Append outgoing.pop() to out."
+    },
+    {
+      "line": 10,
+      "text": "Append outgoing[-1] to out."
+    },
+    {
+      "line": 11,
+      "text": "Return out."
+    }
+  ],
+  "reverse-links": [
+    {
+      "line": 1,
+      "text": "Define reverse_links(nodes, head)."
+    },
+    {
+      "line": 2,
+      "text": "Set previous to -1."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while head differs from -1."
+    },
+    {
+      "line": 4,
+      "text": "Set nxt to nodes[head][1]."
+    },
+    {
+      "line": 5,
+      "text": "Set nodes[head][1] to previous."
+    },
+    {
+      "line": 6,
+      "text": "Set (previous, head) to (head, nxt)."
+    },
+    {
+      "line": 7,
+      "text": "Return previous."
+    }
+  ],
+  "valid-bst": [
+    {
+      "line": 1,
+      "text": "Define is_bst(tree)."
+    },
+    {
+      "line": 2,
+      "text": "Define visit(node, low, high)."
+    },
+    {
+      "line": 3,
+      "text": "Check whether node is None. Return True."
+    },
+    {
+      "line": 4,
+      "text": "Set (value, left, right) to node."
+    },
+    {
+      "line": 5,
+      "text": "Require this value to fit its bounds, then tighten the bounds for each subtree."
+    },
+    {
+      "line": 6,
+      "text": "Return visit(tree, float('-inf'), float('inf'))."
+    }
+  ],
+  "runner-up": [
+    {
+      "line": 1,
+      "text": "Define runner_up(scores)."
+    },
+    {
+      "line": 2,
+      "text": "Set first = second to None."
+    },
+    {
+      "line": 3,
+      "text": "Process each score in scores."
+    },
+    {
+      "line": 4,
+      "text": "Check whether first is None or score is greater than first. Set (second, first) to (first, score)."
+    },
+    {
+      "line": 5,
+      "text": "Check whether score differs from first and second is None or score is greater than second. Set second to score."
+    },
+    {
+      "line": 6,
+      "text": "Return second."
+    }
+  ],
+  "word-count": [
+    {
+      "line": 1,
+      "text": "Define word_counts(path)."
+    },
+    {
+      "line": 2,
+      "text": "Open a managed context for open(path) as f; clean it up on exit. Set words to f.read().lower().split()."
+    },
+    {
+      "line": 3,
+      "text": "Set counts to an empty dictionary."
+    },
+    {
+      "line": 4,
+      "text": "Process each word in words. Set counts[word] to counts.get(word, 0) + 1."
+    },
+    {
+      "line": 5,
+      "text": "Return a list of [word, counts[word]] for word in the sorted values of counts."
+    }
+  ],
+  "polymorphic-fees": [
+    {
+      "line": 1,
+      "text": "Define Member as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, name, monthly_fee)."
+    },
+    {
+      "line": 3,
+      "text": "Set (self.name, self.monthly_fee) to (name, monthly_fee)."
+    },
+    {
+      "line": 4,
+      "text": "Define annual_fee(self). Return self.monthly_fee * 12."
+    },
+    {
+      "line": 5,
+      "text": "Define StudentMember as a subclass of Member."
+    },
+    {
+      "line": 6,
+      "text": "Define annual_fee(self). Return super().annual_fee() * 0.5."
+    },
+    {
+      "line": 7,
+      "text": "Define total_fees(members)."
+    },
+    {
+      "line": 8,
+      "text": "Return the sum of (member.annual_fee() for member in members)."
+    }
+  ],
+  "matrix-totals": [
+    {
+      "line": 1,
+      "text": "Define totals(grid)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether not (grid). Return [an empty list, an empty list]."
+    },
+    {
+      "line": 3,
+      "text": "Sum every row, then sum each column by taking that position from every row."
+    }
+  ],
+  "transpose": [
+    {
+      "line": 1,
+      "text": "Define transpose(grid)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether not (grid). Return an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Create one output row per original column, preserving its top-to-bottom order."
+    }
+  ],
+  "gcd": [
+    {
+      "line": 1,
+      "text": "Define gcd(a, b)."
+    },
+    {
+      "line": 2,
+      "text": "Stop when b is zero; otherwise recurse with b and the remainder of a ÷ b."
+    }
+  ],
+  "recursive-binary": [
+    {
+      "line": 1,
+      "text": "Define recursive_search(values, target, low, high)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether low is greater than high. Return -1."
+    },
+    {
+      "line": 3,
+      "text": "Set mid to (low + high) // 2."
+    },
+    {
+      "line": 4,
+      "text": "Check whether values[mid] equals target. Return mid."
+    },
+    {
+      "line": 5,
+      "text": "Check whether values[mid] is less than target. Return recursive_search(values, target, mid + 1, high)."
+    },
+    {
+      "line": 6,
+      "text": "Return recursive_search(values, target, low, mid - 1)."
+    }
+  ],
+  "caesar": [
+    {
+      "line": 1,
+      "text": "Define shift(text, amount)."
+    },
+    {
+      "line": 2,
+      "text": "Set out to ''."
+    },
+    {
+      "line": 3,
+      "text": "Process each ch in text."
+    },
+    {
+      "line": 4,
+      "text": "Process each alphabet in ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789']."
+    },
+    {
+      "line": 5,
+      "text": "Check whether ch is in alphabet."
+    },
+    {
+      "line": 6,
+      "text": "Increase out by alphabet[(alphabet.index(ch) + amount) % len(alphabet)]."
+    },
+    {
+      "line": 7,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 8,
+      "text": "Increase out by ch."
+    },
+    {
+      "line": 9,
+      "text": "Return out."
+    }
+  ],
+  "base-decode": [
+    {
+      "line": 1,
+      "text": "Define decode7(code)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether len(code) % 3 or any((ch not in '0123456' for ch in code)). Stop this call with ValueError('Invalid code')."
+    },
+    {
+      "line": 3,
+      "text": "Read three base-7 digits at a time, convert to a character code, then join the characters."
+    }
+  ],
+  "rle": [
+    {
+      "line": 1,
+      "text": "Define encode(text)."
+    },
+    {
+      "line": 2,
+      "text": "Set (out, i) to ('', 0)."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while i is less than the length of text."
+    },
+    {
+      "line": 4,
+      "text": "Set j to i + 1."
+    },
+    {
+      "line": 5,
+      "text": "Repeat while j is less than the length of text and text[j] equals text[i]. Increase j by 1."
+    },
+    {
+      "line": 6,
+      "text": "Set count to j - i."
+    },
+    {
+      "line": 7,
+      "text": "Increase out by '%' + text[i] + str(count) if count is at least 3; otherwise text[i:j]."
+    },
+    {
+      "line": 8,
+      "text": "Set i to j."
+    },
+    {
+      "line": 9,
+      "text": "Return out."
+    }
+  ],
+  "rle-decode": [
+    {
+      "line": 1,
+      "text": "Define decode(text)."
+    },
+    {
+      "line": 2,
+      "text": "Set (out, i) to ('', 0)."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while i is less than the length of text."
+    },
+    {
+      "line": 4,
+      "text": "Check whether text[i] differs from '%'. Increase out by text[i]. Increase i by 1."
+    },
+    {
+      "line": 5,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 6,
+      "text": "Set (ch, j) to (text[i + 1], i + 2)."
+    },
+    {
+      "line": 7,
+      "text": "Repeat while j is less than the length of text and text[j].isdigit(). Increase j by 1."
+    },
+    {
+      "line": 8,
+      "text": "Increase out by ch * int(text[i + 2:j]). Set i to j."
+    },
+    {
+      "line": 9,
+      "text": "Return out."
+    }
+  ],
+  "magic-square": [
+    {
+      "line": 1,
+      "text": "Define is_magic(grid)."
+    },
+    {
+      "line": 2,
+      "text": "Set n to the length of grid."
+    },
+    {
+      "line": 3,
+      "text": "Check whether not (n) or any((len(row) != n for row in grid)). Return False."
+    },
+    {
+      "line": 4,
+      "text": "Check whether the sorted values of (v for row in grid for v in row) differs from list(range(1, n * n + 1)). Return False."
+    },
+    {
+      "line": 5,
+      "text": "Set target to n * (n * n + 1) // 2."
+    },
+    {
+      "line": 6,
+      "text": "Require every row, column and both diagonals to sum to the same target."
+    }
+  ],
+  "make-magic": [
+    {
+      "line": 1,
+      "text": "Define make_magic(n)."
+    },
+    {
+      "line": 2,
+      "text": "Set a to a list of [0] * n for _ in range(n)."
+    },
+    {
+      "line": 3,
+      "text": "Set (r, c) to (0, n // 2)."
+    },
+    {
+      "line": 4,
+      "text": "Process each value in range(1, n * n + 1)."
+    },
+    {
+      "line": 5,
+      "text": "Set a[r][c] to value."
+    },
+    {
+      "line": 6,
+      "text": "Set (nr, nc) to ((r - 1) % n, (c + 1) % n)."
+    },
+    {
+      "line": 7,
+      "text": "Check whether a[nr][nc]. Set r to (r + 1) % n."
+    },
+    {
+      "line": 8,
+      "text": "Set (r, c) to (nr, nc)."
+    },
+    {
+      "line": 9,
+      "text": "Return a."
+    }
+  ],
+  "history": [
+    {
+      "line": 1,
+      "text": "Define navigate(home, actions)."
+    },
+    {
+      "line": 2,
+      "text": "Set (back, forward, out, current) to ([], [], [], home)."
+    },
+    {
+      "line": 3,
+      "text": "Process each action in actions."
+    },
+    {
+      "line": 4,
+      "text": "Check whether action[0] equals 'visit'."
+    },
+    {
+      "line": 5,
+      "text": "Append current to back. Set current to action[1]. Remove all entries from forward."
+    },
+    {
+      "line": 6,
+      "text": "Check whether action[0] equals 'back' and back."
+    },
+    {
+      "line": 7,
+      "text": "Append current to forward. Set current to back.pop()."
+    },
+    {
+      "line": 8,
+      "text": "Check whether action[0] equals 'forward' and forward."
+    },
+    {
+      "line": 9,
+      "text": "Append current to back. Set current to forward.pop()."
+    },
+    {
+      "line": 10,
+      "text": "Append current to out."
+    },
+    {
+      "line": 11,
+      "text": "Return out."
+    }
+  ],
+  "scheduler": [
+    {
+      "line": 1,
+      "text": "Define schedule(items, budget)."
+    },
+    {
+      "line": 2,
+      "text": "Set (accepted, deferred) to ([], [])."
+    },
+    {
+      "line": 3,
+      "text": "Process each priority in ['High', 'Medium', 'Low']."
+    },
+    {
+      "line": 4,
+      "text": "Process each (title, p, duration) in items."
+    },
+    {
+      "line": 5,
+      "text": "Check whether p differs from priority. Skip to the next loop iteration."
+    },
+    {
+      "line": 6,
+      "text": "Check whether duration is at most budget."
+    },
+    {
+      "line": 7,
+      "text": "Append title to accepted. Decrease budget by duration."
+    },
+    {
+      "line": 8,
+      "text": "Append title to deferred."
+    },
+    {
+      "line": 9,
+      "text": "Return [accepted, deferred]."
+    }
+  ],
+  "team-codes": [
+    {
+      "line": 1,
+      "text": "Define organise(codes)."
+    },
+    {
+      "line": 2,
+      "text": "Set valid to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Process each code in codes."
+    },
+    {
+      "line": 4,
+      "text": "Check whether 3 is at most the length of code and is at most 4 and all(('A' <= c <= 'Z' for c in code[:2])) and all(('0' <= c <= '9' for c in code[2:])) and code[2] differs from '0'. Append code to valid."
+    },
+    {
+      "line": 5,
+      "text": "Define key(code). Return (int(code[2:]), code[:2])."
+    },
+    {
+      "line": 6,
+      "text": "Process each i in range(1, the length of valid)."
+    },
+    {
+      "line": 7,
+      "text": "Set (value, j) to (valid[i], i - 1)."
+    },
+    {
+      "line": 8,
+      "text": "Repeat while j is at least 0 and key(valid[j]) is greater than key(value). Set valid[j + 1] to valid[j]. Decrease j by 1."
+    },
+    {
+      "line": 9,
+      "text": "Set valid[j + 1] to value."
+    },
+    {
+      "line": 10,
+      "text": "Return [a list of c for c in valid if int(c[2:]) % 2 equals 0, a list of c for c in valid if int(c[2:]) % 2 equals 1]."
+    }
+  ],
+  "squads": [
+    {
+      "line": 1,
+      "text": "Define form_squads(candidates)."
+    },
+    {
+      "line": 2,
+      "text": "Set groups to an empty dictionary."
+    },
+    {
+      "line": 3,
+      "text": "Process each (name, role, score) in candidates. Append (name, score) to groups.setdefault(role, [])."
+    },
+    {
+      "line": 4,
+      "text": "Check whether not (groups). Return [an empty list, an empty list]."
+    },
+    {
+      "line": 5,
+      "text": "Process each values in groups.values(). Call values.sort(key=lambda x: (-x[1], x[0]))."
+    },
+    {
+      "line": 6,
+      "text": "Set size to min(map(len, groups.values()))."
+    },
+    {
+      "line": 7,
+      "text": "Set squads to a list of a list of groups[role][i][0] for role in the sorted values of groups for i in range(size)."
+    },
+    {
+      "line": 8,
+      "text": "Set left to the sorted values of (name for values in groups.values() for name, score in values[size:])."
+    },
+    {
+      "line": 9,
+      "text": "Return [squads, left]."
+    }
+  ],
+  "weighted-check": [
+    {
+      "line": 1,
+      "text": "Define valid_account(text)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether the length of text differs from 7 or any((c not in '0123456789' for c in text[:6])) or not ('a' is at most text[6] and is at most 'z'). Return False."
+    },
+    {
+      "line": 3,
+      "text": "Set total to the sum of (int(d) * w for d, w in zip(text[:6], [1, 4, 3, 8, 5, 12]))."
+    },
+    {
+      "line": 4,
+      "text": "Map the weighted sum modulo 26 onto a–z and compare with the check letter."
+    }
+  ],
+  "voucher": [
+    {
+      "line": 1,
+      "text": "Define eligible(items, selected_price, threshold)."
+    },
+    {
+      "line": 2,
+      "text": "Define merge_sort(a)."
+    },
+    {
+      "line": 3,
+      "text": "Check whether the length of a is less than 2. Return a[:]."
+    },
+    {
+      "line": 4,
+      "text": "Set m to len(a) // 2. Set l to merge_sort(a[:m]). Set r to merge_sort(a[m:]). Set out to an empty list. Set i = j to 0."
+    },
+    {
+      "line": 5,
+      "text": "Repeat while i is less than the length of l and j is less than the length of r."
+    },
+    {
+      "line": 6,
+      "text": "Check whether (l[i][1], l[i][0]) is at most (r[j][1], r[j][0]). Append l[i] to out. Increase i by 1."
+    },
+    {
+      "line": 7,
+      "text": "Append r[j] to out. Increase j by 1."
+    },
+    {
+      "line": 8,
+      "text": "Return out + l[i:] + r[j:]."
+    },
+    {
+      "line": 9,
+      "text": "Set a to merge_sort(items). Set lo to 0. Set hi to the length of a."
+    },
+    {
+      "line": 10,
+      "text": "Repeat while lo is less than hi."
+    },
+    {
+      "line": 11,
+      "text": "Set mid to (lo + hi) // 2."
+    },
+    {
+      "line": 12,
+      "text": "Check whether a[mid][1] + selected_price is less than threshold. Set lo to mid + 1."
+    },
+    {
+      "line": 13,
+      "text": "Set hi to mid."
+    },
+    {
+      "line": 14,
+      "text": "Return a[lo:]."
+    }
+  ],
+  "rank-ratings": [
+    {
+      "line": 1,
+      "text": "Define matching(records, rating)."
+    },
+    {
+      "line": 2,
+      "text": "Define quick(a)."
+    },
+    {
+      "line": 3,
+      "text": "Check whether the length of a is less than 2. Return a[:]."
+    },
+    {
+      "line": 4,
+      "text": "Set p to a[0][1]."
+    },
+    {
+      "line": 5,
+      "text": "Return quick([x for x in a if x[1] > p]) + [x for x in a if x[1] == p] + quick([x for x in a if x[1] < p])."
+    },
+    {
+      "line": 6,
+      "text": "Set a to quick(records)."
+    },
+    {
+      "line": 7,
+      "text": "Set (lo, hi) to (0, len(a))."
+    },
+    {
+      "line": 8,
+      "text": "Repeat while lo is less than hi."
+    },
+    {
+      "line": 9,
+      "text": "Set mid to (lo + hi) // 2."
+    },
+    {
+      "line": 10,
+      "text": "Check whether a[mid][1] is greater than rating. Set lo to mid + 1."
+    },
+    {
+      "line": 11,
+      "text": "Set hi to mid."
+    },
+    {
+      "line": 12,
+      "text": "Set start to lo. Set hi to the length of a."
+    },
+    {
+      "line": 13,
+      "text": "Repeat while lo is less than hi."
+    },
+    {
+      "line": 14,
+      "text": "Set mid to (lo + hi) // 2."
+    },
+    {
+      "line": 15,
+      "text": "Check whether a[mid][1] is at least rating. Set lo to mid + 1."
+    },
+    {
+      "line": 16,
+      "text": "Set hi to mid."
+    },
+    {
+      "line": 17,
+      "text": "Return the sorted values of (x[0] for x in a[start:lo])."
+    }
+  ],
+  "inventory-pipeline": [
+    {
+      "line": 1,
+      "text": "Import csv."
+    },
+    {
+      "line": 2,
+      "text": "Define inventory(path, target)."
+    },
+    {
+      "line": 3,
+      "text": "Open a managed context for open(path, newline='') as f; clean it up on exit. Set records to a list of [name, value converted to an integer] for (name, value) in csv.reader(f)."
+    },
+    {
+      "line": 4,
+      "text": "Define quick(a)."
+    },
+    {
+      "line": 5,
+      "text": "Check whether the length of a is less than 2. Return a[:]."
+    },
+    {
+      "line": 6,
+      "text": "Set p to a[0]."
+    },
+    {
+      "line": 7,
+      "text": "Return quick([x for x in a[1:] if x[0] < p[0]]) + [p] + quick([x for x in a[1:] if x[0] >= p[0]])."
+    },
+    {
+      "line": 8,
+      "text": "Set records to quick(records). Set lo to 0. Set hi to len(records) - 1."
+    },
+    {
+      "line": 9,
+      "text": "Repeat while lo is at most hi."
+    },
+    {
+      "line": 10,
+      "text": "Set mid to (lo + hi) // 2."
+    },
+    {
+      "line": 11,
+      "text": "Check whether records[mid][0] equals target. Return [records, records[mid][1]]."
+    },
+    {
+      "line": 12,
+      "text": "Check whether records[mid][0] is less than target. Set lo to mid + 1."
+    },
+    {
+      "line": 13,
+      "text": "Set hi to mid - 1."
+    },
+    {
+      "line": 14,
+      "text": "Return [records, -1]."
+    }
+  ],
+  "json-summary": [
+    {
+      "line": 1,
+      "text": "Import json."
+    },
+    {
+      "line": 2,
+      "text": "Define device_summary(path)."
+    },
+    {
+      "line": 3,
+      "text": "Open a managed context for open(path) as f; clean it up on exit. Set records to json.load(f)."
+    },
+    {
+      "line": 4,
+      "text": "Set groups to an empty dictionary."
+    },
+    {
+      "line": 5,
+      "text": "Process each item in records."
+    },
+    {
+      "line": 6,
+      "text": "Set g to groups.setdefault(item['category'], [0, 0]). Increase g[0] by 1. Increase g[1] by item['cost']."
+    },
+    {
+      "line": 7,
+      "text": "Return a list of [k] + groups[k] for k in the sorted values of groups."
+    }
+  ],
+  "sliding-board": [
+    {
+      "line": 1,
+      "text": "Define move(board, direction)."
+    },
+    {
+      "line": 2,
+      "text": "Copy board into out so the input is not changed. Set p to out.index(0). Set (r, c) to divmod(p, 3)."
+    },
+    {
+      "line": 3,
+      "text": "Set (dr, dc) to {'up': (-1, 0), 'down': (1, 0), 'left': (0, -1), 'right': (0, 1)}[direction]."
+    },
+    {
+      "line": 4,
+      "text": "Set (nr, nc) to (r + dr, c + dc)."
+    },
+    {
+      "line": 5,
+      "text": "Check whether 0 is at most nr and is less than 3 and 0 is at most nc and is less than 3."
+    },
+    {
+      "line": 6,
+      "text": "Set q to nr * 3 + nc. Set (out[p], out[q]) to (out[q], out[p])."
+    },
+    {
+      "line": 7,
+      "text": "Return out."
+    }
+  ],
+  "socket-parser": [
+    {
+      "line": 1,
+      "text": "Define collect_lines(chunks)."
+    },
+    {
+      "line": 2,
+      "text": "Set buffer to b''. Set lines to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Process each chunk in chunks."
+    },
+    {
+      "line": 4,
+      "text": "Increase buffer by chunk."
+    },
+    {
+      "line": 5,
+      "text": "Repeat while b'\\n' is in buffer."
+    },
+    {
+      "line": 6,
+      "text": "Set (line, buffer) to buffer.split(b'\\n', 1). Append line.decode('utf-8') to lines."
+    },
+    {
+      "line": 7,
+      "text": "Return [lines, list(buffer)]."
+    }
+  ],
+  "transaction": [
+    {
+      "line": 1,
+      "text": "Define transfer(conn, source, target, amount)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether source equals target or type(amount) is not int or amount is at most 0. Return False."
+    },
+    {
+      "line": 3,
+      "text": "Open a managed context for conn; clean it up on exit."
+    },
+    {
+      "line": 4,
+      "text": "Set a to conn.execute('SELECT balance FROM Wallet WHERE id=?', (source,)).fetchone()."
+    },
+    {
+      "line": 5,
+      "text": "Set b to conn.execute('SELECT balance FROM Wallet WHERE id=?', (target,)).fetchone()."
+    },
+    {
+      "line": 6,
+      "text": "Check whether a is None or b is None or a[0] is less than amount. Return False."
+    },
+    {
+      "line": 7,
+      "text": "Execute 'UPDATE Wallet SET balance=balance-? WHERE id=?' with bound parameters (amount, source)."
+    },
+    {
+      "line": 8,
+      "text": "Execute 'UPDATE Wallet SET balance=balance+? WHERE id=?' with bound parameters (amount, target)."
+    },
+    {
+      "line": 9,
+      "text": "Return True."
+    }
+  ],
+  "linked-free": [
+    {
+      "line": 1,
+      "text": "Define manage_list(capacity, operations)."
+    },
+    {
+      "line": 2,
+      "text": "Set data to [None] * capacity. Set links to list(range(1, capacity)) + [-1]. Set head to -1. Set free to 0. Set results to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Process each (op, value) in operations."
+    },
+    {
+      "line": 4,
+      "text": "Set prev to -1. Set cur to head."
+    },
+    {
+      "line": 5,
+      "text": "Repeat while cur differs from -1 and data[cur] is less than value. Set (prev, cur) to (cur, links[cur])."
+    },
+    {
+      "line": 6,
+      "text": "Set found to cur differs from -1 and data[cur] equals value."
+    },
+    {
+      "line": 7,
+      "text": "Check whether op equals 'insert'."
+    },
+    {
+      "line": 8,
+      "text": "Check whether found or free equals -1. Append False to results. Skip to the next loop iteration."
+    },
+    {
+      "line": 9,
+      "text": "Set slot to free. Set free to links[slot]. Set data[slot] to value. Set links[slot] to cur."
+    },
+    {
+      "line": 10,
+      "text": "Check whether prev equals -1. Set head to slot."
+    },
+    {
+      "line": 11,
+      "text": "Set links[prev] to slot."
+    },
+    {
+      "line": 12,
+      "text": "Append True to results."
+    },
+    {
+      "line": 13,
+      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+    },
+    {
+      "line": 14,
+      "text": "Check whether not (found). Append False to results. Skip to the next loop iteration."
+    },
+    {
+      "line": 15,
+      "text": "Check whether prev equals -1. Set head to links[cur]."
+    },
+    {
+      "line": 16,
+      "text": "Set links[prev] to links[cur]."
+    },
+    {
+      "line": 17,
+      "text": "Set data[cur] to None. Set links[cur] to free. Set free to cur. Append True to results."
+    },
+    {
+      "line": 18,
+      "text": "Set values to an empty list. Set cur to head."
+    },
+    {
+      "line": 19,
+      "text": "Repeat while cur differs from -1. Append data[cur] to values. Set cur to links[cur]."
+    },
+    {
+      "line": 20,
+      "text": "Return [results, values]."
+    }
+  ],
+  "merge-objects": [
+    {
+      "line": 1,
+      "text": "Define sort_birthdays(records)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether the length of records is less than 2. Return records[:]."
+    },
+    {
+      "line": 3,
+      "text": "Set m to len(records) // 2. Set l to sort_birthdays(records[:m]). Set r to sort_birthdays(records[m:]). Set out to an empty list. Set i = j to 0."
+    },
+    {
+      "line": 4,
+      "text": "Repeat while i is less than the length of l and j is less than the length of r."
+    },
+    {
+      "line": 5,
+      "text": "Check whether l[i][1] is at most r[j][1]. Append l[i] to out. Increase i by 1."
+    },
+    {
+      "line": 6,
+      "text": "Append r[j] to out. Increase j by 1."
+    },
+    {
+      "line": 7,
+      "text": "Return out + l[i:] + r[j:]."
+    }
+  ],
+  "postfix": [
+    {
+      "line": 1,
+      "text": "Define evaluate(tokens)."
+    },
+    {
+      "line": 2,
+      "text": "Set stack to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Process each token in tokens."
+    },
+    {
+      "line": 4,
+      "text": "Check whether token is not in ['+', '-', '*']. Append token converted to an integer to stack. Skip to the next loop iteration."
+    },
+    {
+      "line": 5,
+      "text": "Check whether the length of stack is less than 2. Stop this call with ValueError('Missing operands')."
+    },
+    {
+      "line": 6,
+      "text": "Set b to stack.pop(). Set a to stack.pop()."
+    },
+    {
+      "line": 7,
+      "text": "Append a + b if token equals '+'; otherwise a - b if token equals '-'; otherwise a * b to stack."
+    },
+    {
+      "line": 8,
+      "text": "Check whether the length of stack differs from 1. Stop this call with ValueError('Invalid expression')."
+    },
+    {
+      "line": 9,
+      "text": "Return stack[0]."
+    }
+  ],
+  "bst-path": [
+    {
+      "line": 1,
+      "text": "Define find_path(tree, target)."
+    },
+    {
+      "line": 2,
+      "text": "Set path to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Repeat while tree is not None."
+    },
+    {
+      "line": 4,
+      "text": "Set (value, left, right) to tree. Append value to path."
+    },
+    {
+      "line": 5,
+      "text": "Check whether value equals target. Return path."
+    },
+    {
+      "line": 6,
+      "text": "Set tree to left if target is less than value; otherwise right."
+    },
+    {
+      "line": 7,
+      "text": "Return an empty list."
+    }
+  ]
+}

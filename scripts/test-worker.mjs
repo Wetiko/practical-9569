@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import {loadPyodide} from 'pyodide';
+const messages=[];const context={importScripts(){},loadPyodide:()=>loadPyodide(),self:{postMessage:m=>messages.push(m)}};
+vm.runInNewContext(await readFile(new URL('../public/python-worker.js',import.meta.url),'utf8'),context);
+const problem={kind:'python',setup:'',files:{}};
+await context.self.onmessage({data:{problem,code:'import sys\ndef check():\n    print("debug line")\n    print("warning", file=sys.stderr)\n    return (1, 2)',tests:[{label:'tuple',expr:'check()',expected:[1,2]}],stdin:''}});
+let last=messages.at(-1);assert.equal(last.type,'result',last.message);assert.equal(last.results[0].passed,true);assert.equal(last.results[0].raw,'(1, 2)');assert.equal(last.results[0].stdout,'debug line\n');assert.equal(last.results[0].stderr,'warning\n');
+await context.self.onmessage({data:{problem,code:'def check():\n    print("before error")\n    raise ValueError("broken")',tests:[{label:'error',expr:'check()',expected:1}],stdin:''}});
+last=messages.at(-1);assert.equal(last.type,'result',last.message);assert.equal(last.results[0].passed,false);assert.match(last.results[0].error,/ValueError: broken/);assert.equal(last.results[0].stdout,'before error\n');
+await context.self.onmessage({data:{problem,code:'def check():\n    print("x" * 12001)',tests:[{label:'limit',expr:'check()',expected:null}],stdin:''}});
+assert.match(messages.at(-1).results[0].error,/Output limit reached/);
+console.log('Worker checks passed: raw repr, JSON comparison, stdout, stderr, exception output and output cap.');

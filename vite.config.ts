@@ -2,4 +2,4 @@ import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/postcss';
 import {fileURLToPath} from 'node:url';
-export default defineConfig({base:'/practical-9569/',plugins:[react()],resolve:{alias:{'@':fileURLToPath(new URL('.',import.meta.url))}},css:{postcss:{plugins:[tailwindcss()]}}});
+export default defineConfig({base:'/practical-9569/',plugins:[react()],optimizeDeps:{include:['@codemirror/language','@codemirror/state','@codemirror/view','cmdk','recharts','embla-carousel-react']},resolve:{alias:{'@':fileURLToPath(new URL('.',import.meta.url))}},css:{postcss:{plugins:[tailwindcss()]}}});

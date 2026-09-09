@@ -67,6 +67,7 @@ overrides={
 'weighted-check':{4:'Map the weighted sum modulo 26 onto a–z and compare with the check letter.'},
 'valid-bst':{5:'Require this value to fit its bounds, then tighten the bounds for each subtree.'},
 'flask-lab':{10:'Route GET requests for / to the following view.',16:'Route POST requests for /add to the following handler.'},
+'transaction':{3:'Use a transaction: commit both updates together, or roll back on an exception.'},
 'python-sql':{2:'Execute a parameterised lookup and turn each returned tuple into a list.',3:'Use ? to bind name safely, then order matching rows by ID.'},
 'mongo-lab':{2:'Insert the following three documents in one operation.',3:'Create Ari’s initial score document.',4:'Create Mei’s initial score document.',5:'Create Jo’s initial score document.',6:'Update only Ari’s score to 81.',7:'Delete every document with a score below 50.',8:'Read the matching documents and collect their names.',9:'Keep scores of at least 80, return names without IDs, and sort by name.'}}
 result={}
@@ -80,9 +81,16 @@ for p in bank:
    if desc:notes.setdefault(node.lineno,[]).append(desc)
   notes={n:' '.join(dict.fromkeys(v)) for n,v in notes.items()}
   for i,line in enumerate(lines,1):
-   if line.strip()=='else:':notes[i]='Run this branch if the preceding condition failed (or the loop completed without break).'
+   if line.strip()=='else:':notes[i]='Otherwise, take this branch.'
    if line.lstrip().startswith('#'):notes[i]=line.strip('# ').strip()
    if line.lstrip().startswith('@'):notes[i]='Register the following function with '+line.strip()[1:]+'.'
+  for node in ast.walk(tree):
+   if isinstance(node,(ast.For,ast.While)) and node.orelse:
+    first=node.orelse[0].lineno
+    for n in range(first,max(0,first-3),-1):
+     if lines[n-1].strip().startswith('else:'):
+      notes[n]='If the loop finishes without break, '+(notes.get(n,'run this block.').removeprefix('Otherwise, take this branch.').strip() or 'run this block.')
+      break
   notes.update(overrides.get(p['id'],{}))
   for i,line in enumerate(lines,1):
    if line.strip() and i not in notes:

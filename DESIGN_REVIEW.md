@@ -45,3 +45,43 @@ A new discovery experience and application shell replace the sidebar dashboard. 
 
 ## Positive notes and limits
 The challenge bank, user backup format, tab completion and Python worker are unchanged. Source credits and self-assessed lab distinctions remain available. This is not a full assistive-technology audit; OS-level light/dark and reduced-motion preferences were checked in source rather than switched on the user's computer. The main bundle still produces a size advisory; further splitting is optional. Challenge/filter state remains in memory instead of shareable URLs.
+
+## September 2026 audit and practice workflow pass
+
+The supplied implementation audit is addressed across Discover, the editor, Progress, Sources and exam practice. Existing Apple design rules were retained; additional references consulted cover focus/selection, loading and charts. No new library was added: Motion, Embla, cmdk and Recharts were already installed. The app remains static, uses the existing device-local storage key, and exports/imports version-1 backups with optional new fields.
+
+### Design and interaction (audit 1–8, 16–18)
+
+- Added Open Graph and Twitter metadata with an original 1200 × 630 sharing image.
+- Kept the main hero kicker and removed repeated secondary labels. Workspace surfaces share the same generous radii, restrained shadows, typography and short transitions as Discover.
+- View changes use a 180 ms fade/slide, with reduced-motion and pause controls respected. Loading states show shaped code skeletons; successful checks draw a single checkmark.
+- The hero code types once per page visit and its window tilts with a mouse pointer. Both stop with reduced motion or the pause control; tilt ignores touch. Colorful collection art deliberately remains saturated in dark appearance, with neutral readable surrounding surfaces.
+- Embla now provides collection dragging, arrow controls and pagination. Cmd/Ctrl+K opens searchable challenges, syllabus points, mock practice and appearance actions.
+- The explicit system/light/dark choice implements the audit's requested theme control while defaulting to system appearance. Editor colors follow the same preference. Reduced transparency and increased contrast branches cover the new surfaces and dialogs.
+- Discover's date control persists the sitting date and computes calendar days, including today/past-date messages. A browser check caught native date-input event handling; handling input as well as change fixed immediate updates and persistence.
+
+### Study tools (audit 9–15)
+
+- Progress lists all 73 numbered learning outcomes in the official 2026 syllabus. Existing references are expanded, including ranges, and distinguish untouched, in progress, complete/self-reviewed and unmapped outcomes. Coverage indicates the exercise mappings, not mastery; theory-only outcomes and practical content gaps remain explicitly unmapped. Palette selection scrolls to and outlines the selected outcome.
+- Topic rings separate auto-checked challenges from self-reviewed labs. Weak-topic shortcuts use full-submission pass rates, with unattempted topics shown without a fabricated percentage. Recharts plots retained daily submissions and session scores, with textual counts available for accessibility. Each challenge still retains its latest 20 submissions.
+- Balanced and weak-topic mock builders select four unique tasks across broad practical areas. Task budgets divide 180 minutes proportionally to the existing estimates; both budget and original estimate are visible.
+- Completed exam records preserve dates, elapsed time, tasks and session-only latest test results. Earlier solved status cannot inflate a new session. Ending a session uses an accessible in-app confirmation and freezes its remaining clock.
+- Sources groups the actual school/year tags in the bank into named collections. These are adapted collections, may have other than four tasks, and are not represented as complete original papers.
+- Guided local labs provide a persistent timer, rubric steps and notes. Partial sessions appear in history without being marked fully reviewed. Lab self-review remains distinct from executable test results.
+
+### Editor and explanations requested alongside the audit
+
+- Four-space indentation guides, current line/column/indent status and selected-line count make Python nesting visible. Selection uses a stronger blue text-range highlight plus a separate whole-line tint. Existing Tab completion is preserved.
+- Test details show the raw Python return representation, printed stdout and stderr separately. Output captured before an exception remains visible; existing timeout and output-size limits remain in place.
+- All 60 reference solutions have concise, static explanations covering all 540 nonblank source lines. Numbered code and matching explanation numbers support comparison. These do not make model calls or spend tokens during practice. Active exams continue to hide solutions.
+
+### Validation and remaining scope
+
+- Type checking, production build and the new `npm test` checks pass. Deployment now runs these tests as well.
+- Study checks cover all bank references, unique balanced papers, 180-minute budgets, session-only scoring, legacy/new backup round trips, invalid backups, topic rates, date arithmetic and complete explanation coverage.
+- The actual Python worker was exercised with Pyodide for tuple representations, JSON comparisons, stdout, stderr, exceptions and output caps.
+- Browser checks on a separate localhost origin covered Python runs and submission, multiline selection and guides, reference explanations, theme persistence, palette search, coverage navigation, countdown persistence, ending/reloading an exam and saving a partial guided lab with notes. Desktop and 390 px mobile layouts were inspected. No console errors remained. Tests did not alter the public site's saved work.
+- **Content gap (audit 19): Databases has 6 exercises, compared with 21 Python & files exercises.** This pass improves practice tools; it does not fill that content gap. Original private exam PDFs, marking schemes and resource packs remain excluded.
+- The main JavaScript chunk still triggers Vite's size advisory (about 590 kB before compression). The editor, charts, palette and solution guides load separately. Full assistive-technology and all operating-system preference testing remains outside this browser review.
+
+The earlier notes above describe the previous redesign; this section supersedes their statements that the backup schema and worker were unchanged.

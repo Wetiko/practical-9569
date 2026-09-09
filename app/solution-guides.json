@@ -34,7 +34,7 @@
     },
     {
       "line": 9,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 10,
@@ -202,7 +202,7 @@
     },
     {
       "line": 10,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 11,
@@ -278,7 +278,7 @@
     },
     {
       "line": 11,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "If the loop finishes without break, run this block."
     },
     {
       "line": 12,
@@ -366,7 +366,7 @@
     },
     {
       "line": 9,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 10,
@@ -386,7 +386,7 @@
     },
     {
       "line": 14,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 15,
@@ -398,7 +398,7 @@
     },
     {
       "line": 17,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 18,
@@ -1182,7 +1182,7 @@
     },
     {
       "line": 5,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 6,
@@ -1442,7 +1442,7 @@
     },
     {
       "line": 8,
-      "text": "Increase out by ch."
+      "text": "If the loop finishes without break, Increase out by ch."
     },
     {
       "line": 9,
@@ -1520,7 +1520,7 @@
     },
     {
       "line": 5,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 6,
@@ -2072,7 +2072,7 @@
     },
     {
       "line": 3,
-      "text": "Open a managed context for conn; clean it up on exit."
+      "text": "Use a transaction: commit both updates together, or roll back on an exception."
     },
     {
       "line": 4,
@@ -2150,7 +2150,7 @@
     },
     {
       "line": 13,
-      "text": "Run this branch if the preceding condition failed (or the loop completed without break)."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 14,

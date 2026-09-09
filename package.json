@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs"
+    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs && node scripts/test-mongo.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

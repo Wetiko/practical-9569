@@ -1,4 +1,5 @@
 import bank from './problems.json';
+export type ProblemKind='python'|'sql'|'mongo'|'lab';
 export type Problem=(typeof bank)[number];
 export type Attempt={at:string;passed:number;total:number;code:string;sessionId?:string};
 export type Progress={code?:string;solved?:boolean;reviewed?:boolean;bookmarked?:boolean;checks?:number[];attempts?:Attempt[];notes?:string};

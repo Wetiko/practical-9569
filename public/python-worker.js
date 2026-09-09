@@ -6,6 +6,14 @@ self.onmessage = async ({data}) => {
   const py = await ready;
   self.postMessage({type:'status',message:'Preparing test cases…'});
   if (data.problem.kind === 'sql' || /sqlite3/.test(data.problem.setup+'\n'+data.code)) await py.loadPackage('sqlite3');
+  if (data.problem.kind === 'mongo' || /mongomock/.test(data.problem.setup+'\n'+data.code)) {
+   self.postMessage({type:'status',message:'Loading MongoDB practice tools…'});
+   await py.loadPackage('micropip');
+   await py.runPythonAsync(`
+import micropip
+await micropip.install(['mongomock==4.3.0', 'packaging==24.2', 'sentinels==1.1.0', 'pytz==2025.2'])
+`);
+  }
   py.globals.set('_payload_json', JSON.stringify(data));
   self.postMessage({type:'executing'});
   const result = await py.runPythonAsync(`

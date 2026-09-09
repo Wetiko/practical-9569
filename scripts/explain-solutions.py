@@ -70,6 +70,13 @@ overrides={
 'transaction':{3:'Use a transaction: commit both updates together, or roll back on an exception.'},
 'python-sql':{2:'Execute a parameterised lookup and turn each returned tuple into a list.',3:'Use ? to bind name safely, then order matching rows by ID.'},
 'mongo-lab':{2:'Insert the following three documents in one operation.',3:'Create Ari’s initial score document.',4:'Create Mei’s initial score document.',5:'Create Jo’s initial score document.',6:'Update only Ari’s score to 81.',7:'Delete every document with a score below 50.',8:'Read the matching documents and collect their names.',9:'Keep scores of at least 80, return names without IDs, and sort by name.'}}
+overrides.update({
+'mongo-filter':{1:'Import the in-memory MongoDB emulator used by this exercise.',3:'Accept the supplied collection and minimum Computing score.',4:'Filter nested Computing scores with $gte and project names without IDs.',5:'Sort names ascending and materialise the cursor as a list.'},
+'mongo-insert':{1:'Import mongomock, the browser substitute for the MongoDB client.',3:'Accept the collection and the documents to add.',4:'Skip insertion for empty input; insert_many requires documents.',5:'Insert all new documents while retaining existing records.',6:'Read every name without IDs, sort alphabetically and return a list.'},
+'mongo-update':{1:'Import the MongoDB emulator.',3:'Accept a student name and the new score.',4:'Update one matching student; dot notation preserves other scores and fields.',5:'Report documents actually changed, rather than merely matched.'},
+'mongo-delete':{1:'Import the MongoDB emulator.',3:'Accept the collection and exclusive lower-score threshold.',4:'Delete every Computing score below the threshold; missing scores do not match.',5:'Return the number of documents removed.'},
+'mongo-aggregate':{1:'Import the MongoDB emulator.',3:'Accept the collection and minimum eligible Computing score.',4:'Define the aggregation stages in execution order.',5:'Keep only documents meeting the Computing score threshold.',6:'Group by class, averaging Computing scores and counting matching students.',7:'Sort highest averages first, breaking ties by class name ascending.',8:'Finish the list of pipeline stages.',9:'Run the pipeline and turn its cursor into a list of result dictionaries.'}
+})
 result={}
 for p in bank:
  lines=p['solution'].splitlines();notes={}

@@ -7,6 +7,7 @@ const js=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES20
 const m=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
 assert.deepEqual(m.references('2.5.1–2.5.4'),['2.5.1','2.5.2','2.5.3','2.5.4']);
 assert.equal(new Set(m.syllabus.map(s=>s.code)).size,m.syllabus.length);
+for(const p of bank)assert.ok(['python','sql','mongo','lab'].includes(p.kind));
 for(const p of bank)for(const ref of m.references(p.ref))assert.ok(m.syllabus.some(s=>s.code===ref),ref);
 for(let i=0;i<30;i++){const ids=m.composePaper({},i%2===0);assert.equal(new Set(ids).size,4);assert.equal(m.budgets(ids).reduce((a,b)=>a+b),180);const topics=ids.map(id=>bank.find(p=>p.id===id).topic);assert.ok(topics.includes('Databases'));assert.ok(topics.includes('Python & files'));assert.ok(topics.includes('Web & networks'))}
 const progress={'first-match':{code:'draft',solved:true,attempts:[{at:new Date(5000).toISOString(),passed:1,total:3,code:'x',sessionId:'new'},{at:new Date(1000).toISOString(),passed:3,total:3,code:'old',sessionId:'old'}]}};
@@ -17,4 +18,4 @@ assert.throws(()=>m.validateSaved({...full,labSessions:[{...full.labSessions[0],
 assert.equal(m.topicStats({}).find(s=>s.topic==='Databases').rate,null);assert.equal(m.topicStats(progress).find(s=>s.topic==='Algorithms').rate,50);
 assert.equal(m.daysUntil('2026-11-01',new Date(2026,10,1)),0);assert.equal(m.daysUntil('2026-11-02',new Date(2026,10,1)),1);
 const guides=JSON.parse(await readFile(new URL('../app/solution-guides.json',import.meta.url),'utf8'));for(const p of bank){const nonblank=p.solution.split('\n').map((line,i)=>line.trim()?i+1:null).filter(Boolean);assert.deepEqual(guides[p.id].map(g=>g.line),nonblank);assert.ok(guides[p.id].every(g=>g.text.length<300))}
-console.log(`Study checks passed: ${m.syllabus.length} syllabus points, paper composition, session scores, legacy/new backups, date arithmetic and 60 solution guides.`);
+console.log(`Study checks passed: ${m.syllabus.length} syllabus points, paper composition, session scores, legacy/new backups, date arithmetic and ${bank.length} solution guides.`);

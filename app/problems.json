@@ -3367,5 +3367,512 @@
     "rubric": [],
     "source": "Original syllabus drill",
     "sourceUrl": ""
+  },
+  {
+    "id": "mongo-filter",
+    "title": "Query nested student documents",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Implement passing_students(collection, minimum). Use find() to select documents whose scores.Computing is at least minimum. Return a list of dictionaries containing only name (exclude _id), sorted alphabetically by name. Students without Computing scores do not match. The Files tab shows the seeded documents. This browser exercise uses mongomock.MongoClient() instead of pymongo.MongoClient(); collection methods follow the familiar API for this exercise.",
+    "starter": "import mongomock\n\ndef passing_students(collection, minimum):\n    # The harness supplies a collection from mongomock.MongoClient().\n    pass\n",
+    "solution": "import mongomock\n\ndef passing_students(collection, minimum):\n    matches = collection.find({'scores.Computing': {'$gte': minimum}}, {'_id': 0, 'name': 1})\n    return list(matches.sort('name', 1))\n",
+    "tests": [
+      {
+        "label": "At least 50",
+        "expr": "passing_students(col, 50)",
+        "expected": [
+          {
+            "name": "Ari"
+          },
+          {
+            "name": "Kai"
+          },
+          {
+            "name": "Mei"
+          }
+        ]
+      },
+      {
+        "label": "No qualifying scores",
+        "expr": "passing_students(col, 100)",
+        "expected": []
+      },
+      {
+        "label": "Exact score boundary",
+        "expr": "passing_students(col, 78)",
+        "expected": [
+          {
+            "name": "Ari"
+          },
+          {
+            "name": "Mei"
+          }
+        ]
+      },
+      {
+        "label": "Changed collection",
+        "expr": "changed_filter()",
+        "expected": [
+          {
+            "name": "Bo"
+          },
+          {
+            "name": "Uma"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Use dot notation: scores.Computing. Put $gte inside that field\u2019s filter.",
+      "Project name with 1 and exclude _id with 0. Sort the cursor before turning it into a list."
+    ],
+    "setup": "import json, mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\nwith open('students.json') as source:\n    col.insert_many(json.load(source))\n\ndef changed_filter():\n    col.delete_many({})\n    col.insert_many([{'name':'Uma','scores':{'Computing':65}}, {'name':'Bo','scores':{'Computing':65}}, {'name':'Ash','scores':{'Math':99}}])\n    return passing_students(col, 65)\n",
+    "files": {
+      "students.json": "[\n  {\n    \"_id\": 1,\n    \"name\": \"Ari\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 78,\n      \"Math\": 85\n    }\n  },\n  {\n    \"_id\": 2,\n    \"name\": \"Mei\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 92\n    }\n  },\n  {\n    \"_id\": 3,\n    \"name\": \"Jo\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 45\n    }\n  },\n  {\n    \"_id\": 4,\n    \"name\": \"Kai\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 50\n    }\n  },\n  {\n    \"_id\": 5,\n    \"name\": \"Zoe\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Math\": 90\n    }\n  }\n]\n"
+    },
+    "kind": "mongo",
+    "rubric": [],
+    "source": "Original MongoDB syllabus drill",
+    "sourceUrl": "https://www.mongodb.com/docs/manual/tutorial/query-embedded-documents/"
+  },
+  {
+    "id": "mongo-insert",
+    "title": "Build a document register",
+    "topic": "Databases",
+    "level": "Foundation",
+    "minutes": 15,
+    "ref": "3.3.8",
+    "description": "Implement add_students(collection, documents). Insert every supplied document into the collection, retaining existing records. Return all stored names as a list of name-only dictionaries in alphabetical order. Empty input is valid. Each document has a unique integer _id and a name. check_add returns [your result, actual document count] to check both the return value and insertion. Use mongomock.MongoClient() in this browser instead of pymongo.MongoClient(). The Files tab shows the fixtures and test helpers.",
+    "starter": "import mongomock\n\ndef add_students(collection, documents):\n    # collection is supplied by the test harness.\n    pass\n",
+    "solution": "import mongomock\n\ndef add_students(collection, documents):\n    if documents:\n        collection.insert_many(documents)\n    return list(collection.find({}, {'_id': 0, 'name': 1}).sort('name', 1))\n",
+    "tests": [
+      {
+        "label": "Two students",
+        "expr": "check_add([{'_id':1,'name':'Mei'}, {'_id':2,'name':'Ari'}])",
+        "expected": [
+          [
+            {
+              "name": "Ari"
+            },
+            {
+              "name": "Mei"
+            }
+          ],
+          2
+        ]
+      },
+      {
+        "label": "Empty register",
+        "expr": "check_add([])",
+        "expected": [
+          [],
+          0
+        ]
+      },
+      {
+        "label": "Keep existing records",
+        "expr": "check_add([{'_id':2,'name':'Bo'}], [{'_id':1,'name':'Uma'}])",
+        "expected": [
+          [
+            {
+              "name": "Bo"
+            },
+            {
+              "name": "Uma"
+            }
+          ],
+          2
+        ]
+      },
+      {
+        "label": "Duplicate names are distinct documents",
+        "expr": "check_add([{'_id':1,'name':'Jo'}, {'_id':2,'name':'Jo'}])",
+        "expected": [
+          [
+            {
+              "name": "Jo"
+            },
+            {
+              "name": "Jo"
+            }
+          ],
+          2
+        ]
+      }
+    ],
+    "hints": [
+      "insert_many requires a nonempty list. Skip the insert when there are no new documents.",
+      "find({}, {\"_id\": 0, \"name\": 1}) reads names only. Sort by name and return a list."
+    ],
+    "setup": "import mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\n\ndef check_add(documents, existing=None):\n    if existing:\n        col.insert_many(existing)\n    result = add_students(col, documents)\n    return [result, col.count_documents({})]\n",
+    "files": {},
+    "kind": "mongo",
+    "rubric": [],
+    "source": "Original MongoDB syllabus drill",
+    "sourceUrl": "https://www.mongodb.com/docs/manual/crud/"
+  },
+  {
+    "id": "mongo-update",
+    "title": "Revise one nested score",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Implement revise_score(collection, name, score). Use update_one and $set to change only scores.Computing for the named student. Names are unique. Keep all other fields and documents intact; do not insert a missing student. Return modified_count (0 for missing students or an unchanged score). check_revision returns [your result, all remaining documents without IDs, sorted by name]. Use mongomock.MongoClient() in this browser instead of pymongo.MongoClient(). The Files tab shows the fixtures and test helpers.",
+    "starter": "import mongomock\n\ndef revise_score(collection, name, score):\n    # collection is supplied by the test harness.\n    pass\n",
+    "solution": "import mongomock\n\ndef revise_score(collection, name, score):\n    result = collection.update_one({'name': name}, {'$set': {'scores.Computing': score}})\n    return result.modified_count\n",
+    "tests": [
+      {
+        "label": "Revise Ari",
+        "expr": "check_revision('Ari', 81)",
+        "expected": [
+          1,
+          [
+            {
+              "name": "Ari",
+              "class": "26A",
+              "scores": {
+                "Computing": 81,
+                "Math": 85
+              }
+            },
+            {
+              "name": "Jo",
+              "class": "26B",
+              "scores": {
+                "Computing": 45
+              }
+            },
+            {
+              "name": "Kai",
+              "class": "26B",
+              "scores": {
+                "Computing": 50
+              }
+            },
+            {
+              "name": "Mei",
+              "class": "26A",
+              "scores": {
+                "Computing": 92
+              }
+            },
+            {
+              "name": "Zoe",
+              "class": "26B",
+              "scores": {
+                "Math": 90
+              }
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Missing student",
+        "expr": "check_revision('Unknown', 70)",
+        "expected": [
+          0,
+          [
+            {
+              "name": "Ari",
+              "class": "26A",
+              "scores": {
+                "Computing": 78,
+                "Math": 85
+              }
+            },
+            {
+              "name": "Jo",
+              "class": "26B",
+              "scores": {
+                "Computing": 45
+              }
+            },
+            {
+              "name": "Kai",
+              "class": "26B",
+              "scores": {
+                "Computing": 50
+              }
+            },
+            {
+              "name": "Mei",
+              "class": "26A",
+              "scores": {
+                "Computing": 92
+              }
+            },
+            {
+              "name": "Zoe",
+              "class": "26B",
+              "scores": {
+                "Math": 90
+              }
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Unchanged score",
+        "expr": "check_revision('Mei', 92)",
+        "expected": [
+          0,
+          [
+            {
+              "name": "Ari",
+              "class": "26A",
+              "scores": {
+                "Computing": 78,
+                "Math": 85
+              }
+            },
+            {
+              "name": "Jo",
+              "class": "26B",
+              "scores": {
+                "Computing": 45
+              }
+            },
+            {
+              "name": "Kai",
+              "class": "26B",
+              "scores": {
+                "Computing": 50
+              }
+            },
+            {
+              "name": "Mei",
+              "class": "26A",
+              "scores": {
+                "Computing": 92
+              }
+            },
+            {
+              "name": "Zoe",
+              "class": "26B",
+              "scores": {
+                "Math": 90
+              }
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Add Computing without losing Math",
+        "expr": "check_revision('Zoe', 55)",
+        "expected": [
+          1,
+          [
+            {
+              "name": "Ari",
+              "class": "26A",
+              "scores": {
+                "Computing": 78,
+                "Math": 85
+              }
+            },
+            {
+              "name": "Jo",
+              "class": "26B",
+              "scores": {
+                "Computing": 45
+              }
+            },
+            {
+              "name": "Kai",
+              "class": "26B",
+              "scores": {
+                "Computing": 50
+              }
+            },
+            {
+              "name": "Mei",
+              "class": "26A",
+              "scores": {
+                "Computing": 92
+              }
+            },
+            {
+              "name": "Zoe",
+              "class": "26B",
+              "scores": {
+                "Math": 90,
+                "Computing": 55
+              }
+            }
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "$set with dot notation preserves the rest of the nested scores document.",
+      "Return modified_count, not matched_count. Do not enable upsert."
+    ],
+    "setup": "import json, mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\nwith open('students.json') as source:\n    col.insert_many(json.load(source))\n\ndef check_revision(name, score):\n    result = revise_score(col, name, score)\n    return [result, list(col.find({}, {'_id': 0}).sort('name', 1))]\n",
+    "files": {
+      "students.json": "[\n  {\n    \"_id\": 1,\n    \"name\": \"Ari\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 78,\n      \"Math\": 85\n    }\n  },\n  {\n    \"_id\": 2,\n    \"name\": \"Mei\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 92\n    }\n  },\n  {\n    \"_id\": 3,\n    \"name\": \"Jo\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 45\n    }\n  },\n  {\n    \"_id\": 4,\n    \"name\": \"Kai\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 50\n    }\n  },\n  {\n    \"_id\": 5,\n    \"name\": \"Zoe\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Math\": 90\n    }\n  }\n]\n"
+    },
+    "kind": "mongo",
+    "rubric": [],
+    "source": "Original MongoDB syllabus drill",
+    "sourceUrl": "https://www.mongodb.com/docs/manual/crud/"
+  },
+  {
+    "id": "mongo-delete",
+    "title": "Remove scores below a threshold",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.3.8",
+    "description": "Implement remove_below(collection, minimum). Delete every document with scores.Computing strictly below minimum, using delete_many. Keep records equal to the threshold and records without Computing scores. Return deleted_count. check_removal returns [your deleted count, remaining document count, remaining names in alphabetical order]. Use mongomock.MongoClient() in this browser instead of pymongo.MongoClient(). The Files tab shows the fixtures and test helpers.",
+    "starter": "import mongomock\n\ndef remove_below(collection, minimum):\n    # collection is supplied by the test harness.\n    pass\n",
+    "solution": "import mongomock\n\ndef remove_below(collection, minimum):\n    result = collection.delete_many({'scores.Computing': {'$lt': minimum}})\n    return result.deleted_count\n",
+    "tests": [
+      {
+        "label": "Keep the boundary",
+        "expr": "check_removal(50)",
+        "expected": [
+          1,
+          4,
+          [
+            "Ari",
+            "Kai",
+            "Mei",
+            "Zoe"
+          ]
+        ]
+      },
+      {
+        "label": "No low scores",
+        "expr": "check_removal(0)",
+        "expected": [
+          0,
+          5,
+          [
+            "Ari",
+            "Jo",
+            "Kai",
+            "Mei",
+            "Zoe"
+          ]
+        ]
+      },
+      {
+        "label": "Remove several matches",
+        "expr": "check_removal(80)",
+        "expected": [
+          3,
+          2,
+          [
+            "Mei",
+            "Zoe"
+          ]
+        ]
+      },
+      {
+        "label": "Keep missing scores",
+        "expr": "check_removal(100)",
+        "expected": [
+          4,
+          1,
+          [
+            "Zoe"
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Use $lt, not $lte, on scores.Computing.",
+      "delete_many removes all matches; deleted_count reports how many documents changed."
+    ],
+    "setup": "import json, mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\nwith open('students.json') as source:\n    col.insert_many(json.load(source))\n\ndef check_removal(minimum):\n    result = remove_below(col, minimum)\n    names = [doc['name'] for doc in col.find({}, {'_id': 0, 'name': 1}).sort('name', 1)]\n    return [result, col.count_documents({}), names]\n",
+    "files": {
+      "students.json": "[\n  {\n    \"_id\": 1,\n    \"name\": \"Ari\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 78,\n      \"Math\": 85\n    }\n  },\n  {\n    \"_id\": 2,\n    \"name\": \"Mei\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 92\n    }\n  },\n  {\n    \"_id\": 3,\n    \"name\": \"Jo\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 45\n    }\n  },\n  {\n    \"_id\": 4,\n    \"name\": \"Kai\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 50\n    }\n  },\n  {\n    \"_id\": 5,\n    \"name\": \"Zoe\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Math\": 90\n    }\n  }\n]\n"
+    },
+    "kind": "mongo",
+    "rubric": [],
+    "source": "Original MongoDB syllabus drill",
+    "sourceUrl": "https://www.mongodb.com/docs/manual/crud/"
+  },
+  {
+    "id": "mongo-aggregate",
+    "title": "Summarise Computing scores by class",
+    "topic": "Databases",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "3.3.8",
+    "description": "Implement class_summary(collection, minimum). Use an aggregation pipeline: select Computing scores at least minimum, group by class, calculate average score and student count, then sort by average descending and class ascending for ties. Return a list of dictionaries with exactly _id (class), average, and count. Missing scores do not match. Return unrounded averages; an empty match returns an empty list. Use mongomock.MongoClient() in this browser instead of pymongo.MongoClient(). The Files tab shows the fixtures and test helpers.",
+    "starter": "import mongomock\n\ndef class_summary(collection, minimum):\n    # collection is supplied by the test harness.\n    pass\n",
+    "solution": "import mongomock\n\ndef class_summary(collection, minimum):\n    pipeline = [\n        {'$match': {'scores.Computing': {'$gte': minimum}}},\n        {'$group': {'_id': '$class', 'average': {'$avg': '$scores.Computing'}, 'count': {'$sum': 1}}},\n        {'$sort': {'average': -1, '_id': 1}}\n    ]\n    return list(collection.aggregate(pipeline))\n",
+    "tests": [
+      {
+        "label": "All Computing scores",
+        "expr": "class_summary(col, 0)",
+        "expected": [
+          {
+            "_id": "26A",
+            "average": 85.0,
+            "count": 2
+          },
+          {
+            "_id": "26B",
+            "average": 47.5,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "label": "Passing scores only",
+        "expr": "class_summary(col, 50)",
+        "expected": [
+          {
+            "_id": "26A",
+            "average": 85.0,
+            "count": 2
+          },
+          {
+            "_id": "26B",
+            "average": 50.0,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "label": "No qualifying group",
+        "expr": "class_summary(col, 100)",
+        "expected": []
+      },
+      {
+        "label": "Tie-break on changed data",
+        "expr": "changed_summary()",
+        "expected": [
+          {
+            "_id": "26A",
+            "average": 50.0,
+            "count": 1
+          },
+          {
+            "_id": "26C",
+            "average": 50.0,
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "$match comes before $group so the average includes only eligible students.",
+      "In $group, field references start with $. Count documents using $sum: 1.",
+      "Use a second $sort key for deterministic order when class averages tie."
+    ],
+    "setup": "import json, mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\nwith open('students.json') as source:\n    col.insert_many(json.load(source))\n\ndef changed_summary():\n    col.delete_many({})\n    col.insert_many([{'name':'A','class':'26C','scores':{'Computing':40}}, {'name':'B','class':'26C','scores':{'Computing':60}}, {'name':'C','class':'26A','scores':{'Computing':50}}])\n    return class_summary(col, 0)\n",
+    "files": {
+      "students.json": "[\n  {\n    \"_id\": 1,\n    \"name\": \"Ari\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 78,\n      \"Math\": 85\n    }\n  },\n  {\n    \"_id\": 2,\n    \"name\": \"Mei\",\n    \"class\": \"26A\",\n    \"scores\": {\n      \"Computing\": 92\n    }\n  },\n  {\n    \"_id\": 3,\n    \"name\": \"Jo\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 45\n    }\n  },\n  {\n    \"_id\": 4,\n    \"name\": \"Kai\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Computing\": 50\n    }\n  },\n  {\n    \"_id\": 5,\n    \"name\": \"Zoe\",\n    \"class\": \"26B\",\n    \"scores\": {\n      \"Math\": 90\n    }\n  }\n]\n"
+    },
+    "kind": "mongo",
+    "rubric": [],
+    "source": "Original MongoDB syllabus drill",
+    "sourceUrl": "https://www.mongodb.com/docs/manual/crud/"
   }
 ]

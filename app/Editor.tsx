@@ -38,7 +38,7 @@ export default function Editor({ value, onChange, kind }: {
       onChange={onChange}
       theme={dark ? oneDark : 'light'}
       extensions={isPython ? pythonExtensions : sqlExtensions}
-      height="420px"
+      height="clamp(260px, calc(100dvh - 390px), 420px)"
       indentWithTab={!isPython}
       basicSetup={{ autocompletion: !isPython, foldGutter: true, highlightActiveLine: true, tabSize: 4 }}
       aria-label={isPython ? 'Python code editor' : 'SQLite code editor'}

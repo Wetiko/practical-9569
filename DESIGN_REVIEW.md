@@ -1,55 +1,47 @@
 # Design review: Practical / 9569
 
 ## Summary
-The original interface needed clearer navigation, readable secondary text and an adaptive appearance. The updated React workspace follows the user-selected Apple design skill, with a compact desktop sidebar, mobile bottom navigation and system light/dark appearance.
+A new discovery experience and application shell replace the sidebar dashboard. The user requested a ground-up rebuild inspired by Apple's website, with animated buttons, backgrounds and interactive elements. The result uses large editorial headings, focused sections, pill controls, a translucent navigation layer and original code-themed artwork. The practice engine, problem bank and storage schema are retained.
 
-## Critical issues addressed
-- Accessibility / Color: replaced the dark-only palette with semantic text, surface, action and status pairs. Status includes text or icons in addition to color.
-- Layout / Accessibility: added a skip link, focus rings, safe-area spacing, reduced-motion support and larger mobile controls.
-- Platform conventions: replaced problem-section buttons with shadcn/ui Base UI Tabs, providing tab semantics and arrow-key navigation.
+## Research and design direction
+- [Apple home](https://www.apple.com/) and [Mac](https://www.apple.com/mac/), reviewed September 9, 2026: prominent headlines, focused calls to action, a product collection and separate feature sections informed the discovery layout. This is an interpretation for a study tool; it does not reproduce Apple branding or product imagery.
+- [Apple design skill](https://github.com/dickwu/apple-design-skill), pinned in `.design-rules`: consulted accessibility, color, typography, layout, entering-data, dark-mode, motion, materials and liquid-glass references. Glass is restricted to navigation rather than question content.
+- [Apple motion guidance](https://developer.apple.com/design/human-interface-guidelines/motion): brief feedback, optional movement and restrained motion in frequent interactions.
+- [Vercel Web Design Guidelines](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines): labels, visible focus, reduced motion and touch behavior.
+- [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices): off-screen list rendering and loading the editor on demand.
+- [Anthropic frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design): researched in the previous revision; Apple remains the primary aesthetic direction.
+
+## Components and motion
+- [shadcn/ui with Base UI](https://ui.shadcn.com/docs/components/base/tabs): buttons, tabs, inputs, native selects and progress meters. Problem tabs support arrow-key focus and Enter activation.
+- [Motion for React](https://motion.dev/docs/react): section entrances, shared navigation indicator, card hover/tap feedback and the code-window introduction.
+- [Motion accessibility](https://motion.dev/docs/react-accessibility): MotionConfig follows system reduced motion. The page's pause control pauses decorative CSS animation and disables Motion transforms.
+- Lucide icons and CodeMirror remain in use. Artwork is original CSS/HTML/SVG rather than downloaded assets.
+- Ambient background shapes and the code caret animate on discovery only. Reading and coding surfaces have no continuous decorative animation.
 
 ## Improvements implemented
-- shadcn/ui Button, Input, Tabs, NativeSelect and Progress are used in the actual application; CodeMirror and Lucide remain the editor and icon libraries.
-- System typography and quieter surfaces put the question and code first.
-- Native selects retain familiar mobile pickers. Progress meters expose their value to assistive technology.
-- Challenge rows defer off-screen rendering with content-visibility.
-- Python Tab completion and existing storage keys are unchanged.
+- New discovery page: code-window artwork, interactive topic collection, resume card, real progress ring, exam feature and footer.
+- New global navigation with an animated selection indicator; mobile uses a floating bottom bar.
+- A dedicated full-width workspace with focus mode and viewport-sensitive editor height.
+- Redesigned challenge library, topic pills, progress and exam surfaces.
+- System appearance, semantic contrast, reduced transparency, reduced motion and focus outlines.
+- Editor loads separately, reducing initial JavaScript from about 993 kB to 509 kB before compression.
 
-## Positive notes
-The original app already had clear run/submit actions, recoverable execution errors, downloadable backups and explicit separation of self-reviewed labs from checked exercises. Those behaviors are retained.
+## Critical issues found and fixed during review
+- Fixed positioning for mobile navigation initially conflicted with the blurred header's containing block. Mobile header blur is removed; the floating navigation retains its material.
+- Fixed editor height pushed Run controls below short desktop viewports. Editor now adapts between 260 and 420 px.
+- Focus mode initially affected overview layouts after navigation. Its styles now apply only to the practice workspace.
+- Navigation now returns the new view to the top rather than preserving an unrelated discovery-page scroll position.
 
-## Platform notes and verification
-TypeScript validation and the production build passed. Core semantic text pairs were calculated below; this is not a complete WCAG audit. Visual and assistive-technology interaction testing has not been performed during this revision. Desktop has independent question/editor scrolling; narrower windows stack these panels; mobile exposes four primary destinations at the bottom.
+## Validation
+- TypeScript and production build pass.
+- Browser review at the default 1280 × 720 viewport and at 390 × 844. Mobile document width is 390 px without page overflow.
+- Confirmed topic collection opens the Algorithms filter with 16 matching challenges.
+- Confirmed arrow-key tab focus, Enter activation and focus-mode toggle.
+- Confirmed `pri` + Tab opens completion options and Enter inserts `print`.
+- Executed the first challenge with a binary-search implementation: 2/2 example tests passed. Restored the test draft afterward; tests were performed on a separate localhost origin, not the public site's saved work.
+- Pause control changes state and the motion classes/configuration are wired to it.
+- No browser console errors observed at completion.
+- Calculated semantic text pairs in both appearances all exceed 4.5:1; light secondary text is at least 5.47:1 and dark secondary text at least 7.79:1 in tested surface/background pairs.
 
-| Appearance | Text / background | Contrast |
-|---|---|---|
-| light | foreground / surface | 16.07:1 |
-| light | secondary / surface | 5.87:1 |
-| light | secondary / sidebar | 5.05:1 |
-| light | primary / surface | 5.95:1 |
-| light | primary-foreground / primary | 5.95:1 |
-| light | success / success-bg | 5.20:1 |
-| light | danger / danger-bg | 5.27:1 |
-| light | warning / warning-bg | 5.93:1 |
-| light | purple / purple-bg | 5.57:1 |
-| dark | foreground / surface | 14.24:1 |
-| dark | secondary / surface | 7.48:1 |
-| dark | secondary / sidebar | 7.83:1 |
-| dark | primary / surface | 7.95:1 |
-| dark | primary-foreground / primary | 7.94:1 |
-| dark | success / success-bg | 7.12:1 |
-| dark | danger / danger-bg | 7.05:1 |
-| dark | warning / warning-bg | 7.78:1 |
-| dark | purple / purple-bg | 6.87:1 |
-
-## Skills researched and selection
-- [Apple design skill](https://github.com/dickwu/apple-design-skill): primary visual direction, pinned as `.design-rules`. References consulted: accessibility, color, layout, typography, dark-mode and entering-data under references/hig.
-- [Vercel Web Design Guidelines](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines): applied to the changed UI files, using the current [web interface rules](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md). Used focus, labels, forms, theme metadata and reduced-motion guidance. Apple sentence-case guidance takes precedence over the conflicting title-case rule.
-- [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices): applied its rendering-content-visibility rule to the challenge library. Server/Next.js-specific rules do not apply to this Vite app.
-- [Anthropic frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design): reviewed as an optional future skill; not layered over the selected Apple direction because the aesthetic guidance overlaps.
-- [shadcn/ui Base UI Tabs](https://ui.shadcn.com/docs/components/base/tabs): component reference for the tab implementation.
-
-## Remaining review items
-- app/page.tsx: challenge selection and filters remain device-local/in-memory rather than shareable URL state; this predates the redesign.
-- app/page.tsx: storage updates still run on editor changes; consider debounced persistence if larger drafts make typing slow.
-- The production build reports a large main bundle, principally the editor/runtime UI. Lazy editor loading is a possible separate optimization.
+## Positive notes and limits
+The challenge bank, user backup format, tab completion and Python worker are unchanged. Source credits and self-assessed lab distinctions remain available. This is not a full assistive-technology audit; OS-level light/dark and reduced-motion preferences were checked in source rather than switched on the user's computer. The main bundle still produces a size advisory; further splitting is optional. Challenge/filter state remains in memory instead of shareable URLs.

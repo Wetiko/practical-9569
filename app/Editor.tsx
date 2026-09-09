@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { python, pythonLanguage } from '@codemirror/lang-python';
 import { sql } from '@codemirror/lang-sql';
@@ -24,11 +25,18 @@ export default function Editor({ value, onChange, kind }: {
   value: string; onChange: (value: string) => void; kind: string;
 }) {
   const isPython = kind !== 'sql';
+  const [dark, setDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const update = () => setDark(media.matches);
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
   return <>
     <CodeMirror
       value={value}
       onChange={onChange}
-      theme={oneDark}
+      theme={dark ? oneDark : 'light'}
       extensions={isPython ? pythonExtensions : sqlExtensions}
       height="420px"
       indentWithTab={!isPython}

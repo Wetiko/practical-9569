@@ -19,3 +19,5 @@ assert.equal(m.topicStats({}).find(s=>s.topic==='Databases').rate,null);assert.e
 assert.equal(m.daysUntil('2026-11-01',new Date(2026,10,1)),0);assert.equal(m.daysUntil('2026-11-02',new Date(2026,10,1)),1);
 const guides=JSON.parse(await readFile(new URL('../app/solution-guides.json',import.meta.url),'utf8'));for(const p of bank){const nonblank=p.solution.split('\n').map((line,i)=>line.trim()?i+1:null).filter(Boolean);assert.deepEqual(guides[p.id].map(g=>g.line),nonblank);assert.ok(guides[p.id].every(g=>g.text.length<300))}
 console.log(`Study checks passed: ${m.syllabus.length} syllabus points, paper composition, session scores, legacy/new backups, date arithmetic and ${bank.length} solution guides.`);
+
+const learning={'for-loop':{viewedAt:100,completed:true,predictions:2,correct:1}};assert.deepEqual(m.validateSaved({...full,learning}).learning,learning);assert.throws(()=>m.validateSaved({...full,learning:{x:{viewedAt:100,predictions:0,correct:1}}}));

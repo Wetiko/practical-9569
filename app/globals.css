@@ -71,3 +71,5 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 @media (prefers-reduced-motion:reduce) {.canvas-glow i {animation:none;will-change:auto}}
 .motion-paused .canvas-glow i {animation-play-state:paused;will-change:auto}
 @media (prefers-reduced-transparency:reduce), (prefers-contrast:more) {.page-atmosphere {display:none}}
+
+.nav-short-label{display:none}@media(max-width:1100px){.nav-long-label{display:none}.nav-short-label{display:inline}}@media(max-width:760px){.global-nav{grid-template-columns:repeat(6,minmax(0,1fr))}.global-nav button{padding-inline:3px;font-size:10px}}

@@ -2388,5 +2388,2401 @@
       "line": 9,
       "text": "Run the pipeline and turn its cursor into a list of result dictionaries."
     }
+  ],
+  "bookings-portal": [
+    {
+      "line": 1,
+      "text": "Import sqlite3."
+    },
+    {
+      "line": 2,
+      "text": "Import date from datetime."
+    },
+    {
+      "line": 3,
+      "text": "Import Flask, request, redirect, render_template from flask."
+    },
+    {
+      "line": 5,
+      "text": "Define create_app(database)."
+    },
+    {
+      "line": 6,
+      "text": "Set app to Flask(__name__)."
+    },
+    {
+      "line": 7,
+      "text": "Define connect()."
+    },
+    {
+      "line": 8,
+      "text": "Set conn to sqlite3.connect(database)."
+    },
+    {
+      "line": 9,
+      "text": "Execute 'PRAGMA foreign_keys=ON'."
+    },
+    {
+      "line": 10,
+      "text": "Return conn."
+    },
+    {
+      "line": 11,
+      "text": "Open a managed context for connect() as conn; clean it up on exit."
+    },
+    {
+      "line": 12,
+      "text": "Execute this call with the supplied arguments; the following lines complete its parameters."
+    },
+    {
+      "line": 13,
+      "text": "Continue the expression begun on line 12."
+    },
+    {
+      "line": 14,
+      "text": "Continue the expression begun on line 13."
+    },
+    {
+      "line": 15,
+      "text": "Continue the expression begun on line 14."
+    },
+    {
+      "line": 16,
+      "text": "Continue the expression begun on line 15."
+    },
+    {
+      "line": 17,
+      "text": "Continue the expression begun on line 16."
+    },
+    {
+      "line": 18,
+      "text": "Continue the expression begun on line 17."
+    },
+    {
+      "line": 19,
+      "text": "Register the following function with app.route('/', methods=['GET','POST'])."
+    },
+    {
+      "line": 20,
+      "text": "Define index()."
+    },
+    {
+      "line": 21,
+      "text": "Check whether request.method equals 'POST'."
+    },
+    {
+      "line": 22,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 23,
+      "text": "Set (customer, event, quantity) to a list of request.form[k] converted to an integer for k in ['customer', 'event', 'quantity']."
+    },
+    {
+      "line": 24,
+      "text": "Check whether not (1 is at most quantity and is at most 8)."
+    },
+    {
+      "line": 25,
+      "text": "Stop this call with ValueError()."
+    },
+    {
+      "line": 26,
+      "text": "Open a managed context for connect() as conn; clean it up on exit."
+    },
+    {
+      "line": 27,
+      "text": "Execute 'INSERT INTO Booking VALUES(?,?,?)' with bound parameters (customer, event, quantity)."
+    },
+    {
+      "line": 28,
+      "text": "Handle (ValueError, KeyError, sqlite3.IntegrityError) rather than stopping the program."
+    },
+    {
+      "line": 29,
+      "text": "Return ('Invalid or duplicate booking', 400)."
+    },
+    {
+      "line": 30,
+      "text": "Return redirect('/')."
+    },
+    {
+      "line": 31,
+      "text": "Set (day, category) to (request.args.get('day', ''), request.args.get('category', ''))."
+    },
+    {
+      "line": 32,
+      "text": "Check whether day."
+    },
+    {
+      "line": 33,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 34,
+      "text": "Check whether date.fromisoformat(day).isoformat() differs from day."
+    },
+    {
+      "line": 35,
+      "text": "Stop this call with ValueError()."
+    },
+    {
+      "line": 36,
+      "text": "Handle ValueError rather than stopping the program."
+    },
+    {
+      "line": 37,
+      "text": "Return ('Invalid date', 400)."
+    },
+    {
+      "line": 38,
+      "text": "Set sql to 'SELECT c.name,e.title,e.day,e.category,b.quantity FROM Booking b JOIN Customer c ON c.id=b.customer_id JOIN Event e ON e.id=b.event_id WHERE 1=1'."
+    },
+    {
+      "line": 39,
+      "text": "Set params to an empty list."
+    },
+    {
+      "line": 40,
+      "text": "Process each (column, value) in [('e.day', day), ('e.category', category)]."
+    },
+    {
+      "line": 41,
+      "text": "Check whether value."
+    },
+    {
+      "line": 42,
+      "text": "Increase sql by ' AND ' + column + '=?'."
+    },
+    {
+      "line": 43,
+      "text": "Append value to params."
+    },
+    {
+      "line": 44,
+      "text": "Open a managed context for connect() as conn; clean it up on exit."
+    },
+    {
+      "line": 45,
+      "text": "Set rows to conn.execute(sql + ' ORDER BY e.day,c.id,e.id', params).fetchall()."
+    },
+    {
+      "line": 46,
+      "text": "Return render_template('index.html', rows=rows, day=day, category=category)."
+    },
+    {
+      "line": 47,
+      "text": "Return app."
+    },
+    {
+      "line": 49,
+      "text": "Check whether __name__ equals '__main__'."
+    },
+    {
+      "line": 50,
+      "text": "Call create_app().run(host='127.0.0.1', port=5051)."
+    }
+  ],
+  "photo-catalogue": [
+    {
+      "line": 1,
+      "text": "Import Path from pathlib."
+    },
+    {
+      "line": 2,
+      "text": "Import uuid4 from uuid."
+    },
+    {
+      "line": 3,
+      "text": "Import sqlite3."
+    },
+    {
+      "line": 4,
+      "text": "Import Image, UnidentifiedImageError from PIL."
+    },
+    {
+      "line": 5,
+      "text": "Import Flask, request, redirect, render_template, send_from_directory from flask."
+    },
+    {
+      "line": 7,
+      "text": "Define create_app(database, upload_dir)."
+    },
+    {
+      "line": 8,
+      "text": "Set app to Flask(__name__). Set app.config['MAX_CONTENT_LENGTH'] to 2 * 1024 * 1024."
+    },
+    {
+      "line": 9,
+      "text": "Set folder to Path(upload_dir).resolve(). Call folder.mkdir(parents=True, exist_ok=True)."
+    },
+    {
+      "line": 10,
+      "text": "Open a managed context for sqlite3.connect(database) as conn; clean it up on exit."
+    },
+    {
+      "line": 11,
+      "text": "Execute 'CREATE TABLE IF NOT EXISTS Photo(id INTEGER PRIMARY KEY,title TEXT NOT NULL,filename TEXT UNIQUE NOT NULL)'."
+    },
+    {
+      "line": 12,
+      "text": "Register the following function with app.route('/',methods=['GET','POST'])."
+    },
+    {
+      "line": 13,
+      "text": "Define index()."
+    },
+    {
+      "line": 14,
+      "text": "Check whether request.method equals 'POST'."
+    },
+    {
+      "line": 15,
+      "text": "Set title to request.form.get('title', '').strip(). Set file to request.files.get('photo')."
+    },
+    {
+      "line": 16,
+      "text": "Check whether not (title) or not (file) or not (file.filename)."
+    },
+    {
+      "line": 17,
+      "text": "Return ('Title and image required', 400)."
+    },
+    {
+      "line": 18,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 19,
+      "text": "Set image to Image.open(file.stream)."
+    },
+    {
+      "line": 20,
+      "text": "Set format to image.format."
+    },
+    {
+      "line": 21,
+      "text": "Check whether format is not in ['PNG', 'JPEG']."
+    },
+    {
+      "line": 22,
+      "text": "Stop this call with ValueError()."
+    },
+    {
+      "line": 23,
+      "text": "Call image.verify(). Call file.stream.seek(0)."
+    },
+    {
+      "line": 24,
+      "text": "Handle (UnidentifiedImageError, OSError, ValueError) rather than stopping the program."
+    },
+    {
+      "line": 25,
+      "text": "Return ('Use a valid PNG or JPEG', 400)."
+    },
+    {
+      "line": 26,
+      "text": "Set filename to uuid4().hex + ('.png' if format == 'PNG' else '.jpg')."
+    },
+    {
+      "line": 27,
+      "text": "Set path to folder / filename."
+    },
+    {
+      "line": 28,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 29,
+      "text": "Call file.save(path)."
+    },
+    {
+      "line": 30,
+      "text": "Open a managed context for sqlite3.connect(database) as conn; clean it up on exit."
+    },
+    {
+      "line": 31,
+      "text": "Execute 'INSERT INTO Photo(title,filename) VALUES(?,?)' with bound parameters (title, filename)."
+    },
+    {
+      "line": 32,
+      "text": "Handle Exception rather than stopping the program."
+    },
+    {
+      "line": 33,
+      "text": "Call path.unlink(missing_ok=True)."
+    },
+    {
+      "line": 34,
+      "text": "Re-raise the current exception."
+    },
+    {
+      "line": 35,
+      "text": "Return redirect('/')."
+    },
+    {
+      "line": 36,
+      "text": "Open a managed context for sqlite3.connect(database) as conn; clean it up on exit."
+    },
+    {
+      "line": 37,
+      "text": "Set photos to conn.execute('SELECT title,filename FROM Photo ORDER BY id').fetchall()."
+    },
+    {
+      "line": 38,
+      "text": "Return render_template('index.html', photos=photos)."
+    },
+    {
+      "line": 39,
+      "text": "Register the following function with app.get('/photos/<path:name>')."
+    },
+    {
+      "line": 40,
+      "text": "Define photo(name)."
+    },
+    {
+      "line": 41,
+      "text": "Return send_from_directory(folder, name)."
+    },
+    {
+      "line": 42,
+      "text": "Return app."
+    },
+    {
+      "line": 44,
+      "text": "Check whether __name__ equals '__main__'. Call create_app().run(host='127.0.0.1', port=5052)."
+    }
+  ],
+  "quiz-server": [
+    {
+      "line": 1,
+      "text": "Import json, socket."
+    },
+    {
+      "line": 3,
+      "text": "Define Question as a class."
+    },
+    {
+      "line": 4,
+      "text": "Define __init__(self, text, answer)."
+    },
+    {
+      "line": 5,
+      "text": "Set (self.text, self._answer) to (text, answer)."
+    },
+    {
+      "line": 6,
+      "text": "Define correct(self, answer)."
+    },
+    {
+      "line": 7,
+      "text": "Return answer.strip().upper() equals self._answer."
+    },
+    {
+      "line": 8,
+      "text": "Define QuizSession as a class."
+    },
+    {
+      "line": 9,
+      "text": "Define __init__(self, username)."
+    },
+    {
+      "line": 10,
+      "text": "Set (self.username, self.score) to (username, 0)."
+    },
+    {
+      "line": 11,
+      "text": "Define record(self, question, answer)."
+    },
+    {
+      "line": 12,
+      "text": "Increase self.score by question.correct(answer) converted to an integer."
+    },
+    {
+      "line": 13,
+      "text": "Set QUESTIONS to [Question('2 + 3? A: 4, B: 5', 'B'), Question('FIFO structure? A: queue, B: stack', 'A')]."
+    },
+    {
+      "line": 15,
+      "text": "Define handle(connection)."
+    },
+    {
+      "line": 16,
+      "text": "Call connection.settimeout(3)."
+    },
+    {
+      "line": 17,
+      "text": "Open a managed context for connection.makefile('rwb') as stream; clean it up on exit."
+    },
+    {
+      "line": 18,
+      "text": "Define send(message)."
+    },
+    {
+      "line": 19,
+      "text": "Write (json.dumps(message) + '\\n').encode() to the output file. Call stream.flush()."
+    },
+    {
+      "line": 20,
+      "text": "Define receive()."
+    },
+    {
+      "line": 21,
+      "text": "Set raw to stream.readline(4097)."
+    },
+    {
+      "line": 22,
+      "text": "Check whether not (raw) or not (raw.endswith(b'\\n')) or the length of raw is greater than 4096."
+    },
+    {
+      "line": 23,
+      "text": "Stop this call with ConnectionError('Incomplete or oversized message')."
+    },
+    {
+      "line": 24,
+      "text": "Return json.loads(raw)."
+    },
+    {
+      "line": 25,
+      "text": "Set hello to receive()."
+    },
+    {
+      "line": 26,
+      "text": "Check whether not (isinstance(hello, dict)) or not (isinstance(hello.get('username'), str)) or not (hello['username'].strip())."
+    },
+    {
+      "line": 27,
+      "text": "Stop this call with ValueError('Username required')."
+    },
+    {
+      "line": 28,
+      "text": "Set session to QuizSession(hello['username'].strip())."
+    },
+    {
+      "line": 29,
+      "text": "Process each (index, question) in enumerate(QUESTIONS, 1)."
+    },
+    {
+      "line": 30,
+      "text": "Call send({'type': 'question', 'number': index, 'text': question.text})."
+    },
+    {
+      "line": 31,
+      "text": "Set answer to receive()."
+    },
+    {
+      "line": 32,
+      "text": "Check whether not (isinstance(answer, dict)) or not (isinstance(answer.get('answer'), str))."
+    },
+    {
+      "line": 33,
+      "text": "Stop this call with ValueError('Answer required')."
+    },
+    {
+      "line": 34,
+      "text": "Call session.record(question, answer['answer'])."
+    },
+    {
+      "line": 35,
+      "text": "Call send({'type': 'result', 'username': session.username, 'score': session.score})."
+    },
+    {
+      "line": 37,
+      "text": "Define serve(listener, max_clients)."
+    },
+    {
+      "line": 38,
+      "text": "Set handled to 0."
+    },
+    {
+      "line": 39,
+      "text": "Repeat while max_clients is None or handled is less than max_clients."
+    },
+    {
+      "line": 40,
+      "text": "Set (connection, _) to listener.accept()."
+    },
+    {
+      "line": 41,
+      "text": "Open a managed context for connection; clean it up on exit."
+    },
+    {
+      "line": 42,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 43,
+      "text": "Call handle(connection)."
+    },
+    {
+      "line": 44,
+      "text": "Handle (OSError, ConnectionError, ValueError, TypeError) rather than stopping the program."
+    },
+    {
+      "line": 45,
+      "text": "Continue the expression begun on line 44."
+    },
+    {
+      "line": 46,
+      "text": "Increase handled by 1."
+    },
+    {
+      "line": 48,
+      "text": "Check whether __name__ equals '__main__'."
+    },
+    {
+      "line": 49,
+      "text": "Open a managed context for socket.socket() as listener; clean it up on exit."
+    },
+    {
+      "line": 50,
+      "text": "Call listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)."
+    },
+    {
+      "line": 51,
+      "text": "Call listener.bind(('127.0.0.1', 5055)). Call listener.listen()."
+    },
+    {
+      "line": 52,
+      "text": "Call serve(listener)."
+    }
+  ],
+  "game-client": [
+    {
+      "line": 1,
+      "text": "Import json, socket."
+    },
+    {
+      "line": 3,
+      "text": "Define play(connection, moves)."
+    },
+    {
+      "line": 4,
+      "text": "Set moves to iter(moves)."
+    },
+    {
+      "line": 5,
+      "text": "Open a managed context for connection.makefile('rwb') as stream; clean it up on exit."
+    },
+    {
+      "line": 6,
+      "text": "Repeat while True."
+    },
+    {
+      "line": 7,
+      "text": "Set raw to stream.readline(4097)."
+    },
+    {
+      "line": 8,
+      "text": "Check whether not (raw) or not (raw.endswith(b'\\n')) or the length of raw is greater than 4096."
+    },
+    {
+      "line": 9,
+      "text": "Stop this call with ConnectionError('Game ended without a complete result')."
+    },
+    {
+      "line": 10,
+      "text": "Set message to json.loads(raw)."
+    },
+    {
+      "line": 11,
+      "text": "Check whether message['type'] equals 'done'."
+    },
+    {
+      "line": 12,
+      "text": "Return message['result']."
+    },
+    {
+      "line": 13,
+      "text": "Check whether message['type'] equals 'info'."
+    },
+    {
+      "line": 14,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 15,
+      "text": "Check whether message['type'] is not in ['turn', 'retry']."
+    },
+    {
+      "line": 16,
+      "text": "Stop this call with ValueError('Unknown message type')."
+    },
+    {
+      "line": 17,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 18,
+      "text": "Set (row, col) to next(moves)."
+    },
+    {
+      "line": 19,
+      "text": "Handle StopIteration rather than stopping the program."
+    },
+    {
+      "line": 20,
+      "text": "Stop this call with ValueError('No moves remaining')."
+    },
+    {
+      "line": 21,
+      "text": "Write (json.dumps({'row': row, 'col': col}) + '\\n').encode() to the output file."
+    },
+    {
+      "line": 22,
+      "text": "Call stream.flush()."
+    },
+    {
+      "line": 24,
+      "text": "Check whether __name__ equals '__main__'."
+    },
+    {
+      "line": 25,
+      "text": "Open a managed context for socket.create_connection(('127.0.0.1', 5056), timeout=3) as connection; clean it up on exit."
+    },
+    {
+      "line": 26,
+      "text": "Call print(play(connection, [(7, 7), (0, 0), (1, 1)]))."
+    }
+  ],
+  "lost-property": [
+    {
+      "line": 1,
+      "text": "Import date from datetime."
+    },
+    {
+      "line": 2,
+      "text": "Import uuid4 from uuid."
+    },
+    {
+      "line": 3,
+      "text": "Import Flask, request, redirect, render_template, abort from flask."
+    },
+    {
+      "line": 4,
+      "text": "Import MongoClient from pymongo."
+    },
+    {
+      "line": 5,
+      "text": "Import os."
+    },
+    {
+      "line": 7,
+      "text": "Define create_app(collection)."
+    },
+    {
+      "line": 8,
+      "text": "Set app to Flask(__name__)."
+    },
+    {
+      "line": 9,
+      "text": "Check whether collection is None."
+    },
+    {
+      "line": 10,
+      "text": "Set client to MongoClient(os.environ.get('MONGO_URI', 'mongodb://127.0.0.1:27017'), serverSelectionTimeoutMS=3000)."
+    },
+    {
+      "line": 11,
+      "text": "Call client.admin.command('ping')."
+    },
+    {
+      "line": 12,
+      "text": "Set collection to client['practical_lost_property']['reports']."
+    },
+    {
+      "line": 13,
+      "text": "Call collection.create_index('report_id', unique=True)."
+    },
+    {
+      "line": 14,
+      "text": "Define valid_day(value)."
+    },
+    {
+      "line": 15,
+      "text": "Try the following steps, with error handling below. Return date.fromisoformat(value).isoformat() equals value."
+    },
+    {
+      "line": 16,
+      "text": "Handle ValueError rather than stopping the program. Return False."
+    },
+    {
+      "line": 17,
+      "text": "Register the following function with app.route('/',methods=['GET','POST'])."
+    },
+    {
+      "line": 18,
+      "text": "Define index()."
+    },
+    {
+      "line": 19,
+      "text": "Check whether request.method equals 'POST'."
+    },
+    {
+      "line": 20,
+      "text": "Set (title, day, category) to a list of request.form.get(k, '').strip() for k in ['title', 'day', 'category']."
+    },
+    {
+      "line": 21,
+      "text": "Check whether not (title) or not (valid_day(day)) or category is not in ['Books', 'Clothing', 'Other']."
+    },
+    {
+      "line": 22,
+      "text": "Return ('Invalid report', 400)."
+    },
+    {
+      "line": 23,
+      "text": "Call collection.insert_one(dict(report_id=uuid4().hex, title=title, day=day, category=category, claimed=False))."
+    },
+    {
+      "line": 24,
+      "text": "Return redirect('/')."
+    },
+    {
+      "line": 25,
+      "text": "Set query to an empty dictionary."
+    },
+    {
+      "line": 26,
+      "text": "Process each key in ['day', 'category']."
+    },
+    {
+      "line": 27,
+      "text": "Set value to request.args.get(key, '')."
+    },
+    {
+      "line": 28,
+      "text": "Check whether value. Set query[key] to value."
+    },
+    {
+      "line": 29,
+      "text": "Check whether 'day' is in query and not (valid_day(query['day'])). Return ('Invalid date', 400)."
+    },
+    {
+      "line": 30,
+      "text": "Return render_template('index.html', rows=list(collection.find(query, {'_id': 0}).sort([('day', 1), ('report_id', 1)])))."
+    },
+    {
+      "line": 31,
+      "text": "Register the following function with app.post('/claim/<report_id>')."
+    },
+    {
+      "line": 32,
+      "text": "Define claim(report_id)."
+    },
+    {
+      "line": 33,
+      "text": "Set result to collection.update_one({'report_id': report_id}, {'$set': {'claimed': True}})."
+    },
+    {
+      "line": 34,
+      "text": "Check whether not (result.matched_count). Call abort(404)."
+    },
+    {
+      "line": 35,
+      "text": "Return redirect('/')."
+    },
+    {
+      "line": 36,
+      "text": "Return app."
+    },
+    {
+      "line": 38,
+      "text": "Check whether __name__ equals '__main__'. Call create_app().run(host='127.0.0.1', port=5053)."
+    }
+  ],
+  "booking-schema": [
+    {
+      "line": 1,
+      "text": "Define create_schema(conn)."
+    },
+    {
+      "line": 2,
+      "text": "Execute 'PRAGMA foreign_keys = ON'."
+    },
+    {
+      "line": 3,
+      "text": "Execute this call with the supplied arguments; the following lines complete its parameters."
+    },
+    {
+      "line": 4,
+      "text": "Continue the expression begun on line 3."
+    },
+    {
+      "line": 5,
+      "text": "Continue the expression begun on line 4."
+    },
+    {
+      "line": 6,
+      "text": "Continue the expression begun on line 5."
+    },
+    {
+      "line": 7,
+      "text": "Continue the expression begun on line 6."
+    },
+    {
+      "line": 8,
+      "text": "Continue the expression begun on line 7."
+    },
+    {
+      "line": 9,
+      "text": "Continue the expression begun on line 8."
+    },
+    {
+      "line": 10,
+      "text": "Continue the expression begun on line 9."
+    },
+    {
+      "line": 11,
+      "text": "Call conn.commit()."
+    }
+  ],
+  "register-import": [
+    {
+      "line": 1,
+      "text": "Import csv."
+    },
+    {
+      "line": 3,
+      "text": "Define import_register(conn, path)."
+    },
+    {
+      "line": 4,
+      "text": "Set (count, rejected) to (0, [])."
+    },
+    {
+      "line": 5,
+      "text": "Open a managed context for open(path, newline='', encoding='utf-8') as handle; clean it up on exit."
+    },
+    {
+      "line": 6,
+      "text": "Set rows to csv.reader(handle)."
+    },
+    {
+      "line": 7,
+      "text": "Check whether next(rows, None) differs from ['id', 'name', 'score']."
+    },
+    {
+      "line": 8,
+      "text": "Stop this call with ValueError('Invalid header')."
+    },
+    {
+      "line": 9,
+      "text": "Open a managed context for conn; clean it up on exit."
+    },
+    {
+      "line": 10,
+      "text": "Process each (line, row) in enumerate(rows, 2)."
+    },
+    {
+      "line": 11,
+      "text": "Check whether the length of row differs from 3."
+    },
+    {
+      "line": 12,
+      "text": "Append line to rejected."
+    },
+    {
+      "line": 13,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 14,
+      "text": "Set (key, name, score) to a list of v.strip() for v in row."
+    },
+    {
+      "line": 15,
+      "text": "Check whether not (key.isascii()) or not (key.isdecimal()) or key converted to an integer is less than 1 or not (name) or not (score.isascii()) or not (score.isdecimal()) or not (0 is at most score converted to an integer and is at most 100)."
+    },
+    {
+      "line": 16,
+      "text": "Append line to rejected."
+    },
+    {
+      "line": 17,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 18,
+      "text": "Check whether conn.execute('SELECT 1 FROM Student WHERE id=?', (int(key),)).fetchone()."
+    },
+    {
+      "line": 19,
+      "text": "Append line to rejected."
+    },
+    {
+      "line": 20,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 21,
+      "text": "Execute 'INSERT INTO Student VALUES(?,?,?)' with bound parameters (int(key), name, int(score))."
+    },
+    {
+      "line": 22,
+      "text": "Increase count by 1."
+    },
+    {
+      "line": 23,
+      "text": "Return [count, rejected]."
+    }
+  ],
+  "hash-lookup": [
+    {
+      "line": 1,
+      "text": "Define lookup(table, key)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether not (table)."
+    },
+    {
+      "line": 3,
+      "text": "Return -1."
+    },
+    {
+      "line": 4,
+      "text": "Set position to key % len(table)."
+    },
+    {
+      "line": 5,
+      "text": "Process each _ in range(the length of table)."
+    },
+    {
+      "line": 6,
+      "text": "Check whether table[position] is None."
+    },
+    {
+      "line": 7,
+      "text": "Return -1."
+    },
+    {
+      "line": 8,
+      "text": "Check whether table[position] equals key."
+    },
+    {
+      "line": 9,
+      "text": "Return position."
+    },
+    {
+      "line": 10,
+      "text": "Set position to (position + 1) % len(table)."
+    },
+    {
+      "line": 11,
+      "text": "Return -1."
+    }
+  ],
+  "repair-queue": [
+    {
+      "line": 1,
+      "text": "Define Queue as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, capacity)."
+    },
+    {
+      "line": 3,
+      "text": "Set self.data to [None] * capacity."
+    },
+    {
+      "line": 4,
+      "text": "Set self.head = self.tail = self.count to 0."
+    },
+    {
+      "line": 5,
+      "text": "Define put(self, value)."
+    },
+    {
+      "line": 6,
+      "text": "Full means count equals capacity, not capacity minus one."
+    },
+    {
+      "line": 7,
+      "text": "Check whether self.count equals the length of self.data."
+    },
+    {
+      "line": 8,
+      "text": "Return False."
+    },
+    {
+      "line": 9,
+      "text": "Set self.data[self.tail] to value."
+    },
+    {
+      "line": 10,
+      "text": "Set self.tail to (self.tail + 1) % len(self.data)."
+    },
+    {
+      "line": 11,
+      "text": "Increase self.count by 1."
+    },
+    {
+      "line": 12,
+      "text": "Return True."
+    },
+    {
+      "line": 13,
+      "text": "Define get(self)."
+    },
+    {
+      "line": 14,
+      "text": "Check empty before accessing or changing a pointer."
+    },
+    {
+      "line": 15,
+      "text": "Check whether self.count equals 0."
+    },
+    {
+      "line": 16,
+      "text": "Return None."
+    },
+    {
+      "line": 17,
+      "text": "Set value to self.data[self.head]."
+    },
+    {
+      "line": 18,
+      "text": "Set self.data[self.head] to None."
+    },
+    {
+      "line": 19,
+      "text": "Wrap the head and reduce the count after removal."
+    },
+    {
+      "line": 20,
+      "text": "Set self.head to (self.head + 1) % len(self.data)."
+    },
+    {
+      "line": 21,
+      "text": "Decrease self.count by 1."
+    },
+    {
+      "line": 22,
+      "text": "Return value."
+    }
+  ],
+  "recursive-trace": [
+    {
+      "line": 1,
+      "text": "Define trace_sum(values)."
+    },
+    {
+      "line": 2,
+      "text": "Set events to an empty list."
+    },
+    {
+      "line": 3,
+      "text": "Define visit(i)."
+    },
+    {
+      "line": 4,
+      "text": "Append ['enter', i] to events."
+    },
+    {
+      "line": 5,
+      "text": "Set total to 0 if i equals the length of values; otherwise values[i] + visit(i + 1)."
+    },
+    {
+      "line": 6,
+      "text": "Append ['return', i, total] to events."
+    },
+    {
+      "line": 7,
+      "text": "Return total."
+    },
+    {
+      "line": 8,
+      "text": "Call visit(0)."
+    },
+    {
+      "line": 9,
+      "text": "Return events."
+    }
+  ],
+  "structure-interface": [
+    {
+      "line": 1,
+      "text": "Define BoundedQueue as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, capacity)."
+    },
+    {
+      "line": 3,
+      "text": "Set self._capacity to capacity."
+    },
+    {
+      "line": 4,
+      "text": "Set self._items to an empty list."
+    },
+    {
+      "line": 5,
+      "text": "Define put(self, value)."
+    },
+    {
+      "line": 6,
+      "text": "Check whether the length of self._items equals self._capacity."
+    },
+    {
+      "line": 7,
+      "text": "Return False."
+    },
+    {
+      "line": 8,
+      "text": "Append value to self._items."
+    },
+    {
+      "line": 9,
+      "text": "Return True."
+    },
+    {
+      "line": 10,
+      "text": "Define take(self)."
+    },
+    {
+      "line": 11,
+      "text": "Return self._items.pop(0) if self._items; otherwise None."
+    },
+    {
+      "line": 12,
+      "text": "Define BoundedStack as a subclass of BoundedQueue."
+    },
+    {
+      "line": 13,
+      "text": "Define take(self)."
+    },
+    {
+      "line": 14,
+      "text": "Return self._items.pop() if self._items; otherwise None."
+    },
+    {
+      "line": 15,
+      "text": "Define dispatch(container, operations)."
+    },
+    {
+      "line": 16,
+      "text": "Return a list of container.put(op[1]) if op[0] equals 'put'; otherwise container.take() for op in operations."
+    }
+  ],
+  "master-update": [
+    {
+      "line": 1,
+      "text": "Import csv."
+    },
+    {
+      "line": 3,
+      "text": "Define apply_updates(master_path, changes_path, output_path)."
+    },
+    {
+      "line": 4,
+      "text": "Set count to 0."
+    },
+    {
+      "line": 5,
+      "text": "Open a managed context for open(master_path, newline='') as master, open(changes_path, newline='') as changes, open(output_path, 'w', newline='') as output; clean it up on exit."
+    },
+    {
+      "line": 6,
+      "text": "Set (masters, updates) to (csv.reader(master), csv.reader(changes))."
+    },
+    {
+      "line": 7,
+      "text": "Set writer to csv.writer(output, lineterminator='\\n')."
+    },
+    {
+      "line": 8,
+      "text": "Set (record, change) to (next(masters, None), next(updates, None))."
+    },
+    {
+      "line": 9,
+      "text": "Repeat while record is not None or change is not None."
+    },
+    {
+      "line": 10,
+      "text": "Set key to min((int(x[0]) for x in [record, change] if x is not None))."
+    },
+    {
+      "line": 11,
+      "text": "Set name to None."
+    },
+    {
+      "line": 12,
+      "text": "Check whether record is not None and record[0] converted to an integer equals key."
+    },
+    {
+      "line": 13,
+      "text": "Set name to record[1]."
+    },
+    {
+      "line": 14,
+      "text": "Set record to next(masters, None)."
+    },
+    {
+      "line": 15,
+      "text": "Repeat while change is not None and change[0] converted to an integer equals key."
+    },
+    {
+      "line": 16,
+      "text": "Set (operation, value) to change[1:]."
+    },
+    {
+      "line": 17,
+      "text": "Check whether operation equals 'I' and name is None or operation equals 'U' and name is not None."
+    },
+    {
+      "line": 18,
+      "text": "Set name to value."
+    },
+    {
+      "line": 19,
+      "text": "Check whether operation equals 'D'."
+    },
+    {
+      "line": 20,
+      "text": "Set name to None."
+    },
+    {
+      "line": 21,
+      "text": "Set change to next(updates, None)."
+    },
+    {
+      "line": 22,
+      "text": "Check whether name is not None."
+    },
+    {
+      "line": 23,
+      "text": "Call writer.writerow([key, name])."
+    },
+    {
+      "line": 24,
+      "text": "Increase count by 1."
+    },
+    {
+      "line": 25,
+      "text": "Return count."
+    }
+  ],
+  "joined-totals": [
+    {
+      "line": 1,
+      "text": "Define totals(conn)."
+    },
+    {
+      "line": 2,
+      "text": "Set query to '\\n        SELECT c.id, c.name, COALESCE(SUM(l.quantity * COALESCE(l.unit_price, 0)), 0)\\n        FROM Customer c LEFT JOIN Orders o ON o.customer_id = c.id\\n        LEFT JOIN Line l ON l.order_id = o.id\\n        GROUP BY c.id, c.name ORDER BY 3 DESC, c.id ASC\\n    '."
+    },
+    {
+      "line": 3,
+      "text": "Continue the expression begun on line 2."
+    },
+    {
+      "line": 4,
+      "text": "Continue the expression begun on line 3."
+    },
+    {
+      "line": 5,
+      "text": "Continue the expression begun on line 4."
+    },
+    {
+      "line": 6,
+      "text": "Continue the expression begun on line 5."
+    },
+    {
+      "line": 7,
+      "text": "Continue the expression begun on line 6."
+    },
+    {
+      "line": 8,
+      "text": "Return a list of list(row) for row in conn.execute(query)."
+    }
+  ],
+  "shared-pool": [
+    {
+      "line": 1,
+      "text": "Define Pool as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, capacity)."
+    },
+    {
+      "line": 3,
+      "text": "Set self.data to [None] * capacity."
+    },
+    {
+      "line": 4,
+      "text": "Set self.next to list(range(1, capacity)) + [-1]."
+    },
+    {
+      "line": 5,
+      "text": "Set self.heads to [-1, -1]."
+    },
+    {
+      "line": 6,
+      "text": "Set self.free to 0."
+    },
+    {
+      "line": 7,
+      "text": "Define insert(self, which, value)."
+    },
+    {
+      "line": 8,
+      "text": "Set (previous, current) to (-1, self.heads[which])."
+    },
+    {
+      "line": 9,
+      "text": "Repeat while current differs from -1 and self.data[current] is less than value."
+    },
+    {
+      "line": 10,
+      "text": "Set (previous, current) to (current, self.next[current])."
+    },
+    {
+      "line": 11,
+      "text": "Check whether current differs from -1 and self.data[current] equals value or self.free equals -1."
+    },
+    {
+      "line": 12,
+      "text": "Return False."
+    },
+    {
+      "line": 13,
+      "text": "Set node to self.free."
+    },
+    {
+      "line": 14,
+      "text": "Set self.free to self.next[node]."
+    },
+    {
+      "line": 15,
+      "text": "Set (self.data[node], self.next[node]) to (value, current)."
+    },
+    {
+      "line": 16,
+      "text": "Check whether previous equals -1."
+    },
+    {
+      "line": 17,
+      "text": "Set self.heads[which] to node."
+    },
+    {
+      "line": 18,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 19,
+      "text": "Set self.next[previous] to node."
+    },
+    {
+      "line": 20,
+      "text": "Return True."
+    },
+    {
+      "line": 21,
+      "text": "Define delete(self, which, value)."
+    },
+    {
+      "line": 22,
+      "text": "Set (previous, current) to (-1, self.heads[which])."
+    },
+    {
+      "line": 23,
+      "text": "Repeat while current differs from -1 and self.data[current] differs from value."
+    },
+    {
+      "line": 24,
+      "text": "Set (previous, current) to (current, self.next[current])."
+    },
+    {
+      "line": 25,
+      "text": "Check whether current equals -1."
+    },
+    {
+      "line": 26,
+      "text": "Return False."
+    },
+    {
+      "line": 27,
+      "text": "Check whether previous equals -1."
+    },
+    {
+      "line": 28,
+      "text": "Set self.heads[which] to self.next[current]."
+    },
+    {
+      "line": 29,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 30,
+      "text": "Set self.next[previous] to self.next[current]."
+    },
+    {
+      "line": 31,
+      "text": "Set self.data[current] to None."
+    },
+    {
+      "line": 32,
+      "text": "Set (self.next[current], self.free) to (self.free, current)."
+    },
+    {
+      "line": 33,
+      "text": "Return True."
+    },
+    {
+      "line": 34,
+      "text": "Define values(self, which)."
+    },
+    {
+      "line": 35,
+      "text": "Set (result, current) to ([], self.heads[which])."
+    },
+    {
+      "line": 36,
+      "text": "Repeat while current differs from -1."
+    },
+    {
+      "line": 37,
+      "text": "Append self.data[current] to result."
+    },
+    {
+      "line": 38,
+      "text": "Set current to self.next[current]."
+    },
+    {
+      "line": 39,
+      "text": "Return result."
+    }
+  ],
+  "editable-records": [
+    {
+      "line": 1,
+      "text": "Define Node as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, key, name, next)."
+    },
+    {
+      "line": 3,
+      "text": "Set (self.key, self.name, self.next) to (key, name, next)."
+    },
+    {
+      "line": 4,
+      "text": "Define Records as a class."
+    },
+    {
+      "line": 5,
+      "text": "Define __init__(self)."
+    },
+    {
+      "line": 6,
+      "text": "Set self.head to None."
+    },
+    {
+      "line": 7,
+      "text": "Define _locate(self, key)."
+    },
+    {
+      "line": 8,
+      "text": "Set (previous, current) to (None, self.head)."
+    },
+    {
+      "line": 9,
+      "text": "Repeat while current is not None and current.key is less than key."
+    },
+    {
+      "line": 10,
+      "text": "Set (previous, current) to (current, current.next)."
+    },
+    {
+      "line": 11,
+      "text": "Return (previous, current)."
+    },
+    {
+      "line": 12,
+      "text": "Define insert(self, key, name)."
+    },
+    {
+      "line": 13,
+      "text": "Set (previous, current) to self._locate(key)."
+    },
+    {
+      "line": 14,
+      "text": "Check whether current is not None and current.key equals key."
+    },
+    {
+      "line": 15,
+      "text": "Return False."
+    },
+    {
+      "line": 16,
+      "text": "Set new to Node(key, name, current)."
+    },
+    {
+      "line": 17,
+      "text": "Check whether previous is None."
+    },
+    {
+      "line": 18,
+      "text": "Set self.head to new."
+    },
+    {
+      "line": 19,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 20,
+      "text": "Set previous.next to new."
+    },
+    {
+      "line": 21,
+      "text": "Return True."
+    },
+    {
+      "line": 22,
+      "text": "Define edit(self, key, name)."
+    },
+    {
+      "line": 23,
+      "text": "Set (_, current) to self._locate(key)."
+    },
+    {
+      "line": 24,
+      "text": "Check whether current is None or current.key differs from key."
+    },
+    {
+      "line": 25,
+      "text": "Return False."
+    },
+    {
+      "line": 26,
+      "text": "Set current.name to name."
+    },
+    {
+      "line": 27,
+      "text": "Return True."
+    },
+    {
+      "line": 28,
+      "text": "Define delete(self, key)."
+    },
+    {
+      "line": 29,
+      "text": "Set (previous, current) to self._locate(key)."
+    },
+    {
+      "line": 30,
+      "text": "Check whether current is None or current.key differs from key."
+    },
+    {
+      "line": 31,
+      "text": "Return False."
+    },
+    {
+      "line": 32,
+      "text": "Check whether previous is None."
+    },
+    {
+      "line": 33,
+      "text": "Set self.head to current.next."
+    },
+    {
+      "line": 34,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 35,
+      "text": "Set previous.next to current.next."
+    },
+    {
+      "line": 36,
+      "text": "Return True."
+    },
+    {
+      "line": 37,
+      "text": "Define find(self, key)."
+    },
+    {
+      "line": 38,
+      "text": "Set (_, current) to self._locate(key)."
+    },
+    {
+      "line": 39,
+      "text": "Return current.name if current is not None and current.key equals key; otherwise None."
+    },
+    {
+      "line": 40,
+      "text": "Define rows(self)."
+    },
+    {
+      "line": 41,
+      "text": "Set (result, current) to ([], self.head)."
+    },
+    {
+      "line": 42,
+      "text": "Repeat while current is not None."
+    },
+    {
+      "line": 43,
+      "text": "Append [current.key, current.name] to result."
+    },
+    {
+      "line": 44,
+      "text": "Set current to current.next."
+    },
+    {
+      "line": 45,
+      "text": "Return result."
+    }
+  ],
+  "tournament-tree": [
+    {
+      "line": 1,
+      "text": "Define Tree as a class."
+    },
+    {
+      "line": 2,
+      "text": "Define __init__(self, records, root)."
+    },
+    {
+      "line": 3,
+      "text": "Set self.nodes to an empty dictionary."
+    },
+    {
+      "line": 4,
+      "text": "Process each (key, value, left, right) in records."
+    },
+    {
+      "line": 5,
+      "text": "Check whether key is in self.nodes."
+    },
+    {
+      "line": 6,
+      "text": "Stop this call with ValueError('Duplicate ID')."
+    },
+    {
+      "line": 7,
+      "text": "Set self.nodes[key] to [value, left, right]."
+    },
+    {
+      "line": 8,
+      "text": "Set self.root to root."
+    },
+    {
+      "line": 9,
+      "text": "Set seen to an empty set."
+    },
+    {
+      "line": 10,
+      "text": "Define visit(key)."
+    },
+    {
+      "line": 11,
+      "text": "Check whether key is None."
+    },
+    {
+      "line": 12,
+      "text": "Return to the caller."
+    },
+    {
+      "line": 13,
+      "text": "Check whether key is not in self.nodes or key is in seen."
+    },
+    {
+      "line": 14,
+      "text": "Stop this call with ValueError('Missing, shared or cyclic node')."
+    },
+    {
+      "line": 15,
+      "text": "Record key in seen."
+    },
+    {
+      "line": 16,
+      "text": "Call visit(self.nodes[key][1])."
+    },
+    {
+      "line": 17,
+      "text": "Call visit(self.nodes[key][2])."
+    },
+    {
+      "line": 18,
+      "text": "Call visit(root)."
+    },
+    {
+      "line": 19,
+      "text": "Check whether the length of seen differs from the length of self.nodes."
+    },
+    {
+      "line": 20,
+      "text": "Stop this call with ValueError('Unreachable node')."
+    },
+    {
+      "line": 21,
+      "text": "Define edit(self, key, value)."
+    },
+    {
+      "line": 22,
+      "text": "Check whether key is not in self.nodes."
+    },
+    {
+      "line": 23,
+      "text": "Return False."
+    },
+    {
+      "line": 24,
+      "text": "Set self.nodes[key][0] to value."
+    },
+    {
+      "line": 25,
+      "text": "Return True."
+    },
+    {
+      "line": 26,
+      "text": "Define traverse(self, order)."
+    },
+    {
+      "line": 27,
+      "text": "Check whether order is not in ['pre', 'in', 'post']."
+    },
+    {
+      "line": 28,
+      "text": "Stop this call with ValueError('Invalid traversal')."
+    },
+    {
+      "line": 29,
+      "text": "Set result to an empty list."
+    },
+    {
+      "line": 30,
+      "text": "Define visit(key)."
+    },
+    {
+      "line": 31,
+      "text": "Check whether key is None."
+    },
+    {
+      "line": 32,
+      "text": "Return to the caller."
+    },
+    {
+      "line": 33,
+      "text": "Set (value, left, right) to self.nodes[key]."
+    },
+    {
+      "line": 34,
+      "text": "Check whether order equals 'pre'."
+    },
+    {
+      "line": 35,
+      "text": "Append value to result."
+    },
+    {
+      "line": 36,
+      "text": "Call visit(left)."
+    },
+    {
+      "line": 37,
+      "text": "Check whether order equals 'in'."
+    },
+    {
+      "line": 38,
+      "text": "Append value to result."
+    },
+    {
+      "line": 39,
+      "text": "Call visit(right)."
+    },
+    {
+      "line": 40,
+      "text": "Check whether order equals 'post'."
+    },
+    {
+      "line": 41,
+      "text": "Append value to result."
+    },
+    {
+      "line": 42,
+      "text": "Call visit(self.root)."
+    },
+    {
+      "line": 43,
+      "text": "Return result."
+    }
+  ],
+  "eligibility-table": [
+    {
+      "line": 1,
+      "text": "Define eligibility(member, paid, space)."
+    },
+    {
+      "line": 2,
+      "text": "Check whether not (space)."
+    },
+    {
+      "line": 3,
+      "text": "Return 'waitlist'."
+    },
+    {
+      "line": 4,
+      "text": "Check whether not (paid)."
+    },
+    {
+      "line": 5,
+      "text": "Return 'payment required'."
+    },
+    {
+      "line": 6,
+      "text": "Return 'member place' if member; otherwise 'guest place'."
+    }
+  ],
+  "repair-importer": [
+    {
+      "line": 1,
+      "text": "Programmer: Reference author; Date: 2026-09-10"
+    },
+    {
+      "line": 2,
+      "text": "Purpose: Validate score records; Version: 1.0"
+    },
+    {
+      "line": 4,
+      "text": "Define read_scores(path)."
+    },
+    {
+      "line": 5,
+      "text": "Set (records, rejected) to ([], [])."
+    },
+    {
+      "line": 6,
+      "text": "Open a managed context for open(path, encoding='utf-8') as handle; clean it up on exit."
+    },
+    {
+      "line": 7,
+      "text": "Process each (line, text) in enumerate(handle, 1)."
+    },
+    {
+      "line": 8,
+      "text": "Set fields to text.strip().split(',')."
+    },
+    {
+      "line": 9,
+      "text": "Try the following steps, with error handling below."
+    },
+    {
+      "line": 10,
+      "text": "Check whether the length of fields differs from 2 or not (fields[0].strip())."
+    },
+    {
+      "line": 11,
+      "text": "Stop this call with ValueError('Bad fields')."
+    },
+    {
+      "line": 12,
+      "text": "Set score to fields[1].strip() converted to an integer."
+    },
+    {
+      "line": 13,
+      "text": "Check whether not (0 is at most score and is at most 100)."
+    },
+    {
+      "line": 14,
+      "text": "Stop this call with ValueError('Out of range')."
+    },
+    {
+      "line": 15,
+      "text": "Handle ValueError rather than stopping the program."
+    },
+    {
+      "line": 16,
+      "text": "Append line to rejected."
+    },
+    {
+      "line": 17,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 18,
+      "text": "Append [fields[0].strip(), score] to records."
+    },
+    {
+      "line": 19,
+      "text": "Return [records, rejected]."
+    }
+  ],
+  "design-tests": [
+    {
+      "line": 1,
+      "text": "Define cases()."
+    },
+    {
+      "line": 2,
+      "text": "Return [['normal', 50, True], ['extreme', 0, True], ['extreme', 100, True], ['abnormal', 101, False], ['abnormal', '50', False], ['abnormal', True, False]]."
+    },
+    {
+      "line": 3,
+      "text": "Continue the expression begun on line 2."
+    },
+    {
+      "line": 4,
+      "text": "Continue the expression begun on line 3."
+    },
+    {
+      "line": 5,
+      "text": "Continue the expression begun on line 4."
+    },
+    {
+      "line": 6,
+      "text": "Continue the expression begun on line 5."
+    },
+    {
+      "line": 7,
+      "text": "Continue the expression begun on line 6."
+    },
+    {
+      "line": 8,
+      "text": "Continue the expression begun on line 7."
+    },
+    {
+      "line": 9,
+      "text": "Continue the expression begun on line 8."
+    }
+  ],
+  "comparison-counts": [
+    {
+      "line": 1,
+      "text": "Define counts(values, target)."
+    },
+    {
+      "line": 2,
+      "text": "Set (a, bubble) to (values[:], 0)."
+    },
+    {
+      "line": 3,
+      "text": "Process each end in range(len(a) - 1, 0, -1)."
+    },
+    {
+      "line": 4,
+      "text": "Set changed to False."
+    },
+    {
+      "line": 5,
+      "text": "Process each j in range(end)."
+    },
+    {
+      "line": 6,
+      "text": "Increase bubble by 1."
+    },
+    {
+      "line": 7,
+      "text": "Check whether a[j] is greater than a[j + 1]."
+    },
+    {
+      "line": 8,
+      "text": "Set (a[j], a[j + 1]) to (a[j + 1], a[j])."
+    },
+    {
+      "line": 9,
+      "text": "Set changed to True."
+    },
+    {
+      "line": 10,
+      "text": "Check whether not (changed)."
+    },
+    {
+      "line": 11,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 12,
+      "text": "Set (b, insertion) to (values[:], 0)."
+    },
+    {
+      "line": 13,
+      "text": "Process each i in range(1, the length of b)."
+    },
+    {
+      "line": 14,
+      "text": "Set (key, j) to (b[i], i - 1)."
+    },
+    {
+      "line": 15,
+      "text": "Repeat while j is at least 0."
+    },
+    {
+      "line": 16,
+      "text": "Increase insertion by 1."
+    },
+    {
+      "line": 17,
+      "text": "Check whether b[j] is at most key."
+    },
+    {
+      "line": 18,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 19,
+      "text": "Set b[j + 1] to b[j]."
+    },
+    {
+      "line": 20,
+      "text": "Decrease j by 1."
+    },
+    {
+      "line": 21,
+      "text": "Set b[j + 1] to key."
+    },
+    {
+      "line": 22,
+      "text": "Set (left, right, binary) to (0, len(a) - 1, 0)."
+    },
+    {
+      "line": 23,
+      "text": "Repeat while left is at most right."
+    },
+    {
+      "line": 24,
+      "text": "Set mid to (left + right) // 2."
+    },
+    {
+      "line": 25,
+      "text": "Increase binary by 1."
+    },
+    {
+      "line": 26,
+      "text": "Check whether a[mid] equals target."
+    },
+    {
+      "line": 27,
+      "text": "Exit the nearest loop."
+    },
+    {
+      "line": 28,
+      "text": "Check whether a[mid] is less than target."
+    },
+    {
+      "line": 29,
+      "text": "Set left to mid + 1."
+    },
+    {
+      "line": 30,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 31,
+      "text": "Set right to mid - 1."
+    },
+    {
+      "line": 32,
+      "text": "Return [bubble, insertion, binary]."
+    }
+  ],
+  "base-records": [
+    {
+      "line": 1,
+      "text": "Define convert_records(records)."
+    },
+    {
+      "line": 2,
+      "text": "Set digits to '0123456789ABCDEF'."
+    },
+    {
+      "line": 3,
+      "text": "Set output to an empty list."
+    },
+    {
+      "line": 4,
+      "text": "Process each (base, text) in records."
+    },
+    {
+      "line": 5,
+      "text": "Set text to text.upper()."
+    },
+    {
+      "line": 6,
+      "text": "Check whether base is not in [2, 10, 16] or not (text) or any((c not in digits[:base] for c in text))."
+    },
+    {
+      "line": 7,
+      "text": "Append None to output."
+    },
+    {
+      "line": 8,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 9,
+      "text": "Set value to 0."
+    },
+    {
+      "line": 10,
+      "text": "Process each c in text."
+    },
+    {
+      "line": 11,
+      "text": "Set value to value * base + digits.index(c)."
+    },
+    {
+      "line": 12,
+      "text": "Set (number, encoded) to (value, '')."
+    },
+    {
+      "line": 13,
+      "text": "Repeat while number."
+    },
+    {
+      "line": 14,
+      "text": "Set encoded to digits[number % 16] + encoded."
+    },
+    {
+      "line": 15,
+      "text": "Integer-divide number by 16."
+    },
+    {
+      "line": 16,
+      "text": "Append [value, encoded or '0'] to output."
+    },
+    {
+      "line": 17,
+      "text": "Return output."
+    }
+  ],
+  "ascii-boundaries": [
+    {
+      "line": 1,
+      "text": "Define shift_ascii(text, step)."
+    },
+    {
+      "line": 2,
+      "text": "Set result to ''."
+    },
+    {
+      "line": 3,
+      "text": "Process each char in text."
+    },
+    {
+      "line": 4,
+      "text": "Check whether 'A' is at most char and is at most 'Z'."
+    },
+    {
+      "line": 5,
+      "text": "Set char to chr((ord(char) - ord('A') + step) % 26 + ord('A'))."
+    },
+    {
+      "line": 6,
+      "text": "Check whether 'a' is at most char and is at most 'z'."
+    },
+    {
+      "line": 7,
+      "text": "Set char to chr((ord(char) - ord('a') + step) % 26 + ord('a'))."
+    },
+    {
+      "line": 8,
+      "text": "Increase result by char."
+    },
+    {
+      "line": 9,
+      "text": "Return [result, the length of result, the length of result.encode('utf-8')]."
+    }
+  ],
+  "deferred-work": [
+    {
+      "line": 1,
+      "text": "Import json."
+    },
+    {
+      "line": 2,
+      "text": "Import Path from pathlib."
+    },
+    {
+      "line": 4,
+      "text": "Define Scheduler as a class."
+    },
+    {
+      "line": 5,
+      "text": "Define __init__(self, limit)."
+    },
+    {
+      "line": 6,
+      "text": "Set self.limit to limit."
+    },
+    {
+      "line": 7,
+      "text": "Define _read(self, path)."
+    },
+    {
+      "line": 8,
+      "text": "Return json.loads(Path(path).read_text()) if Path(path).exists(); otherwise an empty list."
+    },
+    {
+      "line": 9,
+      "text": "Define _write(self, path, records)."
+    },
+    {
+      "line": 10,
+      "text": "Call Path(path).write_text(json.dumps(records))."
+    },
+    {
+      "line": 11,
+      "text": "Define run(self, incoming_path, deferred_path)."
+    },
+    {
+      "line": 12,
+      "text": "Set pending to self._read(deferred_path) + self._read(incoming_path)."
+    },
+    {
+      "line": 13,
+      "text": "Set (remaining, scheduled, deferred) to (self.limit, [], [])."
+    },
+    {
+      "line": 14,
+      "text": "Process each (key, duration) in pending."
+    },
+    {
+      "line": 15,
+      "text": "Check whether duration is at most remaining."
+    },
+    {
+      "line": 16,
+      "text": "Append key to scheduled."
+    },
+    {
+      "line": 17,
+      "text": "Decrease remaining by duration."
+    },
+    {
+      "line": 18,
+      "text": "Otherwise, take this branch."
+    },
+    {
+      "line": 19,
+      "text": "Append [key, duration] to deferred."
+    },
+    {
+      "line": 20,
+      "text": "Call self._write(deferred_path, deferred)."
+    },
+    {
+      "line": 21,
+      "text": "Call self._write(incoming_path, [])."
+    },
+    {
+      "line": 22,
+      "text": "Return scheduled."
+    }
+  ],
+  "word-paths": [
+    {
+      "line": 1,
+      "text": "Define rank_paths(board, scores, paths)."
+    },
+    {
+      "line": 2,
+      "text": "Set moves to {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}."
+    },
+    {
+      "line": 3,
+      "text": "Define follow(row, col, directions)."
+    },
+    {
+      "line": 4,
+      "text": "Set (word, total) to ('', 0)."
+    },
+    {
+      "line": 5,
+      "text": "Process each direction in 'S' + directions."
+    },
+    {
+      "line": 6,
+      "text": "Check whether direction differs from 'S'."
+    },
+    {
+      "line": 7,
+      "text": "Check whether direction is not in moves."
+    },
+    {
+      "line": 8,
+      "text": "Return None."
+    },
+    {
+      "line": 9,
+      "text": "Set (dr, dc) to moves[direction]."
+    },
+    {
+      "line": 10,
+      "text": "Set (row, col) to (row + dr, col + dc)."
+    },
+    {
+      "line": 11,
+      "text": "Check whether not (0 is at most row and is less than the length of board) or not (0 is at most col and is less than the length of board[0])."
+    },
+    {
+      "line": 12,
+      "text": "Return None."
+    },
+    {
+      "line": 13,
+      "text": "Increase word by board[row][col]."
+    },
+    {
+      "line": 14,
+      "text": "Increase total by scores[row][col]."
+    },
+    {
+      "line": 15,
+      "text": "Return [word, total]."
+    },
+    {
+      "line": 16,
+      "text": "Set result to an empty list."
+    },
+    {
+      "line": 17,
+      "text": "Process each (row, col, directions) in paths."
+    },
+    {
+      "line": 18,
+      "text": "Check whether any((d not in moves for d in directions))."
+    },
+    {
+      "line": 19,
+      "text": "Skip to the next loop iteration."
+    },
+    {
+      "line": 20,
+      "text": "Set record to follow(row, col, directions)."
+    },
+    {
+      "line": 21,
+      "text": "Check whether record is not None."
+    },
+    {
+      "line": 22,
+      "text": "Append record to result."
+    },
+    {
+      "line": 23,
+      "text": "Process each end in range(len(result) - 1, 0, -1)."
+    },
+    {
+      "line": 24,
+      "text": "Process each i in range(end)."
+    },
+    {
+      "line": 25,
+      "text": "Check whether result[i][1] is less than result[i + 1][1]."
+    },
+    {
+      "line": 26,
+      "text": "Set (result[i], result[i + 1]) to (result[i + 1], result[i])."
+    },
+    {
+      "line": 27,
+      "text": "Return result."
+    }
   ]
 }

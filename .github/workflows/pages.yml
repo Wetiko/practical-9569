@@ -13,6 +13,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:8
+        ports:
+          - 27017:27017
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,6 +25,11 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'Flask>=3.1,<4' 'pymongo>=4.10,<5' 'Pillow>=11,<13'
+      - run: python scripts/test-local-labs.py
       - run: npm run typecheck
       - run: npm test
       - run: npm run build

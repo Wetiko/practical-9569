@@ -8,7 +8,7 @@ export type Exam={end:number;ids:string[];finished:boolean;id?:string;startedAt?
 export type TaskOutcome={id:string;passed:number;total:number;reviewed:boolean};
 export type ExamRecord={id:string;startedAt:number;endedAt:number;title:string;tasks:TaskOutcome[]};
 export type LabSession={id:string;problemId:string;startedAt:number;endedAt?:number;notes:string;checks:number[];examId?:string};
-export type Saved={version:1;learning?:LearningProgress;progress:Record<string,Progress>;exam:Exam|null;selected:string;examHistory?:ExamRecord[];labSessions?:LabSession[];examDate?:string;theme?:'system'|'light'|'dark'};
+export type Saved={version:1;reviews?:Record<string,{answers:Record<string,string>;checks:string[]}>;learning?:LearningProgress;progress:Record<string,Progress>;exam:Exam|null;selected:string;examHistory?:ExamRecord[];labSessions?:LabSession[];examDate?:string;theme?:'system'|'light'|'dark'};
 export const topics=['Algorithms','Data structures','Python & files','Databases','Web & networks'];
 export const syllabusSource='https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2026/9569_y26_sy.pdf';
 const sections:Record<string,[string,string[]]>={
@@ -46,5 +46,6 @@ export function validateSaved(input:unknown):Saved{
  if(d.labSessions&&(!Array.isArray(d.labSessions)||!d.labSessions.every(l=>typeof l.id==='string'&&known(l.problemId)&&bank.find(p=>p.id===l.problemId)?.kind==='lab'&&finite(l.startedAt)&&(!l.endedAt||finite(l.endedAt)&&l.endedAt>=l.startedAt)&&typeof l.notes==='string'&&Array.isArray(l.checks)&&new Set(l.checks).size===l.checks.length&&l.checks.every(n=>Number.isInteger(n)&&n>=0&&n<bank.find(p=>p.id===l.problemId)!.rubric.length))))throw Error('Invalid labs');
  if(d.examDate&&(!/^\d{4}-\d{2}-\d{2}$/.test(d.examDate)||!Number.isFinite(Date.parse(d.examDate))))throw Error('Invalid date');
  if(d.learning!==undefined){if(!d.learning||typeof d.learning!=='object'||Array.isArray(d.learning))throw Error('Invalid learning history');for(const [id,r] of Object.entries(d.learning)){if(!/^[a-z0-9-]+$/.test(id)||!r||!finite(r.viewedAt)||r.completed!==undefined&&typeof r.completed!=='boolean')throw Error('Invalid learning record');for(const n of [r.predictions,r.correct])if(n!==undefined&&(!Number.isInteger(n)||n<0))throw Error('Invalid prediction count');if((r.correct??0)>(r.predictions??0))throw Error('Invalid prediction score');}}
+ if(d.reviews!==undefined){if(!d.reviews||typeof d.reviews!=='object'||Array.isArray(d.reviews))throw Error('Invalid reviews');for(const [id,r] of Object.entries(d.reviews)){if(!/^[a-z0-9-]+$/.test(id)||!r||!r.answers||typeof r.answers!=='object'||Array.isArray(r.answers)||!Object.entries(r.answers).every(([k,v])=>/^\d+$/.test(k)&&typeof v==='string')||!Array.isArray(r.checks)||!r.checks.every(k=>typeof k==='string'&&/^\d+$/.test(k))||new Set(r.checks).size!==r.checks.length)throw Error('Invalid review notes');}}
  return {...d,learning:d.learning||{},progress,selected:known(d.selected)?d.selected:bank[0].id,exam:d.exam??null,examHistory:d.examHistory||[],labSessions:d.labSessions||[],examDate:d.examDate||'',theme:['light','dark'].includes(d.theme||'')?d.theme:'system'};
 }

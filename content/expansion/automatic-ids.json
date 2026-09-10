@@ -1,0 +1,21 @@
+[
+  "ascii-boundaries",
+  "base-records",
+  "booking-schema",
+  "comparison-counts",
+  "deferred-work",
+  "design-tests",
+  "editable-records",
+  "eligibility-table",
+  "hash-lookup",
+  "joined-totals",
+  "master-update",
+  "recursive-trace",
+  "register-import",
+  "repair-importer",
+  "repair-queue",
+  "shared-pool",
+  "structure-interface",
+  "tournament-tree",
+  "word-paths"
+]

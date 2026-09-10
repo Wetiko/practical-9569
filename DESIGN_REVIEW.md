@@ -131,3 +131,13 @@ Implemented the supplied material-only brief in globals.css. Light and dark canv
 Blur is restricted to container panels. Repeated cards and syllabus tiles use translucent highlights without individual backdrop filters; at 1100px and below, container blur is disabled and opacity increases. Reduced-transparency and high-contrast guards remove ambient/specular layers and use opaque panels, preserving completion colours and borders. These preference rules were reviewed in source; OS preferences were not changed. Prefixed backdrop declarations now precede standard declarations so the production CSS retains the Chromium-compatible property.
 
 Production build passed. Browser review covered light/dark challenge panels, the dark editor and 390px/1024px layouts. Computed styles confirmed 18px blur on desktop and no container blur on smaller screens; no page overflow or console errors were observed. The existing Apple design skill's material guidance informed the readability/depth balance.
+
+## Translucent surfaces and syllabus expansion (10 September 2026)
+
+Removed the specular gradient material and decorative background washes at the user's request. Main surfaces use a single translucent colour, a restrained border and 16px backdrop blur; small-screen and reduced-transparency fallbacks avoid excessive filtering. Motion, editor selection and indentation cues remain functional.
+
+Implemented the 24 planned practical tasks: 19 browser-checked exercises and five downloadable Flask/SQLite, Pillow, real MongoDB and socket projects. The bank now contains 89 challenges (81 browser exercises, eight local labs). Eight original theory modules add 30 short questions, model answers and self-review criteria. Review answers persist, reset their review tick when edited, and travel in backups. Theory coverage links to the review modules; automated exercises expose any manual approach rubric alongside debugging notes. New solution code has brief line explanations.
+
+Validation: typecheck and production build; existing study, worker, Mongo emulator and visualisation suites; 53 checks for all 19 new automatic solutions with unfinished starter rejection. Five freshly extracted lab packs were verified with their real dependencies, including a separate local MongoDB instance and socket connections. CI runs the same lab checks with a MongoDB service. Browser verification confirms a translucent panel background, no canvas or panel gradient, working review disclosure and persisted notes/checkmarks.
+
+The expansion uses original fictional data; no uploaded school papers or marking schemes are included. Data stewardship references the PDPC's official Data Protection Obligations overview.

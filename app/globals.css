@@ -74,43 +74,27 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 
 .nav-short-label{display:none}@media(max-width:1100px){.nav-long-label{display:none}.nav-short-label{display:inline}}@media(max-width:760px){.global-nav{grid-template-columns:repeat(6,minmax(0,1fr))}.global-nav button{padding-inline:3px;font-size:10px}}
 
-/* Liquid glass: a shared material, with crisp reading surfaces above it. */
-:root,:root[data-theme=light]{--canvas-display:block;--canvas-strength:.19;--canvas-wash:color-mix(in srgb,var(--hero-tone) 36%,var(--background));--surface-edge:#ffffffd9;--panel-glass:color-mix(in srgb,var(--surface) 76%,transparent);--panel-rim:#ffffffae;--panel-light:#ffffffa8;--panel-depth:0 12px 36px -18px #25375a33;--panel-inner:#4052740b;--section-tint:12%}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--canvas-strength:.12;--canvas-wash:#191b22;--surface-edge:#ffffff26;--panel-glass:color-mix(in srgb,var(--surface) 80%,transparent);--panel-rim:#ffffff16;--panel-light:#ffffff13;--panel-depth:0 18px 42px -22px #0009;--panel-inner:#0003;--section-tint:6%}}
-:root[data-theme=dark]{--canvas-strength:.12;--canvas-wash:#191b22;--surface-edge:#ffffff26;--panel-glass:color-mix(in srgb,var(--surface) 80%,transparent);--panel-rim:#ffffff16;--panel-light:#ffffff13;--panel-depth:0 18px 42px -22px #0009;--panel-inner:#0003;--section-tint:6%}
-.page-atmosphere{background:radial-gradient(ellipse 110% 85% at 30% -15%,var(--canvas-wash),var(--background) 85%)}
-.canvas-glow{opacity:var(--canvas-strength)}
-.canvas-glow i:nth-child(2){width:75vw;height:42vh;left:48%;top:32%;border-radius:38% 62% 58% 42%}
-.canvas-glow i:nth-child(3){left:-12%;top:78%;width:95vw;height:32vh}
-:where(.contentview,.collection-section,.exam-feature){position:relative;isolation:isolate}
-:where(.contentview,.collection-section,.exam-feature)::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 65% 45% at var(--wash-x,95%) var(--wash-y,25%),color-mix(in srgb,var(--ambient-accent) var(--section-tint),transparent),transparent 80%)}
-.collection-section{--wash-x:5%;--wash-y:75%}
-.exam-feature{--wash-x:85%;--wash-y:40%;background:color-mix(in srgb,var(--surface) 45%,transparent)}
-:is(.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){isolation:isolate;background:var(--panel-glass);border-color:color-mix(in srgb,var(--border) 65%,var(--panel-rim));box-shadow:inset 0 1px 0 var(--surface-edge),inset 1px 0 0 var(--panel-rim),inset 0 -2px 5px var(--panel-inner),var(--panel-depth);--lens-x:0%;--lens-y:0%;--lens-angle:125deg}
-:is(.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session){position:relative}
-:is(.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog])::before{content:'';position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 75% 50% at var(--lens-x) var(--lens-y),var(--panel-light),transparent 80%),linear-gradient(var(--lens-angle),transparent 45%,color-mix(in srgb,var(--panel-light) 25%,transparent) 54%,transparent 65%)}
-:is(.coding,.history-panel,.paper-grid article,.examsession){--lens-x:100%;--lens-y:10%;--lens-angle:235deg}
-:is(.continue-card,.backup,.lab-session){--lens-x:25%;--lens-y:100%;--lens-angle:155deg}
-:is(.collection-card,.topic-ring-card):nth-child(even){--lens-x:100%;--lens-angle:225deg}
-/* Blur belongs to large containers, never to every row or syllabus tile. */
-:is(.problem,.coding,.filters,.problem-list,.continue-card,.insight-panel,.history-panel,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2)}
-.coverage-point.attempted{background:color-mix(in srgb,var(--selection) 88%,transparent);border-color:var(--primary)}
-.coverage-point.complete{background:color-mix(in srgb,var(--success-bg) 88%,transparent);border-color:var(--success)}
-.coverage-point.unmapped{background:color-mix(in srgb,var(--panel-glass) 55%,transparent);border-style:dashed}
-@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- :is(.collection-card,.topic-ring-card,.coverage-point,.paper-grid article,.stats>div,.continue-card){transition:translate .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s cubic-bezier(.2,.8,.2,1)}
- :is(.collection-card,.topic-ring-card,.coverage-point,.paper-grid article,.stats>div,.continue-card):hover{translate:0 -3px;box-shadow:inset 0 1px 0 var(--surface-edge),inset 1px 0 0 var(--panel-rim),inset 0 -2px 5px var(--panel-inner),0 20px 42px -24px color-mix(in srgb,var(--foreground) 25%,transparent)}
- .topic-ring-card:hover{transform:none}
-}
-.motion-paused :is(.collection-card,.topic-ring-card,.coverage-point,.paper-grid article,.stats>div,.continue-card){translate:none!important}
-@media(max-width:1100px){:is(.problem,.coding,.filters,.problem-list,.continue-card,.insight-panel,.history-panel,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){-webkit-backdrop-filter:none;backdrop-filter:none;background:color-mix(in srgb,var(--surface) 93%,transparent)}}
-@media(max-width:760px){.canvas-glow i{filter:blur(42px);will-change:auto}.canvas-glow{opacity:calc(var(--canvas-strength)*.8)}}
-@media(prefers-reduced-motion:reduce){:is(.collection-card,.topic-ring-card,.coverage-point,.paper-grid article,.stats>div,.continue-card){translate:none!important}.topic-ring-card:hover{transform:none}}
-@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){
- .page-atmosphere,.hero-atmosphere{display:none}
- :is(.contentview,.collection-section,.exam-feature)::before,:is(.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog])::before{display:none}
- :is(.global-header,.global-nav,.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border-color:var(--border)}
- .coverage-point.attempted{background:var(--selection);border-color:var(--primary)}.coverage-point.complete{background:var(--success-bg);border-color:var(--success)}
- .exam-feature{background:var(--surface)}
-}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--panel-glass:var(--surface)}}
+/* Plain translucent surfaces. No decorative washes or specular gradients. */
+:root{--panel-glass:rgba(255,255,255,.66)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--panel-glass:rgba(32,32,36,.68)}}
+:root[data-theme=dark]{--panel-glass:rgba(32,32,36,.68)}
+:root[data-theme=light]{--panel-glass:rgba(255,255,255,.66)}
+.page-atmosphere{display:block;background:var(--background)}
+.canvas-glow,.canvas-grain,.hero-atmosphere{display:none}
+.hero,.exam-feature{background:transparent}
+:is(.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){background:var(--panel-glass);background-image:none;box-shadow:0 5px 20px #00000008;border-color:var(--border)}
+:is(.problem,.coding,.filters,.problem-list,.continue-card,.insight-panel,.history-panel,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.coverage-point.attempted{background:var(--selection);border-color:var(--primary)}
+.coverage-point.complete{background:var(--success-bg);border-color:var(--success)}
+.coverage-point.unmapped{background:transparent;border-style:dashed}
+@media(max-width:1100px){:is(.problem,.coding,.filters,.problem-list,.continue-card,.insight-panel,.history-panel,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){:is(.global-header,.global-nav,.problem,.coding,.filters,.problem-list,.stats>div,.collection-card,.continue-card,.topic-ring-card,.insight-panel,.history-panel,.coverage-point,.paper-grid article,.examsetup,.examsession,.backup,.contentview>.reference,.lab-session,.confirm-dialog,[cmdk-dialog]){background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}.coverage-point.attempted{background:var(--selection)}.coverage-point.complete{background:var(--success-bg)}}
+
+.review-modules {margin-bottom:40px}
+.review-module summary {cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:8px 0}
+.review-module summary span {font-size:13px;color:var(--muted)}
+.review-question {padding:24px 0;border-top:1px solid var(--border)}
+.review-question>label:first-child {display:block;font-weight:600;line-height:1.6}
+.review-question textarea,.history textarea {display:block;width:100%;min-height:110px;margin:14px 0;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--background);color:var(--foreground);font:inherit;resize:vertical}
+.review-question details p {line-height:1.7}
+.review-module {background:var(--panel-glass);background-image:none}

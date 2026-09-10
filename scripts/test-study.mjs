@@ -21,3 +21,10 @@ const guides=JSON.parse(await readFile(new URL('../app/solution-guides.json',imp
 console.log(`Study checks passed: ${m.syllabus.length} syllabus points, paper composition, session scores, legacy/new backups, date arithmetic and ${bank.length} solution guides.`);
 
 const learning={'for-loop':{viewedAt:100,completed:true,predictions:2,correct:1}};assert.deepEqual(m.validateSaved({...full,learning}).learning,learning);assert.throws(()=>m.validateSaved({...full,learning:{x:{viewedAt:100,predictions:0,correct:1}}}));
+const reviews={'representation':{answers:{'1':'SET total TO 0'},checks:['1']}};
+assert.deepEqual(m.validateSaved({...full,reviews}).reviews,reviews);
+assert.throws(()=>m.validateSaved({...full,reviews:{representation:{answers:{'1':42},checks:[]}}}));
+assert.throws(()=>m.validateSaved({...full,reviews:{representation:{answers:{},checks:['1','1']}}}));
+const reviewBank=JSON.parse(await readFile(new URL('../app/reviews.json',import.meta.url),'utf8'));
+assert.equal(reviewBank.length,8);
+for(const r of reviewBank){assert.ok(r.questions.length>=3);for(const ref of m.references(r.ref))assert.ok(m.syllabus.some(s=>s.code===ref));assert.equal(new Set(r.questions.map(q=>q.id)).size,r.questions.length);for(const q of r.questions)assert.ok(q.answer.length>30&&q.check.length>20)}

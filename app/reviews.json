@@ -1,0 +1,239 @@
+[
+  {
+    "id": "representation",
+    "title": "From a rule to an algorithm",
+    "ref": "1.1.1\u20131.1.2",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Write pseudocode to read three scores and output their total.",
+        "answer": "SET total TO 0; REPEAT 3 TIMES: INPUT score; SET total TO total + score; END REPEAT; OUTPUT total. Initialise before the loop and output after it.",
+        "check": "I distinguish input, processing and output and place the loop correctly."
+      },
+      {
+        "id": "2",
+        "prompt": "Describe a flowchart for accepting an integer from 1 to 10 inclusive. Name the symbols and both decision branches.",
+        "answer": "Terminator: Start. Parallelogram: input n. Diamond: 1 \u2264 n \u2264 10? No loops back to input; Yes leads to output n, then End. A rectangle represents processing, if conversion is shown.",
+        "check": "I label Yes/No arrows and show the retry path."
+      },
+      {
+        "id": "3",
+        "prompt": "Trace total=0; for n in [2,5,1]: if n>1: total=total+n. What is output?",
+        "answer": "Totals after each iteration are 2, 7, 7. The final output is 7; n=1 does not satisfy the strict comparison.",
+        "check": "I explain the skipped update, rather than only giving 7."
+      }
+    ]
+  },
+  {
+    "id": "storage",
+    "title": "Static and dynamic storage",
+    "ref": "1.3.1\u20131.3.2",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Compare a fixed array of 100 records with a linked list when the record count varies.",
+        "answer": "A fixed array reserves capacity in advance and supports direct indexing; unused slots waste space and capacity can be exhausted. Linked nodes allocate as needed but require link storage and traversal to reach a position.",
+        "check": "I give a benefit and cost for each representation."
+      },
+      {
+        "id": "2",
+        "prompt": "Why is an array-backed free list still a fixed-capacity structure?",
+        "answer": "Allocation removes an index from the free chain and deletion returns it. This reuses reserved slots; it does not create more slots. An empty free chain means allocation must fail.",
+        "check": "I distinguish slot reuse from obtaining additional memory."
+      },
+      {
+        "id": "3",
+        "prompt": "A Python list grows when append is called. Does that make every append allocate exactly one new slot?",
+        "answer": "No. A dynamic array can reserve spare capacity and occasionally resize its backing storage. Its logical length differs from capacity; language-level growth does not imply one allocation per item.",
+        "check": "I distinguish logical length, capacity and allocation."
+      }
+    ]
+  },
+  {
+    "id": "class-design",
+    "title": "Read and design class diagrams",
+    "ref": "2.5.5",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Describe a UML class box for Account with private balance and public deposit(amount).",
+        "answer": "Use three compartments: class name Account; attribute -balance: float; operation +deposit(amount: float): None. Minus denotes private and plus public.",
+        "check": "I include compartments, visibility and types."
+      },
+      {
+        "id": "2",
+        "prompt": "PremiumAccount inherits Account. A Customer can own many Accounts. Describe the two relationships.",
+        "answer": "Generalisation uses a hollow triangle pointing from PremiumAccount towards Account. Association links Customer to Account; multiplicities 1 at Customer and 0..* at Account mean each account has one owner and an owner can have none or many.",
+        "check": "I distinguish inheritance from association and interpret both ends."
+      },
+      {
+        "id": "3",
+        "prompt": "Why should deposit update the balance instead of clients assigning arbitrary values?",
+        "answer": "The method can enforce the account rule, such as rejecting non-positive deposits, while keeping the representation private. This is encapsulation, not a guarantee that every operation is valid without checks.",
+        "check": "I connect encapsulation to a concrete invariant."
+      }
+    ]
+  },
+  {
+    "id": "normalisation",
+    "title": "Bookings: from one table to 3NF",
+    "ref": "3.3.1\u20133.3.5",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Booking(CustomerID, CustomerName, EventID, EventTitle, Quantity) has one row per customer/event pair. Identify a key and dependencies.",
+        "answer": "Composite key (CustomerID, EventID). CustomerID determines CustomerName; EventID determines EventTitle; the whole composite key determines Quantity. Each row is a record and each named column a field.",
+        "check": "I identify the composite key and both partial dependencies."
+      },
+      {
+        "id": "2",
+        "prompt": "Decompose the booking table to 3NF and specify foreign keys.",
+        "answer": "Customer(CustomerID PK, CustomerName), Event(EventID PK, EventTitle), Booking(CustomerID FK, EventID FK, Quantity), with both Booking IDs forming its PK. Names and titles depend on their own keys, preventing repetition in Booking.",
+        "check": "I retain Quantity in Booking and identify both foreign keys."
+      },
+      {
+        "id": "3",
+        "prompt": "Explain an update anomaly and draw the resulting entity relationships in words.",
+        "answer": "A repeated event title could be changed in one booking but missed in another. Store it once in Event. Customer 1-to-many Booking and Event 1-to-many Booking resolve the customer/event many-to-many relationship.",
+        "check": "I connect an anomaly to the decomposition and cardinalities."
+      },
+      {
+        "id": "4",
+        "prompt": "Employee(ID, DepartmentID, DepartmentPhone): why can this violate 3NF even with a single-column key?",
+        "answer": "ID determines DepartmentID, which determines DepartmentPhone: a transitive dependency. Separate Department(DepartmentID, DepartmentPhone) and retain DepartmentID as an Employee foreign key.",
+        "check": "I distinguish a transitive dependency from a partial dependency."
+      }
+    ]
+  },
+  {
+    "id": "database-choice",
+    "title": "Choose SQL or documents",
+    "ref": "3.3.6\u20133.3.7",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Choose a database for bookings requiring unique customer/event pairs and relational reports. Justify.",
+        "answer": "A relational database fits structured entities, foreign keys, composite uniqueness and joins. Transactions can keep related changes consistent. The choice follows these requirements, rather than a claim that SQL is always better.",
+        "check": "I connect two relational features to requirements."
+      },
+      {
+        "id": "2",
+        "prompt": "Sketch a document for a lost-property report with optional photo and variable tags.",
+        "answer": "An example is {report_id: \"R1\", title: \"Bottle\", tags: [\"blue\", \"sports\"], claimed: false}. Optional photo metadata can be embedded. Define required fields and validate types even when documents allow variation.",
+        "check": "I explain optional fields and why validation still matters."
+      },
+      {
+        "id": "3",
+        "prompt": "When would you reference rather than embed a shared owner in many reports?",
+        "answer": "Reference the owner ID when owner details are shared and updated independently; embedding duplicates them and creates consistency work. Embedding a small report-specific snapshot can simplify reads when historical values should stay fixed.",
+        "check": "I discuss duplication, updates and a case for embedding."
+      }
+    ]
+  },
+  {
+    "id": "data-care",
+    "title": "Data quality and stewardship",
+    "ref": "2.4.1 / 3.3.9\u20133.3.13",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Does a valid date prove it is the correct date? Distinguish validation and verification.",
+        "answer": "Validation checks acceptability, such as a real calendar date in an allowed range. Verification checks agreement with the source, for example re-entering it or comparing against the original form. A valid but mistyped date can pass validation.",
+        "check": "I provide an example that passes validation but is wrong."
+      },
+      {
+        "id": "2",
+        "prompt": "Protect a register against unauthorised changes and accidental loss. Give complementary controls.",
+        "answer": "Use accounts with least-privilege permissions and authentication, validate updates and keep an audit trail. Encrypt sensitive data where appropriate. Maintain tested, separate backups; access controls alone do not recover deleted records.",
+        "check": "I cover confidentiality, integrity and recovery."
+      },
+      {
+        "id": "3",
+        "prompt": "Compare a backup, an archive and version control.",
+        "answer": "A backup supports recovery after loss; an archive retains inactive records for long-term reference. Version control records changes to project files and supports comparison or rollback. A repository is not automatically a complete database backup.",
+        "check": "I state a distinct purpose for each and mention restoration testing."
+      },
+      {
+        "id": "4",
+        "prompt": "A club collects phone numbers for event updates. Suggest collection, access and retention practices under Singapore PDPA principles.",
+        "answer": "Explain the purpose and obtain consent where required; collect and use data for appropriate notified purposes. Restrict access and protect the records. Stop retaining identifiable records once no business or legal purpose remains. Applicable exceptions and obligations depend on context.",
+        "check": "I connect purpose, protection and retention to this scenario."
+      }
+    ],
+    "source": "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act/data-protection-obligations"
+  },
+  {
+    "id": "networks-security",
+    "title": "Follow a request across a network",
+    "ref": "4.1.1\u20134.1.5 / 4.3.1\u20134.3.3",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Explain LAN, WAN and the internet using a school website example.",
+        "answer": "A LAN connects devices in a local area such as a school. A WAN spans larger areas and can connect LANs. The internet interconnects networks; the Web is one service operating over it.",
+        "check": "I distinguish the internet from the Web."
+      },
+      {
+        "id": "2",
+        "prompt": "What do an IP address and DNS contribute when opening a hostname?",
+        "answer": "An IP address identifies a network interface for packet delivery. DNS resolves the hostname to address records; it does not transport the page itself. The browser then connects to a server address.",
+        "check": "I separate name resolution from page transfer."
+      },
+      {
+        "id": "3",
+        "prompt": "Compare HTTP, TCP and IP in one web request.",
+        "answer": "HTTP defines application messages such as requests and responses. TCP provides an ordered reliable byte stream. IP addresses and routes packets across networks. Packet switching shares links; packets may follow different routes and need reassembly.",
+        "check": "I give a distinct role for each protocol and explain packet switching."
+      },
+      {
+        "id": "4",
+        "prompt": "In a client-server app, where should validation run and why?",
+        "answer": "Validate at the server because a client can bypass browser checks. Client validation improves feedback. A server listens and responds to requests; clients initiate requests. The server can serve many independent users through that shared service.",
+        "check": "I explain both roles and the trust boundary."
+      },
+      {
+        "id": "5",
+        "prompt": "Distinguish malware, denial of service, firewall and intrusion detection.",
+        "answer": "Malware executes harmful actions; denial of service exhausts availability. A firewall filters traffic using rules. Intrusion detection identifies suspicious activity and alerts; neither guarantees that allowed traffic is safe.",
+        "check": "I match each threat or control to its purpose."
+      },
+      {
+        "id": "6",
+        "prompt": "Why are encryption and authentication both needed?",
+        "answer": "Encryption protects readable content from unauthorised disclosure; authentication checks identity. An encrypted connection to an impostor is still dangerous, so HTTPS also authenticates the server through certificate validation.",
+        "check": "I distinguish secrecy from identity."
+      }
+    ]
+  },
+  {
+    "id": "people-usability",
+    "title": "Design for people",
+    "ref": "3.4.1\u20133.4.3 / 4.2.1\u20134.2.2",
+    "questions": [
+      {
+        "id": "1",
+        "prompt": "Compare a web app with a native app for a school revision tool.",
+        "answer": "A web app is accessed through a browser and can update centrally across platforms. A native app is installed for a platform and may integrate more deeply with device features. Offline support depends on implementation in either case.",
+        "check": "I justify a choice using access, maintenance and device needs."
+      },
+      {
+        "id": "2",
+        "prompt": "A form has grey text, unlabeled fields and errors shown only in red. Propose three improvements.",
+        "answer": "Provide readable contrast, persistent labels associated with inputs and text errors identifying the affected field. Preserve entered values, support keyboard focus and give clear confirmation after success.",
+        "check": "I explain how each change helps a user complete the task."
+      },
+      {
+        "id": "3",
+        "prompt": "A developer discovers that a ranking model disadvantages a group. What should they do?",
+        "answer": "Investigate with appropriate data, document evidence and limitations, report through responsible channels and propose testing and mitigation. Protect personal data and avoid claiming fairness without evidence.",
+        "check": "I connect professional responsibility to concrete action."
+      },
+      {
+        "id": "4",
+        "prompt": "Evaluate one benefit and two risks of automating school administration.",
+        "answer": "Automation may reduce repetitive work, but mistakes can scale and staff may need retraining. Digital exclusion can affect access. Keep review or appeal routes, offer accessible alternatives and assess whether the benefits reach all users.",
+        "check": "I consider affected people and practical mitigations, not only speed."
+      }
+    ]
+  }
+]

@@ -39,7 +39,7 @@ def describe(n):
  if isinstance(n,ast.With):return 'Open a managed context for '+', '.join(code(x.context_expr)+(' as '+code(x.optional_vars) if x.optional_vars else '') for x in n.items)+'; clean it up on exit.'
  if isinstance(n,ast.Try):return 'Try the following steps, with error handling below.'
  if isinstance(n,ast.ExceptHandler):return 'Handle '+(code(n.type) if n.type else 'any exception')+' rather than stopping the program.'
- if isinstance(n,ast.Raise):return 'Stop this call with '+code(n.exc)+'.'
+ if isinstance(n,ast.Raise):return 'Re-raise the current exception.' if n.exc is None else 'Stop this call with '+code(n.exc)+'.'
  if isinstance(n,ast.Break):return 'Exit the nearest loop.'
  if isinstance(n,ast.Continue):return 'Skip to the next loop iteration.'
  if isinstance(n,ast.Expr) and isinstance(n.value,ast.Call):
@@ -85,6 +85,10 @@ for p in bank:
   tree=ast.parse(p['solution'])
   for node in sorted(ast.walk(tree),key=lambda n:(getattr(n,'lineno',0),getattr(n,'col_offset',0))):
    desc=describe(node)
+   if desc and len(desc)>=300:
+    if isinstance(node,ast.Assign):desc='Store the result of this expression in '+', '.join(code(t) for t in node.targets)+'.'
+    elif isinstance(node,ast.Expr):desc='Execute this call with the supplied arguments; the following lines complete its parameters.'
+    else:desc='Evaluate this expression using the arguments shown on this line.'
    if desc:notes.setdefault(node.lineno,[]).append(desc)
   notes={n:' '.join(dict.fromkeys(v)) for n,v in notes.items()}
   for i,line in enumerate(lines,1):

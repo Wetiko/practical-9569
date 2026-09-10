@@ -44,7 +44,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 704",
+    "source": "Adapted concept · LeetCode 704",
     "sourceUrl": "https://leetcode.com/problems/binary-search/"
   },
   {
@@ -117,7 +117,7 @@
     ],
     "hints": [
       "Divide the task into a small operation that you repeat.",
-      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+      "Worst-case time: O(n²) for bubble, insertion and quicksort; O(n log n) for merge sort."
     ],
     "setup": "",
     "files": {},
@@ -196,7 +196,7 @@
     ],
     "hints": [
       "Divide the task into a small operation that you repeat.",
-      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+      "Worst-case time: O(n²) for bubble, insertion and quicksort; O(n log n) for merge sort."
     ],
     "setup": "",
     "files": {},
@@ -275,7 +275,7 @@
     ],
     "hints": [
       "Divide the task into a small operation that you repeat.",
-      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+      "Worst-case time: O(n²) for bubble, insertion and quicksort; O(n log n) for merge sort."
     ],
     "setup": "",
     "files": {},
@@ -354,7 +354,7 @@
     ],
     "hints": [
       "Divide the task into a small operation that you repeat.",
-      "Worst-case time: O(n\u00b2) for bubble, insertion and quicksort; O(n log n) for merge sort."
+      "Worst-case time: O(n²) for bubble, insertion and quicksort; O(n log n) for merge sort."
     ],
     "setup": "",
     "files": {},
@@ -509,7 +509,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 20",
+    "source": "Adapted concept · LeetCode 20",
     "sourceUrl": "https://leetcode.com/problems/valid-parentheses/"
   },
   {
@@ -568,7 +568,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 622",
+    "source": "Adapted concept · LeetCode 622",
     "sourceUrl": "https://leetcode.com/problems/design-circular-queue/"
   },
   {
@@ -792,7 +792,7 @@
       },
       {
         "label": "Unicode",
-        "expr": "valid_id('\uff11\uff12\uff13\uff14\uff15\uff15')",
+        "expr": "valid_id('１２３４５５')",
         "expected": false
       },
       {
@@ -819,7 +819,7 @@
     "level": "Core",
     "minutes": 20,
     "ref": "3.1.2",
-    "description": "Implement convert(number, base). number is a non-negative decimal integer; base is 2 or 16. Return its representation as a string, using uppercase A\u2013F. Do not use bin(), hex() or format(). Zero must produce \"0\".",
+    "description": "Implement convert(number, base). number is a non-negative decimal integer; base is 2 or 16. Return its representation as a string, using uppercase A–F. Do not use bin(), hex() or format(). Zero must produce \"0\".",
     "starter": "def convert(number, base):\n    pass\n",
     "solution": "def convert(number, base):\n    digits = '0123456789ABCDEF'\n    if number == 0:\n        return '0'\n    result = ''\n    while number:\n        result = digits[number % base] + result\n        number //= base\n    return result\n",
     "tests": [
@@ -861,7 +861,7 @@
     "level": "Core",
     "minutes": 25,
     "ref": "2.3.4 / 2.4.2",
-    "description": "Implement summarise(path). Read a CSV file with header name,score. Ignore records with a missing name, a non-integer score, or a score outside 0\u2013100. Return [valid_count, total_score]. Strip surrounding spaces. Use the supplied file in the Files tab; each test starts with fresh files.",
+    "description": "Implement summarise(path). Read a CSV file with header name,score. Ignore records with a missing name, a non-integer score, or a score outside 0–100. Return [valid_count, total_score]. Strip surrounding spaces. Use the supplied file in the Files tab; each test starts with fresh files.",
     "starter": "import csv\n\ndef summarise(path):\n    pass\n",
     "solution": "import csv\n\ndef summarise(path):\n    count = total = 0\n    with open(path, newline='') as source:\n        for row in csv.DictReader(source):\n            try:\n                score = int(row['score'])\n                if not row['name'].strip() or not 0 <= score <= 100:\n                    continue\n                count += 1\n                total += score\n            except (ValueError, TypeError, KeyError):\n                continue\n    return [count, total]\n",
     "tests": [
@@ -958,7 +958,7 @@
     "topic": "Python & files",
     "level": "Core",
     "minutes": 25,
-    "ref": "2.5.1\u20132.5.4",
+    "ref": "2.5.1–2.5.4",
     "description": "Define Book(title) with a private or protected title attribute and loan_days() returning 14. Define ReferenceBook inheriting Book and overriding loan_days() to return 0. Both classes must provide get_title(). Implement loan_periods(books) using polymorphic method calls to return each loan period.",
     "starter": "class Book:\n    pass\n\nclass ReferenceBook(Book):\n    pass\n\ndef loan_periods(books):\n    pass\n",
     "solution": "class Book:\n    def __init__(self, title):\n        self._title = title\n    def get_title(self):\n        return self._title\n    def loan_days(self):\n        return 14\n\nclass ReferenceBook(Book):\n    def loan_days(self):\n        return 0\n\ndef loan_periods(books):\n    return [book.loan_days() for book in books]\n",
@@ -1052,7 +1052,7 @@
     },
     "kind": "sql",
     "rubric": [],
-    "source": "W3Schools topic practice \u00b7 SQL joins",
+    "source": "W3Schools topic practice · SQL joins",
     "sourceUrl": "https://www.w3schools.com/sql/sql_join.asp"
   },
   {
@@ -1097,7 +1097,7 @@
     },
     "kind": "sql",
     "rubric": [],
-    "source": "W3Schools topic practice \u00b7 GROUP BY",
+    "source": "W3Schools topic practice · GROUP BY",
     "sourceUrl": "https://www.w3schools.com/sql/sql_groupby.asp"
   },
   {
@@ -1189,7 +1189,7 @@
     "level": "Stretch",
     "minutes": 45,
     "ref": "4.2.3 / 4.2.4",
-    "description": "Build a Flask application that lists student results from SQLite at GET /. At POST /add, validate a non-empty name and an integer score from 0\u2013100, insert with parameters, and redirect to /. Invalid data must return HTTP 400 without inserting. Display results in an HTML table with labels and readable CSS. Extend it with an image upload saved under a generated safe filename and display the image. Download the local lab to run Flask on your computer. This lab is self-assessed; browser Python cannot host a Flask server.",
+    "description": "Build a Flask application that lists student results from SQLite at GET /. At POST /add, validate a non-empty name and an integer score from 0–100, insert with parameters, and redirect to /. Invalid data must return HTTP 400 without inserting. Display results in an HTML table with labels and readable CSS. Extend it with an image upload saved under a generated safe filename and display the image. Download the local lab to run Flask on your computer. This lab is self-assessed; browser Python cannot host a Flask server.",
     "starter": "from flask import Flask, request, redirect, render_template\nimport sqlite3\n\napp = Flask(__name__)\n\n# Implement routes and templates in the downloaded lab.\n",
     "solution": "from flask import Flask, request, redirect, render_template\nimport sqlite3\napp = Flask(__name__)\n\ndef connect():\n    db = sqlite3.connect('results.db')\n    db.execute('CREATE TABLE IF NOT EXISTS Result(name TEXT, score INTEGER)')\n    return db\n\n@app.get('/')\ndef index():\n    with connect() as db:\n        rows = db.execute('SELECT name, score FROM Result ORDER BY name').fetchall()\n    return render_template('index.html', rows=rows)\n\n@app.post('/add')\ndef add():\n    name = request.form.get('name', '').strip()\n    try:\n        score = int(request.form.get('score', ''))\n    except ValueError:\n        return 'Invalid score', 400\n    if not name or not 0 <= score <= 100:\n        return 'Invalid data', 400\n    with connect() as db:\n        db.execute('INSERT INTO Result VALUES (?, ?)', (name, score))\n    return redirect('/')\n\nif __name__ == '__main__':\n    app.run()\n",
     "tests": [],
@@ -1220,7 +1220,7 @@
     "level": "Core",
     "minutes": 30,
     "ref": "3.3.8",
-    "description": "Using PyMongo and a local MongoDB server, write manage(collection) that inserts the supplied students, updates Ari\u2019s score to 81, removes records with scores below 50, and returns names with scores >= 80 sorted alphabetically. Use the supplied practice-only collection. Download the lab for fixtures, runnable checks and a reference solution. This requires MongoDB on your computer.",
+    "description": "Using PyMongo and a local MongoDB server, write manage(collection) that inserts the supplied students, updates Ari’s score to 81, removes records with scores below 50, and returns names with scores >= 80 sorted alphabetically. Use the supplied practice-only collection. Download the lab for fixtures, runnable checks and a reference solution. This requires MongoDB on your computer.",
     "starter": "def manage(collection):\n    # See students.json in the download.\n    pass\n",
     "solution": "def manage(collection):\n    collection.insert_many([\n        {'name':'Ari','score':78},\n        {'name':'Mei','score':92},\n        {'name':'Jo','score':45}])\n    collection.update_one({'name':'Ari'}, {'$set':{'score':81}})\n    collection.delete_many({'score':{'$lt':50}})\n    return [doc['name'] for doc in collection.find(\n        {'score':{'$gte':80}}, {'_id':0,'name':1}).sort('name',1)]\n",
     "tests": [],
@@ -1324,7 +1324,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 88",
+    "source": "Adapted concept · LeetCode 88",
     "sourceUrl": "https://leetcode.com/problems/merge-sorted-array/"
   },
   {
@@ -1371,7 +1371,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 35",
+    "source": "Adapted concept · LeetCode 35",
     "sourceUrl": "https://leetcode.com/problems/search-insert-position/"
   },
   {
@@ -1413,7 +1413,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 242",
+    "source": "Adapted concept · LeetCode 242",
     "sourceUrl": "https://leetcode.com/problems/valid-anagram/"
   },
   {
@@ -1473,7 +1473,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 155",
+    "source": "Adapted concept · LeetCode 155",
     "sourceUrl": "https://leetcode.com/problems/min-stack/"
   },
   {
@@ -1532,7 +1532,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 232",
+    "source": "Adapted concept · LeetCode 232",
     "sourceUrl": "https://leetcode.com/problems/implement-queue-using-stacks/"
   },
   {
@@ -1613,7 +1613,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 206",
+    "source": "Adapted concept · LeetCode 206",
     "sourceUrl": "https://leetcode.com/problems/reverse-linked-list/"
   },
   {
@@ -1655,7 +1655,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 LeetCode 98",
+    "source": "Adapted concept · LeetCode 98",
     "sourceUrl": "https://leetcode.com/problems/validate-binary-search-tree/"
   },
   {
@@ -1697,7 +1697,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted concept \u00b7 HackerRank runner-up",
+    "source": "Adapted concept · HackerRank runner-up",
     "sourceUrl": "https://www.hackerrank.com/challenges/find-second-maximum-number-in-a-list/problem"
   },
   {
@@ -1760,7 +1760,7 @@
     },
     "kind": "python",
     "rubric": [],
-    "source": "W3Schools topic practice \u00b7 File handling",
+    "source": "W3Schools topic practice · File handling",
     "sourceUrl": "https://www.w3schools.com/python/python_file_handling.asp"
   },
   {
@@ -1802,7 +1802,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "W3Schools topic practice \u00b7 Polymorphism",
+    "source": "W3Schools topic practice · Polymorphism",
     "sourceUrl": "https://www.w3schools.com/python/python_polymorphism.asp"
   },
   {
@@ -1947,7 +1947,7 @@
     "level": "Core",
     "minutes": 20,
     "ref": "2.2.5",
-    "description": "Implement gcd(a, b) recursively using Euclid\u2019s algorithm. Inputs are non-negative integers. Define gcd(0,0) as 0. Do not import math.gcd.",
+    "description": "Implement gcd(a, b) recursively using Euclid’s algorithm. Inputs are non-negative integers. Define gcd(0,0) as 0. Do not import math.gcd.",
     "starter": "def gcd(a, b):\n    pass\n",
     "solution": "def gcd(a, b):\n    return a if b == 0 else gcd(b,a % b)\n",
     "tests": [
@@ -2031,7 +2031,7 @@
     "level": "Core",
     "minutes": 20,
     "ref": "2.2.2 / 3.2.2",
-    "description": "Implement shift(text, amount). Rotate A\u2013Z, a\u2013z and 0\u20139 within their own ranges. Leave other characters unchanged. amount may be negative or exceed 26. This is a programming exercise, not secure encryption.",
+    "description": "Implement shift(text, amount). Rotate A–Z, a–z and 0–9 within their own ranges. Leave other characters unchanged. amount may be negative or exceed 26. This is a programming exercise, not secure encryption.",
     "starter": "def shift(text, amount):\n    pass\n",
     "solution": "def shift(text, amount):\n    out = ''\n    for ch in text:\n        for alphabet in ['ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz','0123456789']:\n            if ch in alphabet:\n                out += alphabet[(alphabet.index(ch)+amount)%len(alphabet)]\n                break\n        else: out += ch\n    return out\n",
     "tests": [
@@ -2063,7 +2063,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 HCI 2025 Task 1",
+    "source": "Paper-inspired · HCI 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2073,7 +2073,7 @@
     "level": "Core",
     "minutes": 20,
     "ref": "3.1.2 / 3.2.2",
-    "description": "Implement decode7(code). Each group of three digits is a base-7 ASCII code. Convert to characters and join them. Raise ValueError if length is not divisible by three or any character is outside 0\u20136. Empty input returns an empty string.",
+    "description": "Implement decode7(code). Each group of three digits is a base-7 ASCII code. Convert to characters and join them. Raise ValueError if length is not divisible by three or any character is outside 0–6. Empty input returns an empty string.",
     "starter": "def decode7(code):\n    pass\n",
     "solution": "def decode7(code):\n    if len(code)%3 or any(ch not in '0123456' for ch in code): raise ValueError('Invalid code')\n    return ''.join(chr(int(code[i:i+3],7)) for i in range(0,len(code),3))\n",
     "tests": [
@@ -2105,7 +2105,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 RVHS 2025 Task 3",
+    "source": "Paper-inspired · RVHS 2025 Task 3",
     "sourceUrl": ""
   },
   {
@@ -2147,7 +2147,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 1",
+    "source": "Paper-inspired · ASRJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2189,7 +2189,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 1",
+    "source": "Paper-inspired · ASRJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2199,7 +2199,7 @@
     "level": "Stretch",
     "minutes": 30,
     "ref": "2.2.1 / 2.4.4",
-    "description": "Implement is_magic(grid). Return True only for a nonempty n\u00d7n grid containing each integer 1 through n\u00b2 exactly once, with equal row, column and both diagonal sums. Reject ragged grids.",
+    "description": "Implement is_magic(grid). Return True only for a nonempty n×n grid containing each integer 1 through n² exactly once, with equal row, column and both diagonal sums. Reject ragged grids.",
     "starter": "def is_magic(grid):\n    pass\n",
     "solution": "def is_magic(grid):\n    n = len(grid)\n    if not n or any(len(row) != n for row in grid): return False\n    if sorted(v for row in grid for v in row) != list(range(1,n*n+1)): return False\n    target = n*(n*n+1)//2\n    return all(sum(row)==target for row in grid) and all(sum(grid[i][j] for i in range(n))==target for j in range(n)) and sum(grid[i][i] for i in range(n))==target and sum(grid[i][n-1-i] for i in range(n))==target\n",
     "tests": [
@@ -2236,7 +2236,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 ACJC 2025 Task 1",
+    "source": "Paper-inspired · ACJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2246,7 +2246,7 @@
     "level": "Stretch",
     "minutes": 30,
     "ref": "2.2.1 / 2.2.3",
-    "description": "Implement make_magic(n) for positive odd n. Start with 1 in the top middle cell. Move up one and right one with wraparound. If occupied, move down one from the previous position instead. Continue to n\u00b2. Return the grid.",
+    "description": "Implement make_magic(n) for positive odd n. Start with 1 in the top middle cell. Move up one and right one with wraparound. If occupied, move down one from the previous position instead. Continue to n². Return the grid.",
     "starter": "def make_magic(n):\n    pass\n",
     "solution": "def make_magic(n):\n    a = [[0]*n for _ in range(n)]\n    r, c = 0, n//2\n    for value in range(1,n*n+1):\n        a[r][c] = value\n        nr, nc = (r-1)%n, (c+1)%n\n        if a[nr][nc]: r = (r+1)%n\n        else: r,c = nr,nc\n    return a\n",
     "tests": [
@@ -2329,7 +2329,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 ACJC 2025 Task 1",
+    "source": "Paper-inspired · ACJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2384,7 +2384,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 HCI 2025 Task 3 / JPJC 2025 Task 2",
+    "source": "Paper-inspired · HCI 2025 Task 3 / JPJC 2025 Task 2",
     "sourceUrl": ""
   },
   {
@@ -2451,7 +2451,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 RI 2025 Task 4",
+    "source": "Adapted workflow · RI 2025 Task 4",
     "sourceUrl": ""
   },
   {
@@ -2461,7 +2461,7 @@
     "level": "Stretch",
     "minutes": 35,
     "ref": "1.2.1 / 2.4.2",
-    "description": "Implement organise(codes). A valid code is exactly two uppercase ASCII letters followed by 1\u20132 ASCII digits, representing 1\u201399 with no leading zero. Discard invalid codes, preserve duplicates, and use insertion sort by (number, two-letter prefix). Return [even_codes, odd_codes], each in that order.",
+    "description": "Implement organise(codes). A valid code is exactly two uppercase ASCII letters followed by 1–2 ASCII digits, representing 1–99 with no leading zero. Discard invalid codes, preserve duplicates, and use insertion sort by (number, two-letter prefix). Return [even_codes, odd_codes], each in that order.",
     "starter": "def organise(codes):\n    pass\n",
     "solution": "def organise(codes):\n    valid = []\n    for code in codes:\n        if 3 <= len(code) <= 4 and all('A'<=c<='Z' for c in code[:2]) and all('0'<=c<='9' for c in code[2:]) and code[2]!='0': valid.append(code)\n    def key(code): return (int(code[2:]),code[:2])\n    for i in range(1,len(valid)):\n        value,j = valid[i],i-1\n        while j>=0 and key(valid[j])>key(value): valid[j+1]=valid[j];j-=1\n        valid[j+1]=value\n    return [[c for c in valid if int(c[2:])%2==0],[c for c in valid if int(c[2:])%2==1]]\n",
     "tests": [
@@ -2516,7 +2516,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 RI 2025 Task 1",
+    "source": "Adapted workflow · RI 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2591,7 +2591,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 NJC 2025 Task 2",
+    "source": "Adapted workflow · NJC 2025 Task 2",
     "sourceUrl": ""
   },
   {
@@ -2633,7 +2633,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted exercise \u00b7 HCI 2025 Task 1",
+    "source": "Adapted exercise · HCI 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2693,7 +2693,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 HCI 2025 Task 2",
+    "source": "Adapted workflow · HCI 2025 Task 2",
     "sourceUrl": ""
   },
   {
@@ -2740,7 +2740,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 VJC 2025 Task 1 / NYJC 2025 Task 2",
+    "source": "Adapted workflow · VJC 2025 Task 1 / NYJC 2025 Task 2",
     "sourceUrl": ""
   },
   {
@@ -2815,7 +2815,7 @@
     },
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 JPJC 2025 Task 1",
+    "source": "Adapted workflow · JPJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2873,7 +2873,7 @@
     },
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 DHS 2025 Task 1",
+    "source": "Paper-inspired · DHS 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -2955,7 +2955,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 NYJC 2025 Task 1",
+    "source": "Paper-inspired · NYJC 2025 Task 1",
     "sourceUrl": ""
   },
   {
@@ -3006,7 +3006,7 @@
         "expr": "collect_lines([bytes([195]),bytes([169,10])])",
         "expected": [
           [
-            "\u00e9"
+            "é"
           ],
           []
         ]
@@ -3019,7 +3019,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 RI 2025 Task 2 / DHS 2025 Task 2",
+    "source": "Paper-inspired · RI 2025 Task 2 / DHS 2025 Task 2",
     "sourceUrl": ""
   },
   {
@@ -3116,7 +3116,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 ASRJC 2025 Task 4",
+    "source": "Paper-inspired · ASRJC 2025 Task 4",
     "sourceUrl": ""
   },
   {
@@ -3207,7 +3207,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Adapted workflow \u00b7 VJC 2025 Task 2 / ACJC 2025 Task 3",
+    "source": "Adapted workflow · VJC 2025 Task 2 / ACJC 2025 Task 3",
     "sourceUrl": ""
   },
   {
@@ -3276,7 +3276,7 @@
     "files": {},
     "kind": "python",
     "rubric": [],
-    "source": "Paper-inspired \u00b7 NJC 2025 Task 3",
+    "source": "Paper-inspired · NJC 2025 Task 3",
     "sourceUrl": ""
   },
   {
@@ -3425,7 +3425,7 @@
       }
     ],
     "hints": [
-      "Use dot notation: scores.Computing. Put $gte inside that field\u2019s filter.",
+      "Use dot notation: scores.Computing. Put $gte inside that field’s filter.",
       "Project name with 1 and exclude _id with 0. Sort the cursor before turning it into a list."
     ],
     "setup": "import json, mongomock\nclient = mongomock.MongoClient()\ncol = client['examdb']['students']\nwith open('students.json') as source:\n    col.insert_many(json.load(source))\n\ndef changed_filter():\n    col.delete_many({})\n    col.insert_many([{'name':'Uma','scores':{'Computing':65}}, {'name':'Bo','scores':{'Computing':65}}, {'name':'Ash','scores':{'Math':99}}])\n    return passing_students(col, 65)\n",
@@ -3874,5 +3874,1262 @@
     "rubric": [],
     "source": "Original MongoDB syllabus drill",
     "sourceUrl": "https://www.mongodb.com/docs/manual/crud/"
+  },
+  {
+    "id": "bookings-portal",
+    "title": "Searchable bookings portal",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 55,
+    "ref": "4.2.2–4.2.4 / 3.3.8",
+    "description": "Implement create_app(database). The SQLite database contains Customer, Event and Booking tables. Seed two customers and two events only if absent. GET / accepts optional exact day/category filters and displays joined bookings, including an empty-results message. POST / validates customer/event IDs and quantity 1–8, inserts with parameters and redirects. Reject duplicates or invalid input with HTTP 400 without a write. Build and inspect the labelled HTML forms and results table.",
+    "starter": "def create_app(database=\"bookings.db\"):\n    # Create schema, routes and templates.\n    raise NotImplementedError\n",
+    "solution": "import sqlite3\nfrom datetime import date\nfrom flask import Flask, request, redirect, render_template\n\ndef create_app(database='bookings.db'):\n    app = Flask(__name__)\n    def connect():\n        conn = sqlite3.connect(database)\n        conn.execute('PRAGMA foreign_keys=ON')\n        return conn\n    with connect() as conn:\n        conn.executescript('''\n        CREATE TABLE IF NOT EXISTS Customer(id INTEGER PRIMARY KEY,name TEXT NOT NULL);\n        CREATE TABLE IF NOT EXISTS Event(id INTEGER PRIMARY KEY,title TEXT NOT NULL,day TEXT NOT NULL,category TEXT NOT NULL);\n        CREATE TABLE IF NOT EXISTS Booking(customer_id INTEGER REFERENCES Customer(id),event_id INTEGER REFERENCES Event(id),quantity INTEGER CHECK(quantity BETWEEN 1 AND 8),PRIMARY KEY(customer_id,event_id));\n        INSERT OR IGNORE INTO Customer VALUES(1,'Ari'),(2,'Mei');\n        INSERT OR IGNORE INTO Event VALUES(1,'Robotics','2026-10-01','Tech'),(2,'Pottery','2026-10-02','Art');\n        ''')\n    @app.route('/', methods=['GET','POST'])\n    def index():\n        if request.method == 'POST':\n            try:\n                customer, event, quantity = [int(request.form[k]) for k in ['customer','event','quantity']]\n                if not 1 <= quantity <= 8:\n                    raise ValueError()\n                with connect() as conn:\n                    conn.execute('INSERT INTO Booking VALUES(?,?,?)',(customer,event,quantity))\n            except (ValueError,KeyError,sqlite3.IntegrityError):\n                return 'Invalid or duplicate booking',400\n            return redirect('/')\n        day, category = request.args.get('day',''), request.args.get('category','')\n        if day:\n            try:\n                if date.fromisoformat(day).isoformat()!=day:\n                    raise ValueError()\n            except ValueError:\n                return 'Invalid date',400\n        sql = 'SELECT c.name,e.title,e.day,e.category,b.quantity FROM Booking b JOIN Customer c ON c.id=b.customer_id JOIN Event e ON e.id=b.event_id WHERE 1=1'\n        params = []\n        for column,value in [('e.day',day),('e.category',category)]:\n            if value:\n                sql += ' AND '+column+'=?'\n                params.append(value)\n        with connect() as conn:\n            rows = conn.execute(sql+' ORDER BY e.day,c.id,e.id',params).fetchall()\n        return render_template('index.html',rows=rows,day=day,category=category)\n    return app\n\nif __name__=='__main__':\n    create_app().run(host='127.0.0.1',port=5051)\n",
+    "tests": [],
+    "hints": [
+      "Read the protocol or route contract before coding.",
+      "Use the test harness, then verify the full local workflow."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Filter by category and real ISO date; include an empty-results view.",
+      "Validate and parameterise every booking insert; verify persistence after restarting.",
+      "Run test_lab.py and review semantic labels, table headings and keyboard access."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "photo-catalogue",
+    "title": "Photo catalogue upload",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 45,
+    "ref": "4.2.3–4.2.4 / 2.4.2",
+    "description": "Implement create_app(database, upload_dir). GET / lists saved image titles and images. POST / accepts title and photo; require a nonempty title and a valid PNG/JPEG image no larger than the 2 MiB request limit. Use a generated filename, save the image and its SQLite row, and redirect. Validate image content, not just its extension. Delete the saved file if the database write fails. GET /photos/<name> serves existing uploads and returns 404 for missing files. Use the supplied tests and inspect the rendered gallery.",
+    "starter": "def create_app(database=\"photos.db\", upload_dir=\"uploads\"):\n    raise NotImplementedError\n",
+    "solution": "from pathlib import Path\nfrom uuid import uuid4\nimport sqlite3\nfrom PIL import Image, UnidentifiedImageError\nfrom flask import Flask,request,redirect,render_template,send_from_directory\n\ndef create_app(database='photos.db',upload_dir='uploads'):\n    app=Flask(__name__);app.config['MAX_CONTENT_LENGTH']=2*1024*1024\n    folder=Path(upload_dir).resolve();folder.mkdir(parents=True,exist_ok=True)\n    with sqlite3.connect(database) as conn:\n        conn.execute('CREATE TABLE IF NOT EXISTS Photo(id INTEGER PRIMARY KEY,title TEXT NOT NULL,filename TEXT UNIQUE NOT NULL)')\n    @app.route('/',methods=['GET','POST'])\n    def index():\n        if request.method=='POST':\n            title=request.form.get('title','').strip();file=request.files.get('photo')\n            if not title or not file or not file.filename:\n                return 'Title and image required',400\n            try:\n                image=Image.open(file.stream)\n                format=image.format\n                if format not in ['PNG','JPEG']:\n                    raise ValueError()\n                image.verify();file.stream.seek(0)\n            except (UnidentifiedImageError,OSError,ValueError):\n                return 'Use a valid PNG or JPEG',400\n            filename=uuid4().hex+('.png' if format=='PNG' else '.jpg')\n            path=folder/filename\n            try:\n                file.save(path)\n                with sqlite3.connect(database) as conn:\n                    conn.execute('INSERT INTO Photo(title,filename) VALUES(?,?)',(title,filename))\n            except Exception:\n                path.unlink(missing_ok=True)\n                raise\n            return redirect('/')\n        with sqlite3.connect(database) as conn:\n            photos=conn.execute('SELECT title,filename FROM Photo ORDER BY id').fetchall()\n        return render_template('index.html',photos=photos)\n    @app.get('/photos/<path:name>')\n    def photo(name):\n        return send_from_directory(folder,name)\n    return app\n\nif __name__=='__main__':create_app().run(host='127.0.0.1',port=5052)\n",
+    "tests": [],
+    "hints": [
+      "Read the protocol or route contract before coding.",
+      "Use the test harness, then verify the full local workflow."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Reject missing/corrupt uploads before writing files or rows.",
+      "Generate distinct safe filenames even for identical original names; serve images through a safe directory route.",
+      "Verify cleanup on database failure, persistent rows and descriptive image alt text."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "quiz-server",
+    "title": "Implement the missing quiz server",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 50,
+    "ref": "4.1.5–4.1.6 / 2.5.1–2.5.2",
+    "description": "Use the supplied client.py and protocol to implement an iterative quiz server in starter.py. Each connection sends a JSON username line, answers two questions and receives its own score. Define Question and QuizSession classes and serve(listener, max_clients=None). Preserve message boundaries across recv chunks. A partial/invalid/disconnected client must not prevent the next connection. The reference questions and exact protocol are documented in README.md; test on loopback only.",
+    "starter": "class Question:\n    pass\n\nclass QuizSession:\n    pass\n\ndef serve(listener, max_clients=None):\n    raise NotImplementedError\n",
+    "solution": "import json,socket\n\nclass Question:\n    def __init__(self,text,answer):\n        self.text,self._answer=text,answer\n    def correct(self,answer):\n        return answer.strip().upper()==self._answer\nclass QuizSession:\n    def __init__(self,username):\n        self.username,self.score=username,0\n    def record(self,question,answer):\n        self.score+=int(question.correct(answer))\nQUESTIONS=[Question('2 + 3? A: 4, B: 5','B'),Question('FIFO structure? A: queue, B: stack','A')]\n\ndef handle(connection):\n    connection.settimeout(3)\n    with connection.makefile('rwb') as stream:\n        def send(message):\n            stream.write((json.dumps(message)+'\\n').encode());stream.flush()\n        def receive():\n            raw=stream.readline(4097)\n            if not raw or not raw.endswith(b'\\n') or len(raw)>4096:\n                raise ConnectionError('Incomplete or oversized message')\n            return json.loads(raw)\n        hello=receive()\n        if not isinstance(hello,dict) or not isinstance(hello.get('username'),str) or not hello['username'].strip():\n            raise ValueError('Username required')\n        session=QuizSession(hello['username'].strip())\n        for index,question in enumerate(QUESTIONS,1):\n            send({'type':'question','number':index,'text':question.text})\n            answer=receive()\n            if not isinstance(answer,dict) or not isinstance(answer.get('answer'),str):\n                raise ValueError('Answer required')\n            session.record(question,answer['answer'])\n        send({'type':'result','username':session.username,'score':session.score})\n\ndef serve(listener,max_clients=None):\n    handled=0\n    while max_clients is None or handled<max_clients:\n        connection,_=listener.accept()\n        with connection:\n            try:\n                handle(connection)\n            except (OSError,ConnectionError,ValueError,TypeError):\n                pass\n        handled+=1\n\nif __name__=='__main__':\n    with socket.socket() as listener:\n        listener.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)\n        listener.bind(('127.0.0.1',5055));listener.listen()\n        serve(listener)\n",
+    "tests": [],
+    "hints": [
+      "Read the protocol or route contract before coding.",
+      "Use the test harness, then verify the full local workflow."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Implement Question.correct and per-client QuizSession state.",
+      "Support newline framing with a 4096-byte message limit and a timeout.",
+      "Serve multiple connections sequentially; recover from a client disconnect and keep scores isolated."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "game-client",
+    "title": "Implement the missing game client",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 45,
+    "ref": "4.1.5–4.1.6 / 2.2.3",
+    "description": "Use the supplied deterministic server.py. Implement play(connection, moves), reading newline-delimited JSON messages: info is informational; turn/retry requests the next [row,col] move; done returns its result string. Unknown message types or exhausted moves raise ValueError. EOF, oversized or incomplete lines before done raise ConnectionError. Support split/coalesced messages, invalid-move retry and normal termination. Start the supplied server and run your client over loopback.",
+    "starter": "def play(connection, moves):\n    raise NotImplementedError\n",
+    "solution": "import json,socket\n\ndef play(connection,moves):\n    moves=iter(moves)\n    with connection.makefile('rwb') as stream:\n        while True:\n            raw=stream.readline(4097)\n            if not raw or not raw.endswith(b'\\n') or len(raw)>4096:\n                raise ConnectionError('Game ended without a complete result')\n            message=json.loads(raw)\n            if message['type']=='done':\n                return message['result']\n            if message['type']=='info':\n                continue\n            if message['type'] not in ['turn','retry']:\n                raise ValueError('Unknown message type')\n            try:\n                row,col=next(moves)\n            except StopIteration:\n                raise ValueError('No moves remaining')\n            stream.write((json.dumps({'row':row,'col':col})+'\\n').encode())\n            stream.flush()\n\nif __name__=='__main__':\n    with socket.create_connection(('127.0.0.1',5056),timeout=3) as connection:\n        print(play(connection,[(7,7),(0,0),(1,1)]))\n",
+    "tests": [],
+    "hints": [
+      "Read the protocol or route contract before coding.",
+      "Use the test harness, then verify the full local workflow."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Read one complete JSON message at a time without losing coalesced data.",
+      "Send one move for each turn or retry, and ignore informational messages.",
+      "Pass disconnect/framing checks and complete a real client/server session."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "lost-property",
+    "title": "Document-backed lost property",
+    "topic": "Web & networks",
+    "level": "Stretch",
+    "minutes": 55,
+    "ref": "3.3.8 / 2.4.2 / 4.2.2–4.2.4",
+    "description": "Implement create_app(collection=None) with Flask and real PyMongo. POST / validates a title, an exact ISO calendar date and category Books/Clothing/Other, then stores an unclaimed report with a unique generated report_id. GET / supports optional day/category filters. POST /claim/<report_id> marks exactly one matching report claimed, or returns 404. Reject bad input with HTTP 400 without writing. Use a dedicated local MongoDB database and the real-server integration tests in the pack.",
+    "starter": "def create_app(collection=None):\n    raise NotImplementedError\n",
+    "solution": "from datetime import date\nfrom uuid import uuid4\nfrom flask import Flask,request,redirect,render_template,abort\nfrom pymongo import MongoClient\nimport os\n\ndef create_app(collection=None):\n    app=Flask(__name__)\n    if collection is None:\n        client=MongoClient(os.environ.get('MONGO_URI','mongodb://127.0.0.1:27017'),serverSelectionTimeoutMS=3000)\n        client.admin.command('ping')\n        collection=client['practical_lost_property']['reports']\n    collection.create_index('report_id',unique=True)\n    def valid_day(value):\n        try:return date.fromisoformat(value).isoformat()==value\n        except ValueError:return False\n    @app.route('/',methods=['GET','POST'])\n    def index():\n        if request.method=='POST':\n            title,day,category=[request.form.get(k,'').strip() for k in ['title','day','category']]\n            if not title or not valid_day(day) or category not in ['Books','Clothing','Other']:\n                return 'Invalid report',400\n            collection.insert_one(dict(report_id=uuid4().hex,title=title,day=day,category=category,claimed=False))\n            return redirect('/')\n        query={}\n        for key in ['day','category']:\n            value=request.args.get(key,'')\n            if value:query[key]=value\n        if 'day' in query and not valid_day(query['day']):return 'Invalid date',400\n        return render_template('index.html',rows=list(collection.find(query,{'_id':0}).sort([('day',1),('report_id',1)])))\n    @app.post('/claim/<report_id>')\n    def claim(report_id):\n        result=collection.update_one({'report_id':report_id},{'$set':{'claimed':True}})\n        if not result.matched_count:abort(404)\n        return redirect('/')\n    return app\n\nif __name__=='__main__':create_app().run(host='127.0.0.1',port=5053)\n",
+    "tests": [],
+    "hints": [
+      "Read the protocol or route contract before coding.",
+      "Use the test harness, then verify the full local workflow."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "lab",
+    "rubric": [
+      "Validate real calendar dates and controlled categories; reject bad input without writes.",
+      "Create a unique report_id index, filter documents and update one selected report.",
+      "Run integration tests against real MongoDB and inspect the labelled web forms."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "booking-schema",
+    "title": "Build a booking database",
+    "topic": "Databases",
+    "level": "Core",
+    "minutes": 30,
+    "ref": "3.3.1–3.3.2 / 3.3.8",
+    "description": "Implement create_schema(conn) on an empty SQLite connection. Enable foreign keys. Create Customer(id INTEGER PRIMARY KEY, name TEXT NOT NULL), Event(id INTEGER PRIMARY KEY, title TEXT NOT NULL), and Booking(customer_id INTEGER, event_id INTEGER, quantity INTEGER NOT NULL CHECK(quantity BETWEEN 1 AND 8)). Both IDs in Booking are NOT NULL foreign keys, and together form its primary key. Commit the schema; return None. Tests inspect constraints as well as valid inserts.",
+    "solution": "def create_schema(conn):\n    conn.execute('PRAGMA foreign_keys = ON')\n    conn.executescript(\"\"\"\n    CREATE TABLE Customer(id INTEGER PRIMARY KEY, name TEXT NOT NULL);\n    CREATE TABLE Event(id INTEGER PRIMARY KEY, title TEXT NOT NULL);\n    CREATE TABLE Booking(customer_id INTEGER NOT NULL REFERENCES Customer(id),\n        event_id INTEGER NOT NULL REFERENCES Event(id),\n        quantity INTEGER NOT NULL CHECK(quantity BETWEEN 1 AND 8),\n        PRIMARY KEY(customer_id, event_id));\n    \"\"\")\n    conn.commit()\n",
+    "starter": "def create_schema(conn):\n    pass\n",
+    "tests": [
+      {
+        "label": "Constraints",
+        "expr": "schema_check()",
+        "expected": [
+          1,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Columns",
+        "expr": "schema_columns()",
+        "expected": [
+          "customer_id",
+          "event_id",
+          "quantity"
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "import sqlite3\ndef fresh():\n    c=sqlite3.connect(':memory:');create_schema(c)\n    c.execute(\"INSERT INTO Customer VALUES(1,'Ari')\");c.execute(\"INSERT INTO Event VALUES(1,'Robotics')\")\n    return c\ndef schema_check():\n    c=fresh();c.execute('INSERT INTO Booking VALUES(1,1,1)')\n    result=[c.execute('PRAGMA foreign_keys').fetchone()[0]]\n    for values in [(1,1,2),(2,1,1),(1,2,1),(1,1,0),(None,1,1),(1,None,1),(1,1,9),(1,1,None)]:\n        if values != (1,1,2):c.execute('DELETE FROM Booking')\n        try:c.execute('INSERT INTO Booking VALUES(?,?,?)',values);result.append(False)\n        except sqlite3.IntegrityError:result.append(True)\n    return result\ndef schema_columns():\n    c=fresh();return [r[1] for r in c.execute('PRAGMA table_info(Booking)')]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "register-import",
+    "title": "Import an imperfect register",
+    "topic": "Databases",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "2.3.4 / 2.4.2 / 3.3.8",
+    "description": "Implement import_register(conn, path). Student(id INTEGER PRIMARY KEY, name TEXT NOT NULL, score INTEGER CHECK(score BETWEEN 0 AND 100)) already exists and the connection has no active transaction. Read a UTF-8 CSV with exact header id,name,score. Strip fields; IDs must be positive decimal integers, names nonempty, scores decimal integers 0–100. Skip invalid rows and duplicate IDs (first valid record wins, including existing database rows). Return [inserted_count, rejected_line_numbers], counting header as line 1. CSV names may contain commas but no embedded newlines. Reject a wrong header with ValueError. Any unexpected database error must roll back all inserts from this call and propagate. Do not modify the source file.",
+    "solution": "import csv\n\ndef import_register(conn, path):\n    count, rejected = 0, []\n    with open(path, newline='', encoding='utf-8') as handle:\n        rows = csv.reader(handle)\n        if next(rows, None) != ['id', 'name', 'score']:\n            raise ValueError('Invalid header')\n        with conn:\n            for line, row in enumerate(rows, 2):\n                if len(row) != 3:\n                    rejected.append(line)\n                    continue\n                key, name, score = [v.strip() for v in row]\n                if not key.isascii() or not key.isdecimal() or int(key) < 1 or not name or not score.isascii() or not score.isdecimal() or not 0 <= int(score) <= 100:\n                    rejected.append(line)\n                    continue\n                if conn.execute('SELECT 1 FROM Student WHERE id=?', (int(key),)).fetchone():\n                    rejected.append(line)\n                    continue\n                conn.execute('INSERT INTO Student VALUES(?,?,?)', (int(key), name, int(score)))\n                count += 1\n    return [count, rejected]\n",
+    "starter": "def import_register(conn, path):\n    pass\n",
+    "tests": [
+      {
+        "label": "Quoted fields and invalid rows",
+        "expr": "import_check(False)",
+        "expected": [
+          [
+            2,
+            [
+              3,
+              4,
+              6
+            ]
+          ],
+          [
+            [
+              1,
+              "Ari, Tan",
+              90
+            ],
+            [
+              3,
+              "Mei",
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Repeated import",
+        "expr": "import_check(True)",
+        "expected": [
+          [
+            0,
+            [
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          ],
+          [
+            [
+              1,
+              "Ari, Tan",
+              90
+            ],
+            [
+              3,
+              "Mei",
+              0
+            ]
+          ]
+        ]
+      },
+      {
+        "label": "Database rollback",
+        "expr": "rollback_check()",
+        "expected": true
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "import sqlite3\ndef connection():\n    c=sqlite3.connect(':memory:');c.execute('CREATE TABLE Student(id INTEGER PRIMARY KEY,name TEXT NOT NULL,score INTEGER CHECK(score BETWEEN 0 AND 100))');return c\ndef import_check(twice):\n    c=connection();r=import_register(c,'register.csv')\n    if twice:r=import_register(c,'register.csv')\n    return [r,[list(v) for v in c.execute('SELECT * FROM Student ORDER BY id')]]\ndef rollback_check():\n    c=connection();c.execute(\"CREATE TRIGGER blocked BEFORE INSERT ON Student WHEN NEW.id=3 BEGIN SELECT RAISE(ABORT,'test failure'); END\")\n    try:import_register(c,'register.csv')\n    except sqlite3.DatabaseError:return c.execute('SELECT COUNT(*) FROM Student').fetchone()[0]==0\n    return False",
+    "files": {
+      "register.csv": "id,name,score\n1,\"Ari, Tan\",90\n2,,50\n1,Duplicate,80\n3,Mei,0\n4,Kai,101\n"
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "hash-lookup",
+    "title": "Find a record after hash collisions",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "1.2.3 / 2.3.2",
+    "description": "Implement lookup(table, key). table is a nonempty fixed-size linear-probing hash table containing non-negative integer keys or None; keys were inserted using key % len(table), with wraparound and no deletions. Return the matching index or -1. Stop on None or after inspecting every slot. Do not mutate table or use list.index. Empty table returns -1.",
+    "solution": "def lookup(table, key):\n    if not table:\n        return -1\n    position = key % len(table)\n    for _ in range(len(table)):\n        if table[position] is None:\n            return -1\n        if table[position] == key:\n            return position\n        position = (position + 1) % len(table)\n    return -1\n",
+    "starter": "def lookup(table, key):\n    pass\n",
+    "tests": [
+      {
+        "label": "Wraparound",
+        "expr": "lookup([9,14,None,None,4],14)",
+        "expected": 1
+      },
+      {
+        "label": "Full and absent",
+        "expr": "lookup([0,1,2],8)",
+        "expected": -1
+      },
+      {
+        "label": "Empty",
+        "expr": "lookup([],7)",
+        "expected": -1
+      },
+      {
+        "label": "Home slot",
+        "expr": "lookup([0,None,None],0)",
+        "expected": 0
+      },
+      {
+        "label": "Stop at gap",
+        "expr": "lookup([None,1,None],4)",
+        "expected": -1
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "repair-queue",
+    "title": "Repair the queue",
+    "topic": "Data structures",
+    "level": "Core",
+    "minutes": 30,
+    "ref": "1.3.3 / 2.3.3 / 2.4.3–2.4.4",
+    "description": "Repair Queue(capacity), a bounded circular queue. capacity is a positive integer. put(value) returns True or False if full; get() returns the oldest integer or None if empty. Keep fixed data storage and head, tail, count. Add a brief comment diagnosing each starter bug and a test that reproduces it. Behaviour is auto-checked; review your explanations separately.",
+    "solution": "class Queue:\n    def __init__(self, capacity):\n        self.data = [None] * capacity\n        self.head = self.tail = self.count = 0\n    def put(self, value):\n        # Full means count equals capacity, not capacity minus one.\n        if self.count == len(self.data):\n            return False\n        self.data[self.tail] = value\n        self.tail = (self.tail + 1) % len(self.data)\n        self.count += 1\n        return True\n    def get(self):\n        # Check empty before accessing or changing a pointer.\n        if self.count == 0:\n            return None\n        value = self.data[self.head]\n        self.data[self.head] = None\n        # Wrap the head and reduce the count after removal.\n        self.head = (self.head + 1) % len(self.data)\n        self.count -= 1\n        return value\n",
+    "starter": "class Queue:\n    def __init__(self, capacity):\n        self.data = [None] * capacity\n        self.head = self.tail = self.count = 0\n    def put(self, value):\n        if self.count == len(self.data) - 1:\n            return False\n        self.data[self.tail] = value\n        self.tail += 1\n        self.count += 1\n        return True\n    def get(self):\n        value = self.data[self.head]\n        self.head += 1\n        return value\n",
+    "tests": [
+      {
+        "label": "Single slot",
+        "expr": "queue_check(1)",
+        "expected": [
+          null,
+          true,
+          false,
+          7,
+          true,
+          9,
+          null
+        ]
+      },
+      {
+        "label": "Wraparound",
+        "expr": "queue_wrap()",
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          null
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "def queue_check(n):\n    q=Queue(n);return [q.get(),q.put(7),q.put(8),q.get(),q.put(9),q.get(),q.get()]\ndef queue_wrap():\n    q=Queue(2);q.put(1);q.put(2);a=q.get();q.put(3);b=q.get();q.put(4);return [a,b,q.get(),q.get(),q.get()]",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "Explain full/empty checks and pointer wraparound.",
+      "Show a test that fails for each original bug."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "recursive-trace",
+    "title": "Trace recursive returns",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "2.2.5–2.2.7",
+    "description": "Implement trace_sum(values) using a recursive helper with index i. Emit [\"enter\", i] before each call checks its base case, including i == len(values). Emit [\"return\", i, total] just before each call returns its suffix sum. Return the complete event list; do not change values. Each recursive call waits for exactly one smaller subproblem.",
+    "solution": "def trace_sum(values):\n    events = []\n    def visit(i):\n        events.append(['enter', i])\n        total = 0 if i == len(values) else values[i] + visit(i + 1)\n        events.append(['return', i, total])\n        return total\n    visit(0)\n    return events\n",
+    "starter": "def trace_sum(values):\n    pass\n",
+    "tests": [
+      {
+        "label": "Two calls plus base",
+        "expr": "trace_sum([3,4])",
+        "expected": [
+          [
+            "enter",
+            0
+          ],
+          [
+            "enter",
+            1
+          ],
+          [
+            "enter",
+            2
+          ],
+          [
+            "return",
+            2,
+            0
+          ],
+          [
+            "return",
+            1,
+            4
+          ],
+          [
+            "return",
+            0,
+            7
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "trace_sum([])",
+        "expected": [
+          [
+            "enter",
+            0
+          ],
+          [
+            "return",
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "label": "Negative",
+        "expr": "trace_sum([-2])",
+        "expected": [
+          [
+            "enter",
+            0
+          ],
+          [
+            "enter",
+            1
+          ],
+          [
+            "return",
+            1,
+            0
+          ],
+          [
+            "return",
+            0,
+            -2
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "structure-interface",
+    "title": "A queue and stack sharing an interface",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "2.5.1–2.5.4 / 1.3.3 / 2.3.3",
+    "description": "Define BoundedQueue(capacity) with put(value) and take(), returning True/False and integer/None respectively. Define BoundedStack as its subclass, overriding take() for LIFO. dispatch(container, operations) calls these methods polymorphically for [\"put\", value] and [\"take\"] operations. Use separate instance storage. Capacity is positive. Do not branch on type, class name or isinstance in dispatch; it must also work with an unrelated object implementing the interface. Review encapsulation and inheritance in your explanation.",
+    "solution": "class BoundedQueue:\n    def __init__(self, capacity):\n        self._capacity = capacity\n        self._items = []\n    def put(self, value):\n        if len(self._items) == self._capacity:\n            return False\n        self._items.append(value)\n        return True\n    def take(self):\n        return self._items.pop(0) if self._items else None\nclass BoundedStack(BoundedQueue):\n    def take(self):\n        return self._items.pop() if self._items else None\ndef dispatch(container, operations):\n    return [container.put(op[1]) if op[0] == 'put' else container.take() for op in operations]\n",
+    "starter": "class BoundedQueue:\n    pass\n\nclass BoundedStack(BoundedQueue):\n    pass\n\ndef dispatch(container, operations):\n    pass\n",
+    "tests": [
+      {
+        "label": "FIFO",
+        "expr": "dispatch(BoundedQueue(2),ops)",
+        "expected": [
+          true,
+          true,
+          false,
+          1,
+          2,
+          null
+        ]
+      },
+      {
+        "label": "LIFO",
+        "expr": "dispatch(BoundedStack(2),ops)",
+        "expected": [
+          true,
+          true,
+          false,
+          2,
+          1,
+          null
+        ]
+      },
+      {
+        "label": "Independent instances",
+        "expr": "independent()",
+        "expected": true
+      },
+      {
+        "label": "Interface without subclass",
+        "expr": "dispatch(Fake(),[[\"take\"]])",
+        "expected": [
+          42
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "ops=[['put',1],['put',2],['put',3],['take'],['take'],['take']]\nclass Fake:\n    def take(self):return 42\ndef independent():\n    a=BoundedQueue(1);b=BoundedQueue(1);a.put(8);return b.take() is None and issubclass(BoundedStack,BoundedQueue)",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "Dispatcher uses interface calls rather than concrete type tests.",
+      "Explain what state is encapsulated and what behaviour is overridden."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "master-update",
+    "title": "Update a sequential master file",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "2.3.4 / 1.1.5 / 2.2.4",
+    "description": "Implement apply_updates(master_path, changes_path, output_path). Master CSV has no header: integer ID,name, sorted by unique ID. Changes CSV has no header: ID,operation,name, sorted by ID; same-ID changes occur in execution order. Operations are I (insert only if absent), U (update only if present), D (delete if present; name ignored). Merge the sorted streams, retaining only final surviving records. Write ID,name with CSV quoting and LF newlines in ID order; return record count. Names may contain commas. Do not modify either input; output_path is distinct. Do not load the full master file into memory.",
+    "solution": "import csv\n\ndef apply_updates(master_path, changes_path, output_path):\n    count = 0\n    with open(master_path, newline='') as master, open(changes_path, newline='') as changes, open(output_path, 'w', newline='') as output:\n        masters, updates = csv.reader(master), csv.reader(changes)\n        writer = csv.writer(output, lineterminator='\\n')\n        record, change = next(masters, None), next(updates, None)\n        while record is not None or change is not None:\n            key = min(int(x[0]) for x in [record, change] if x is not None)\n            name = None\n            if record is not None and int(record[0]) == key:\n                name = record[1]\n                record = next(masters, None)\n            while change is not None and int(change[0]) == key:\n                operation, value = change[1:]\n                if operation == 'I' and name is None or operation == 'U' and name is not None:\n                    name = value\n                elif operation == 'D':\n                    name = None\n                change = next(updates, None)\n            if name is not None:\n                writer.writerow([key, name])\n                count += 1\n    return count\n",
+    "starter": "def apply_updates(master_path, changes_path, output_path):\n    pass\n",
+    "tests": [
+      {
+        "label": "Ordered transactions",
+        "expr": "master_check()",
+        "expected": [
+          3,
+          "1,New\n3,Kai\n4,\"Jo, Tan\"\n",
+          true
+        ]
+      },
+      {
+        "label": "Empty files",
+        "expr": "master_empty()",
+        "expected": [
+          0,
+          ""
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "from pathlib import Path\ndef master_check():\n    before=Path('master.csv').read_text();n=apply_updates('master.csv','changes.csv','out.csv')\n    return [n,Path('out.csv').read_text(),Path('master.csv').read_text()==before]\ndef master_empty():\n    Path('a').write_text('');Path('b').write_text('');n=apply_updates('a','b','out');return [n,Path('out').read_text()]",
+    "files": {
+      "master.csv": "1,Ari\n2,Mei\n4,\"Jo, Tan\"\n",
+      "changes.csv": "1,U,New\n2,D,\n3,U,Ignored\n3,I,Kai\n3,I,Duplicate\n"
+    },
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "joined-totals",
+    "title": "Totals across three related tables",
+    "topic": "Databases",
+    "level": "Stretch",
+    "minutes": 30,
+    "ref": "3.3.8",
+    "description": "Implement totals(conn). Customer(id,name), Orders(id,customer_id) and Line(order_id,item,quantity,unit_price) already exist. Prices are integer cents, quantity positive, unit_price may be NULL (treat as zero). Return [customer_id,name,total_cents] for EVERY customer, descending total then ascending customer_id. Group by ID, not name. Customers without orders have zero total. Use one parameter-free SELECT query and return lists.",
+    "solution": "def totals(conn):\n    query = \"\"\"\n        SELECT c.id, c.name, COALESCE(SUM(l.quantity * COALESCE(l.unit_price, 0)), 0)\n        FROM Customer c LEFT JOIN Orders o ON o.customer_id = c.id\n        LEFT JOIN Line l ON l.order_id = o.id\n        GROUP BY c.id, c.name ORDER BY 3 DESC, c.id ASC\n    \"\"\"\n    return [list(row) for row in conn.execute(query)]\n",
+    "starter": "def totals(conn):\n    pass\n",
+    "tests": [
+      {
+        "label": "Repeated names and missing data",
+        "expr": "totals(conn)",
+        "expected": [
+          [
+            1,
+            "Ari",
+            550
+          ],
+          [
+            2,
+            "Ari",
+            300
+          ],
+          [
+            3,
+            "Mei",
+            0
+          ],
+          [
+            4,
+            "Kai",
+            0
+          ]
+        ]
+      },
+      {
+        "label": "No lines",
+        "expr": "empty_lines()",
+        "expected": [
+          [
+            1,
+            "Ari",
+            0
+          ],
+          [
+            2,
+            "Ari",
+            0
+          ],
+          [
+            3,
+            "Mei",
+            0
+          ],
+          [
+            4,
+            "Kai",
+            0
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "import sqlite3\nconn=sqlite3.connect(':memory:')\nconn.executescript(\"\"\"\nCREATE TABLE Customer(id INTEGER PRIMARY KEY,name TEXT);\nCREATE TABLE Orders(id INTEGER PRIMARY KEY,customer_id INTEGER);\nCREATE TABLE Line(order_id INTEGER,item TEXT,quantity INTEGER,unit_price INTEGER);\nINSERT INTO Customer VALUES(1,'Ari'),(2,'Ari'),(3,'Mei'),(4,'Kai');\nINSERT INTO Orders VALUES(10,1),(11,1),(12,2),(13,4);\nINSERT INTO Line VALUES(10,'A',2,100),(10,'B',1,50),(11,'C',3,100),(12,'A',3,100),(13,'D',1,NULL);\n\"\"\")\ndef empty_lines():\n    conn.execute('DELETE FROM Line');return totals(conn)",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "shared-pool",
+    "title": "Shared storage, two linked lists",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 45,
+    "ref": "1.3.1 / 1.3.4–1.3.5 / 2.3.3 / 2.5.1",
+    "description": "Implement Pool(capacity) for two sorted singly linked lists sharing one fixed node pool. Public data and next arrays have capacity slots; heads is [head0,head1]; free is the free-list head; -1 is null. Initially every slot is free and data entries None. insert(which,value) returns False if that list already contains value or storage is full; otherwise allocate from free and insert ascending. delete(which,value) returns False if absent; otherwise clear its data and recycle the slot to the front of free. values(which) traverses that list. which is 0 or 1; capacity is positive. The same value may exist in both lists. Use the arrays for storage; no additional dynamic value list.",
+    "solution": "class Pool:\n    def __init__(self, capacity):\n        self.data = [None] * capacity\n        self.next = list(range(1, capacity)) + [-1]\n        self.heads = [-1, -1]\n        self.free = 0\n    def insert(self, which, value):\n        previous, current = -1, self.heads[which]\n        while current != -1 and self.data[current] < value:\n            previous, current = current, self.next[current]\n        if current != -1 and self.data[current] == value or self.free == -1:\n            return False\n        node = self.free\n        self.free = self.next[node]\n        self.data[node], self.next[node] = value, current\n        if previous == -1:\n            self.heads[which] = node\n        else:\n            self.next[previous] = node\n        return True\n    def delete(self, which, value):\n        previous, current = -1, self.heads[which]\n        while current != -1 and self.data[current] != value:\n            previous, current = current, self.next[current]\n        if current == -1:\n            return False\n        if previous == -1:\n            self.heads[which] = self.next[current]\n        else:\n            self.next[previous] = self.next[current]\n        self.data[current] = None\n        self.next[current], self.free = self.free, current\n        return True\n    def values(self, which):\n        result, current = [], self.heads[which]\n        while current != -1:\n            result.append(self.data[current])\n            current = self.next[current]\n        return result\n",
+    "starter": "class Pool:\n    def __init__(self, capacity):\n        pass\n    def insert(self, which, value):\n        pass\n    def delete(self, which, value):\n        pass\n    def values(self, which):\n        pass\n",
+    "tests": [
+      {
+        "label": "Reuse across lists",
+        "expr": "pool_check()",
+        "expected": [
+          [
+            true,
+            true,
+            true,
+            false,
+            true,
+            true
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1
+          ],
+          true
+        ]
+      },
+      {
+        "label": "Only slot",
+        "expr": "pool_single()",
+        "expected": [
+          true,
+          false,
+          true,
+          true,
+          [],
+          [
+            9
+          ],
+          true
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "def invariant(p):\n    seen=set()\n    for head in p.heads+[p.free]:\n        while head!=-1:\n            if not isinstance(head,int) or head<0 or head>=len(p.data) or head in seen:return False\n            seen.add(head);head=p.next[head]\n    return len(seen)==len(p.data)==len(p.next)\ndef pool_check():\n    p=Pool(3);r=[p.insert(0,3),p.insert(0,1),p.insert(1,1),p.insert(1,2),p.delete(0,1),p.insert(0,2)]\n    return [r,p.values(0),p.values(1),invariant(p)]\ndef pool_single():\n    p=Pool(1);r=[p.insert(0,7),p.insert(1,9),p.delete(0,7),p.insert(1,9)]\n    return r+[p.values(0),p.values(1),invariant(p)]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "editable-records",
+    "title": "Ordered records with editable payloads",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "1.3.5 / 2.3.3 / 2.5.1–2.5.2",
+    "description": "Implement Records() as an object-based sorted singly linked list. insert(key,name), edit(key,name) and delete(key) return success booleans. Duplicate insert is False. find(key) returns name or None. rows() returns ordered [key,name] pairs. Key is an immutable integer identifier; edit changes only the name. Empty names are allowed. Expose head; each Node has key,name,next attributes. Use Node links, not a list or dictionary as the main storage.",
+    "solution": "class Node:\n    def __init__(self, key, name, next=None):\n        self.key, self.name, self.next = key, name, next\nclass Records:\n    def __init__(self):\n        self.head = None\n    def _locate(self, key):\n        previous, current = None, self.head\n        while current is not None and current.key < key:\n            previous, current = current, current.next\n        return previous, current\n    def insert(self, key, name):\n        previous, current = self._locate(key)\n        if current is not None and current.key == key:\n            return False\n        new = Node(key, name, current)\n        if previous is None:\n            self.head = new\n        else:\n            previous.next = new\n        return True\n    def edit(self, key, name):\n        _, current = self._locate(key)\n        if current is None or current.key != key:\n            return False\n        current.name = name\n        return True\n    def delete(self, key):\n        previous, current = self._locate(key)\n        if current is None or current.key != key:\n            return False\n        if previous is None:\n            self.head = current.next\n        else:\n            previous.next = current.next\n        return True\n    def find(self, key):\n        _, current = self._locate(key)\n        return current.name if current is not None and current.key == key else None\n    def rows(self):\n        result, current = [], self.head\n        while current is not None:\n            result.append([current.key, current.name])\n            current = current.next\n        return result\n",
+    "starter": "class Records:\n    pass\n",
+    "tests": [
+      {
+        "label": "Edit without changing order",
+        "expr": "records_check()",
+        "expected": [
+          [
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
+          [
+            [
+              1,
+              "Mei"
+            ],
+            [
+              3,
+              "New"
+            ]
+          ],
+          "New"
+        ]
+      },
+      {
+        "label": "Delete head and only node",
+        "expr": "records_delete()",
+        "expected": [
+          true,
+          true,
+          false,
+          [],
+          null
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "def records_check():\n    r=Records();ops=[r.insert(3,'Ari'),r.insert(1,'Mei'),r.insert(3,'Dup'),r.edit(3,'New'),r.edit(8,'None')];return [ops,r.rows(),r.find(3)]\ndef records_delete():\n    r=Records();r.insert(1,'A');r.insert(2,'B');return [r.delete(1),r.delete(2),r.delete(2),r.rows(),r.head]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "tournament-tree",
+    "title": "A tournament binary tree",
+    "topic": "Data structures",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "1.3.6–1.3.7 / 2.2.5 / 2.3.3",
+    "description": "Implement Tree(records, root). Each record is [id, payload, left_id, right_id]; None is no child. IDs are unique strings, payloads may repeat. Empty records with root=None is valid. Reject duplicate/missing IDs, an unknown root, cycles, shared children or unreachable nodes with ValueError. traverse(order) returns payloads for \"pre\", \"in\" or \"post\"; reject other orders. edit(id,payload) returns False if absent, otherwise changes only that payload and returns True. This is a general binary tree, not a BST. Use recursion for validation and traversal.",
+    "solution": "class Tree:\n    def __init__(self, records, root):\n        self.nodes = {}\n        for key, value, left, right in records:\n            if key in self.nodes:\n                raise ValueError('Duplicate ID')\n            self.nodes[key] = [value, left, right]\n        self.root = root\n        seen = set()\n        def visit(key):\n            if key is None:\n                return\n            if key not in self.nodes or key in seen:\n                raise ValueError('Missing, shared or cyclic node')\n            seen.add(key)\n            visit(self.nodes[key][1])\n            visit(self.nodes[key][2])\n        visit(root)\n        if len(seen) != len(self.nodes):\n            raise ValueError('Unreachable node')\n    def edit(self, key, value):\n        if key not in self.nodes:\n            return False\n        self.nodes[key][0] = value\n        return True\n    def traverse(self, order):\n        if order not in ['pre', 'in', 'post']:\n            raise ValueError('Invalid traversal')\n        result = []\n        def visit(key):\n            if key is None:\n                return\n            value, left, right = self.nodes[key]\n            if order == 'pre':\n                result.append(value)\n            visit(left)\n            if order == 'in':\n                result.append(value)\n            visit(right)\n            if order == 'post':\n                result.append(value)\n        visit(self.root)\n        return result\n",
+    "starter": "class Tree:\n    pass\n",
+    "tests": [
+      {
+        "label": "Three orders",
+        "expr": "[Tree(records,\"a\").traverse(o) for o in [\"pre\",\"in\",\"post\"]]",
+        "expected": [
+          [
+            8,
+            3,
+            3
+          ],
+          [
+            3,
+            8,
+            3
+          ],
+          [
+            3,
+            3,
+            8
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "Tree([],None).traverse(\"in\")",
+        "expected": []
+      },
+      {
+        "label": "Reject invalid graph",
+        "expr": "invalid_trees()",
+        "expected": [
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Edit payload",
+        "expr": "edit_tree()",
+        "expected": [
+          true,
+          false,
+          [
+            3,
+            9,
+            3
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "records=[['a',8,'b','c'],['b',3,None,None],['c',3,None,None]]\ndef invalid_trees():\n    bad=[[['a',1,'a',None]],[['a',1,'x',None]],[['a',1,None,None],['b',2,None,None]]];out=[]\n    for rows in bad:\n        try:Tree(rows,'a');out.append(False)\n        except ValueError:out.append(True)\n    return out\ndef edit_tree():\n    t=Tree(records,'a');return [t.edit('a',9),t.edit('x',0),t.traverse('in')]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "eligibility-table",
+    "title": "Three-condition eligibility rules",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "1.1.3–1.1.5 / 2.2.3–2.2.4",
+    "description": "Implement eligibility(member, paid, space), three booleans. If no space, return \"waitlist\". Otherwise, an unpaid applicant returns \"payment required\". Otherwise return \"member place\" for members and \"guest place\" for guests. Write a decision table covering all eight combinations in your notes and decompose your reasoning into space, payment and membership decisions. Return strings exactly as specified.",
+    "solution": "def eligibility(member, paid, space):\n    if not space:\n        return 'waitlist'\n    if not paid:\n        return 'payment required'\n    return 'member place' if member else 'guest place'\n",
+    "starter": "def eligibility(member, paid, space):\n    pass\n",
+    "tests": [
+      {
+        "label": "Member admitted",
+        "expr": "eligibility(True,True,True)",
+        "expected": "member place"
+      },
+      {
+        "label": "No space takes precedence",
+        "expr": "eligibility(False,False,False)",
+        "expected": "waitlist"
+      },
+      {
+        "label": "All combinations",
+        "expr": "[eligibility(m,p,s) for m in [False,True] for p in [False,True] for s in [False,True]]",
+        "expected": [
+          "waitlist",
+          "payment required",
+          "waitlist",
+          "guest place",
+          "waitlist",
+          "payment required",
+          "waitlist",
+          "member place"
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "List all eight decision-table columns.",
+      "Explain why the no-space rule takes precedence."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "repair-importer",
+    "title": "Repair a broken importer",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "2.4.3 / 2.1.1–2.1.3 / 2.3.4",
+    "description": "Repair read_scores(path). Each UTF-8 line is name,score with no header or quoted commas. Strip both fields. Keep nonempty names with integer scores 0–100 inclusive; skip malformed rows. Return [records,rejected_line_numbers] in input order, using 1-based lines. Empty file returns [[],[]]; let FileNotFoundError propagate. Include programmer/date/purpose/version comments, meaningful names, and a short diagnosis of syntax, runtime and logic bugs. Behaviour is checked automatically; style is reviewed separately.",
+    "solution": "# Programmer: Reference author; Date: 2026-09-10\n# Purpose: Validate score records; Version: 1.0\n\ndef read_scores(path):\n    records, rejected = [], []\n    with open(path, encoding='utf-8') as handle:\n        for line, text in enumerate(handle, 1):\n            fields = text.strip().split(',')\n            try:\n                if len(fields) != 2 or not fields[0].strip():\n                    raise ValueError('Bad fields')\n                score = int(fields[1].strip())\n                if not 0 <= score <= 100:\n                    raise ValueError('Out of range')\n            except ValueError:\n                rejected.append(line)\n            else:\n                records.append([fields[0].strip(), score])\n    return [records, rejected]\n",
+    "starter": "def read_scores(path)\n    r = []\n    for l in open(path):\n        n, s = l.split(',')\n        s = int(s)\n        if s > 0 or s < 100:\n            r.append([n, s])\n    return r\n",
+    "tests": [
+      {
+        "label": "Malformed and boundary rows",
+        "expr": "read_scores(\"scores.txt\")",
+        "expected": [
+          [
+            [
+              "Ari",
+              0
+            ],
+            [
+              "Mei",
+              100
+            ]
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "read_scores(\"empty.txt\")",
+        "expected": [
+          [],
+          []
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {
+      "scores.txt": "Ari,0\nMei,100\nBad,101\n,50\nJo,x\nwrong\n",
+      "empty.txt": ""
+    },
+    "kind": "python",
+    "rubric": [
+      "Explain the missing colon, unsafe split/conversion and incorrect range condition.",
+      "Show normal, abnormal and boundary test cases.",
+      "Review naming, indentation and header/version comments."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "design-tests",
+    "title": "Choose tests that expose the bug",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "2.4.2–2.4.4",
+    "description": "Write cases() returning [label,value,expected] rows for a validator: valid scores have type exactly int (not bool) and are 0–100 inclusive. labels are \"normal\", \"abnormal\" or \"extreme\"; expected is bool. Use 3–10 distinct values, including an interior integer, both endpoints, an out-of-range integer, a string and a boolean. Your cases must expose these four faulty validators: excludes zero; accepts 101; treats bool as int; coerces numeric strings. Tests check expected answers and whether the examples actually distinguish the faults. Review why each category was chosen.",
+    "solution": "def cases():\n    return [\n        ['normal', 50, True],\n        ['extreme', 0, True],\n        ['extreme', 100, True],\n        ['abnormal', 101, False],\n        ['abnormal', '50', False],\n        ['abnormal', True, False],\n    ]\n",
+    "starter": "def cases():\n    pass\n",
+    "tests": [
+      {
+        "label": "Expected answers and categories",
+        "expr": "test_quality()",
+        "expected": true
+      },
+      {
+        "label": "Faults exposed",
+        "expr": "mutants_killed()",
+        "expected": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "def valid(v):return type(v) is int and 0<=v<=100\ndef test_quality():\n    data=cases()\n    if not 3<=len(data)<=10:return False\n    keys=[(type(v).__name__,repr(v)) for _,v,_ in data]\n    if len(set(keys))!=len(data):return False\n    for label,v,e in data:\n        if type(e) is not bool or e!=valid(v):return False\n        expected='extreme' if type(v) is int and v in [0,100] else 'normal' if valid(v) else 'abnormal'\n        if label!=expected:return False\n    return all(any(type(v) is int and v==n for _,v,_ in data) for n in [0,100]) and any(l=='normal' for l,_,_ in data) and any(type(v) is str for _,v,_ in data) and any(type(v) is bool for _,v,_ in data) and any(type(v) is int and not valid(v) for _,v,_ in data)\ndef mutants_killed():\n    bugs=[lambda v:type(v) is int and 0<v<=100,lambda v:type(v) is int and 0<=v<=101,lambda v:isinstance(v,int) and 0<=v<=100,lambda v:(type(v) is int and 0<=v<=100) or (type(v) is str and v.isdigit() and 0<=int(v)<=100)]\n    return [any(bool(bug(v))!=e for _,v,e in cases()) for bug in bugs]",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "Explain which example exposes each faulty validator."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "comparison-counts",
+    "title": "Count comparisons, explain worst case",
+    "topic": "Algorithms",
+    "level": "Core",
+    "minutes": 25,
+    "ref": "1.2.2 / 1.2.4–1.2.5 / 2.2.6",
+    "description": "Implement counts(values,target) returning [bubble,insertion,binary]. Work on copies. Bubble sort scans adjacent pairs in shrinking passes and stops after a pass with no swaps; count each value > value comparison. Insertion sort counts each a[j] > key comparison, including a false comparison, but not the j>=0 boundary check. Binary search uses the sorted input, floor midpoint, and stops at any match; count one probe per inspected midpoint. No mutation of values. In your review explain worst-case time, rather than using measured runtime as proof.",
+    "solution": "def counts(values, target):\n    a, bubble = values[:], 0\n    for end in range(len(a) - 1, 0, -1):\n        changed = False\n        for j in range(end):\n            bubble += 1\n            if a[j] > a[j + 1]:\n                a[j], a[j + 1] = a[j + 1], a[j]\n                changed = True\n        if not changed:\n            break\n    b, insertion = values[:], 0\n    for i in range(1, len(b)):\n        key, j = b[i], i - 1\n        while j >= 0:\n            insertion += 1\n            if b[j] <= key:\n                break\n            b[j + 1] = b[j]\n            j -= 1\n        b[j + 1] = key\n    left, right, binary = 0, len(a) - 1, 0\n    while left <= right:\n        mid = (left + right) // 2\n        binary += 1\n        if a[mid] == target:\n            break\n        if a[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return [bubble, insertion, binary]\n",
+    "starter": "def counts(values, target):\n    pass\n",
+    "tests": [
+      {
+        "label": "Sorted input",
+        "expr": "counts([1,2,3,4],4)",
+        "expected": [
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "label": "Reverse input",
+        "expr": "counts([4,3,2,1],0)",
+        "expected": [
+          6,
+          6,
+          2
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "counts([],3)",
+        "expected": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "Duplicates",
+        "expr": "counts([2,2,2],2)",
+        "expected": [
+          2,
+          2,
+          1
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "Explain quadratic worst-case sorting and logarithmic binary-search probes.",
+      "Distinguish probes from individual Python boolean comparisons."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "base-records",
+    "title": "Denary, binary and hexadecimal records",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.1.1–3.1.2 / 2.4.2",
+    "description": "Implement convert_records(records). Each [base,text] uses base 2, 10 or 16. For each record return [decimal_integer,uppercase_hex_string], or None if unsupported base, empty text, invalid digit or a negative sign. Accept leading zeros and lowercase hex, but not spaces or prefixes. Zero is an allowed extension. Use positional arithmetic to parse and repeated division to format; do not call int(text,base), bin, hex or formatting-based conversion.",
+    "solution": "def convert_records(records):\n    digits = '0123456789ABCDEF'\n    output = []\n    for base, text in records:\n        text = text.upper()\n        if base not in [2, 10, 16] or not text or any(c not in digits[:base] for c in text):\n            output.append(None)\n            continue\n        value = 0\n        for c in text:\n            value = value * base + digits.index(c)\n        number, encoded = value, ''\n        while number:\n            encoded = digits[number % 16] + encoded\n            number //= 16\n        output.append([value, encoded or '0'])\n    return output\n",
+    "starter": "def convert_records(records):\n    pass\n",
+    "tests": [
+      {
+        "label": "Mixed records",
+        "expr": "convert_records([[2,\"00101\"],[16,\"ff\"],[10,\"256\"],[2,\"102\"]])",
+        "expected": [
+          [
+            5,
+            "5"
+          ],
+          [
+            255,
+            "FF"
+          ],
+          [
+            256,
+            "100"
+          ],
+          null
+        ]
+      },
+      {
+        "label": "Zero and invalid",
+        "expr": "convert_records([[10,\"0\"],[16,\"\"],[10,\"-2\"],[8,\"7\"],[16,\" FF\"]])",
+        "expected": [
+          [
+            0,
+            "0"
+          ],
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "label": "Large value",
+        "expr": "convert_records([[16,\"FFFFFFFF\"]])",
+        "expected": [
+          [
+            4294967295,
+            "FFFFFFFF"
+          ]
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "ascii-boundaries",
+    "title": "ASCII and Unicode boundary cases",
+    "topic": "Python & files",
+    "level": "Core",
+    "minutes": 20,
+    "ref": "3.2.1–3.2.2 / 2.2.2",
+    "description": "Implement shift_ascii(text,step): rotate ASCII A–Z and a–z independently by step (any integer); leave digits, punctuation and all other Unicode characters unchanged. Return [shifted_text,character_count,utf8_byte_count] for the result. Use ord/chr for shifts. In your notes explain why a Unicode character and a UTF-8 byte are not interchangeable.",
+    "solution": "def shift_ascii(text, step):\n    result = ''\n    for char in text:\n        if 'A' <= char <= 'Z':\n            char = chr((ord(char) - ord('A') + step) % 26 + ord('A'))\n        elif 'a' <= char <= 'z':\n            char = chr((ord(char) - ord('a') + step) % 26 + ord('a'))\n        result += char\n    return [result, len(result), len(result.encode('utf-8'))]\n",
+    "starter": "def shift_ascii(text, step):\n    pass\n",
+    "tests": [
+      {
+        "label": "Preserve Unicode",
+        "expr": "shift_ascii(\"Az é中1!\",1)",
+        "expected": [
+          "Ba é中1!",
+          7,
+          10
+        ]
+      },
+      {
+        "label": "Negative shift",
+        "expr": "shift_ascii(\"AaZz\",-1)",
+        "expected": [
+          "ZzYy",
+          4,
+          4
+        ]
+      },
+      {
+        "label": "Empty",
+        "expr": "shift_ascii(\"\",100)",
+        "expected": [
+          "",
+          0,
+          0
+        ]
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [
+      "Explain code points versus UTF-8 bytes using the non-ASCII example."
+    ],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "deferred-work",
+    "title": "Multi-day deferred work",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 40,
+    "ref": "2.3.4 / 1.3.3 / 2.5.1 / 2.2.4",
+    "description": "Implement Scheduler(limit).run(incoming_path,deferred_path). Files are JSON arrays of [unique_id,positive_duration] records; absent files mean []. Pending deferred work precedes new work; IDs are unique across both inputs. Scan once in order: schedule each job if it fits the remaining limit, otherwise defer it and continue. Return scheduled IDs. Persist deferred jobs and replace incoming with [] after a successful run. Test on consecutive days; oversized jobs remain pending without an infinite loop. limit is nonnegative. Use a class and separate read/write helpers. File-write crash recovery is outside this exercise.",
+    "solution": "import json\nfrom pathlib import Path\n\nclass Scheduler:\n    def __init__(self, limit):\n        self.limit = limit\n    def _read(self, path):\n        return json.loads(Path(path).read_text()) if Path(path).exists() else []\n    def _write(self, path, records):\n        Path(path).write_text(json.dumps(records))\n    def run(self, incoming_path, deferred_path):\n        pending = self._read(deferred_path) + self._read(incoming_path)\n        remaining, scheduled, deferred = self.limit, [], []\n        for key, duration in pending:\n            if duration <= remaining:\n                scheduled.append(key)\n                remaining -= duration\n            else:\n                deferred.append([key, duration])\n        self._write(deferred_path, deferred)\n        self._write(incoming_path, [])\n        return scheduled\n",
+    "starter": "class Scheduler:\n    pass\n",
+    "tests": [
+      {
+        "label": "Consecutive days",
+        "expr": "days_check()",
+        "expected": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "b"
+          ],
+          [
+            [
+              "huge",
+              20
+            ]
+          ],
+          []
+        ]
+      },
+      {
+        "label": "Missing files",
+        "expr": "Scheduler(0).run(\"missing\",\"deferred\")",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "import json\nfrom pathlib import Path\ndef days_check():\n    Path('new').write_text(json.dumps([['a',6],['b',5],['c',4],['huge',20]]))\n    s=Scheduler(10);first=s.run('new','later');second=s.run('new','later')\n    return [first,second,json.loads(Path('later').read_text()),json.loads(Path('new').read_text())]",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
+  },
+  {
+    "id": "word-paths",
+    "title": "Word paths with stable ranking",
+    "topic": "Python & files",
+    "level": "Stretch",
+    "minutes": 35,
+    "ref": "2.2.1–2.2.4 / 1.2.1 / 2.3.1",
+    "description": "Implement rank_paths(board,scores,paths). board is a nonempty rectangular array of one-character strings; scores has the same dimensions and integer entries. Each path is [row,column,directions], with U/D/L/R moves. Include the starting tile, then each visited tile; repeated visits are allowed and score again. Skip paths with an invalid start, invalid direction or out-of-bounds move. Return [word,total_score] records descending by score, preserving input order for ties. Use separate path validation/scoring and stable bubble sort; no sorted() or list.sort().",
+    "solution": "def rank_paths(board, scores, paths):\n    moves = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}\n    def follow(row, col, directions):\n        word, total = '', 0\n        for direction in 'S' + directions:\n            if direction != 'S':\n                if direction not in moves:\n                    return None\n                dr, dc = moves[direction]\n                row, col = row + dr, col + dc\n            if not 0 <= row < len(board) or not 0 <= col < len(board[0]):\n                return None\n            word += board[row][col]\n            total += scores[row][col]\n        return [word, total]\n    result = []\n    for row, col, directions in paths:\n        if any(d not in moves for d in directions):\n            continue\n        record = follow(row, col, directions)\n        if record is not None:\n            result.append(record)\n    for end in range(len(result) - 1, 0, -1):\n        for i in range(end):\n            if result[i][1] < result[i + 1][1]:\n                result[i], result[i + 1] = result[i + 1], result[i]\n    return result\n",
+    "starter": "def rank_paths(board, scores, paths):\n    pass\n",
+    "tests": [
+      {
+        "label": "Stable ties and invalid moves",
+        "expr": "rank_paths([[\"A\",\"B\"],[\"C\",\"D\"]],[[1,2],[2,1]],[[0,0,\"R\"],[0,0,\"D\"],[0,0,\"U\"],[1,1,\"\"]])",
+        "expected": [
+          [
+            "AB",
+            3
+          ],
+          [
+            "AC",
+            3
+          ],
+          [
+            "D",
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Repeated visits",
+        "expr": "rank_paths([[\"A\",\"B\"]],[[1,2]],[[0,0,\"RL\"],[0,0,\"S\"]])",
+        "expected": [
+          [
+            "ABA",
+            4
+          ]
+        ]
+      },
+      {
+        "label": "Invalid starts",
+        "expr": "rank_paths([[\"A\"]],[[1]],[[-1,0,\"\"],[1,0,\"\"]])",
+        "expected": []
+      }
+    ],
+    "hints": [
+      "Separate validation, state changes and output.",
+      "Try an empty case, an exact boundary and repeated operations."
+    ],
+    "setup": "",
+    "files": {},
+    "kind": "python",
+    "rubric": [],
+    "source": "Original syllabus expansion",
+    "sourceUrl": ""
   }
 ]

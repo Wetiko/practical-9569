@@ -92,9 +92,13 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 
 .review-modules {margin-bottom:40px}
 .review-module summary {cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:8px 0}
-.review-module summary span {font-size:13px;color:var(--muted)}
+.review-module summary span {font-size:13px;color:var(--secondary)}
 .review-question {padding:24px 0;border-top:1px solid var(--border)}
 .review-question>label:first-child {display:block;font-weight:600;line-height:1.6}
 .review-question textarea,.history textarea {display:block;width:100%;min-height:110px;margin:14px 0;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--background);color:var(--foreground);font:inherit;resize:vertical}
 .review-question details p {line-height:1.7}
 .review-module {background:var(--panel-glass);background-image:none}
+
+/* Audit: keep expanded filters usable on narrow screens. */
+.filters {flex-wrap:wrap}
+.filters .searchbox {min-width:min(260px,100%)}

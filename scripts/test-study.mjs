@@ -28,3 +28,13 @@ assert.throws(()=>m.validateSaved({...full,reviews:{representation:{answers:{},c
 const reviewBank=JSON.parse(await readFile(new URL('../app/reviews.json',import.meta.url),'utf8'));
 assert.equal(reviewBank.length,8);
 for(const r of reviewBank){assert.ok(r.questions.length>=3);for(const ref of m.references(r.ref))assert.ok(m.syllabus.some(s=>s.code===ref));assert.equal(new Set(r.questions.map(q=>q.id)).size,r.questions.length);for(const q of r.questions)assert.ok(q.answer.length>30&&q.check.length>20)}
+
+const persistenceSource=await readFile(new URL('../app/persistence.ts',import.meta.url),'utf8');
+const persistenceJS=ts.transpileModule(persistenceSource,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const {persistSaved}=await import('data:text/javascript;base64,'+Buffer.from(persistenceJS).toString('base64'));
+let raw='unreadable original';const storage={setItem:(_key,value)=>{raw=value}};
+assert.equal(persistSaved(storage,'k',{},false,false),'paused');assert.equal(raw,'unreadable original');
+assert.equal(persistSaved(storage,'k',{},true,true),'paused');assert.equal(raw,'unreadable original');
+assert.equal(persistSaved({setItem:()=>{throw Error('Quota exceeded')}},'k',{},true,false),'failed');
+assert.equal(persistSaved(storage,'k',{version:1},true,false),'saved');assert.deepEqual(JSON.parse(raw),{version:1});
+console.log('Storage regression checks passed: initial loading, failed recovery, quota failure and successful save.');

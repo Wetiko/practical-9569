@@ -15,7 +15,7 @@ Scope: targeted code review and desktop/mobile browser checks of challenge disco
 
 | Priority | Finding and evidence | Proposed change | Approximate scope |
 |---|---|---|---|
-| High | Lazy-loaded screens have no error boundary or update-recovery flow. A tab left open across a deployment can request a removed chunk and fail to open a screen. | Add a boundary with a safe “Reload latest version” action, preserving/exporting current drafts before reload; test an intentionally missing chunk. Avoid automatic reload loops. | Medium |
+| Completed | Lazy-loaded screens have no error boundary or update-recovery flow. A tab left open across a deployment can request a removed chunk and fail to open a screen. | Add a boundary with a safe “Reload latest version” action, preserving/exporting current drafts before reload; test an intentionally missing chunk. Avoid automatic reload loops. | Medium |
 | Medium | The build reports a main chunk above 500 kB before compression. The bank, reference solutions and explanation data travel through app imports. | Load challenge metadata first, and load reference content/editor/chart features only when needed. Measure cold-load and first-run time before choosing further optimisations. | Medium |
 | Medium | Current view and filters are React state; refresh returns to Discover, and individual challenges do not have shareable URLs. | Add URL state for challenge IDs and main views, with browser Back/Forward support and GitHub Pages-compatible hash routing. Keep timer/draft state independent. | Medium |
 | Medium | Every progress edit serialises the full backup into synchronous localStorage; quota failure now has honest feedback, but capacity and multi-tab overwrites remain limitations. | Consider IndexedDB plus explicit multi-tab conflict handling. Preserve a last-known-good snapshot and provide a tested migration. Do not add account/cloud sync for personal use without a specific need. | Medium–large |
@@ -32,3 +32,9 @@ Scope: targeted code review and desktop/mobile browser checks of challenge disco
 - Full keyboard/screen-reader testing, network-failure simulation, performance profiling and all 89 challenge correctness reviews are deferred. This report does not claim those audits are complete.
 
 Design reference: the project's pinned Apple design skill, particularly accessibility and search guidance. Practical priority: readable status, predictable filtering and preserving the user's work.
+
+## High-priority recovery change — implemented
+
+Every lazy-loaded screen now has a recovery boundary that keeps the main app and current drafts mounted. A failed screen offers **Export current work** and **Reload latest version**. Reload first attempts an immediate save; when storage is unavailable or recovery is paused, it requires a backup export. The user is told to verify the download. Editing work after an export invalidates that export's reload permission. No automatic reload or retry loop runs. Active exam deadlines remain unchanged.
+
+Verified locally by temporarily removing the built quick-actions chunk, opening it, confirming the recovery UI and continued challenge navigation, editing a draft, restoring the chunk and explicitly reloading. The draft survived and quick actions loaded successfully. Regression checks cover reload permission for successful, failed and paused saves. Typecheck, study checks and production build pass. Initial HTML/main-script network failures remain outside React recovery because the app has not yet started.

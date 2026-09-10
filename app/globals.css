@@ -102,3 +102,8 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 /* Audit: keep expanded filters usable on narrow screens. */
 .filters {flex-wrap:wrap}
 .filters .searchbox {min-width:min(260px,100%)}
+
+.load-recovery{padding:24px;margin:16px 0;border:1px solid var(--border);border-radius:16px;background:var(--panel-glass);color:var(--foreground)}
+.load-recovery h2{font-size:1.2rem;margin:0 0 12px}.load-recovery p{line-height:1.6;color:var(--secondary)}
+.load-recovery>div{display:flex;flex-wrap:wrap;gap:12px}.load-recovery button{padding:12px 16px;min-height:44px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--foreground);cursor:pointer}
+.load-recovery button:focus-visible{outline:2px solid var(--primary);outline-offset:3px}

@@ -146,7 +146,10 @@ def trace_sum(values):
     events = []
     def visit(i):
         events.append(['enter', i])
-        total = 0 if i == len(values) else values[i] + visit(i + 1)
+        if i == len(values):
+            total = 0
+        else:
+            total = values[i] + visit(i + 1)
         events.append(['return', i, total])
         return total
     visit(0)

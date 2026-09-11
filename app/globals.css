@@ -113,3 +113,5 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 
 .debug-actions{padding:12px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.debug-actions p{flex-basis:100%;margin:0;padding:12px;border-left:3px solid var(--primary);color:var(--foreground);background:var(--selection)}
 .listmeta{flex-wrap:wrap;gap:12px}.listmeta button:disabled{opacity:.5;cursor:not-allowed}
+
+.solution-lesson{line-height:1.7}.solution-lesson h3{margin-top:24px}.solution-lesson li{margin-bottom:12px}.solution-lesson li p{margin:4px 0}.solution-lesson strong{color:var(--foreground)}

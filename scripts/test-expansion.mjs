@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 import {loadPyodide} from 'pyodide';
 const bank=JSON.parse(await readFile('app/problems.json','utf8'));
-const ids=JSON.parse(await readFile('content/expansion/automatic-ids.json','utf8'));
+const ids=process.argv.length>2?process.argv.slice(2):JSON.parse(await readFile('content/expansion/automatic-ids.json','utf8'));
 const messages=[];const py=await loadPyodide();
 const context={importScripts(){},loadPyodide:()=>Promise.resolve(py),self:{postMessage:m=>messages.push(m)}};
 vm.runInNewContext(await readFile('public/python-worker.js','utf8'),context);

@@ -3482,22 +3482,34 @@
     },
     {
       "line": 5,
-      "text": "Set total to 0 if i equals the length of values; otherwise values[i] + visit(i + 1)."
+      "text": "Check whether i equals the length of values."
     },
     {
       "line": 6,
-      "text": "Append ['return', i, total] to events."
+      "text": "Set total to 0."
     },
     {
       "line": 7,
-      "text": "Return total."
+      "text": "Otherwise, take this branch."
     },
     {
       "line": 8,
-      "text": "Call visit(0)."
+      "text": "Set total to values[i] + visit(i + 1)."
     },
     {
       "line": 9,
+      "text": "Append ['return', i, total] to events."
+    },
+    {
+      "line": 10,
+      "text": "Return total."
+    },
+    {
+      "line": 11,
+      "text": "Call visit(0)."
+    },
+    {
+      "line": 12,
       "text": "Return events."
     }
   ],

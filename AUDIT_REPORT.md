@@ -68,3 +68,9 @@ A focused follow-up found friction in repeated run/debug cycles and choosing unf
 - **Unfinished practice:** opens an unfinished challenge from the current filtered list, preferring another challenge over the current one. It respects automated completion and lab self-review, and disables when no unfinished match exists.
 
 Validation: targeted tests cover filtered selection, completed labs, no matches, changed code/input and report fields. Browser checks confirmed both Mac keyboard shortcuts, recorded submission results, the stale-draft warning, and selection of a local lab while the Local labs filter was active. Typecheck and production build pass; deployment runs the full existing suite. This was not another full-site audit.
+
+## Solution explanation pilot — 11 September 2026
+
+The approved three-challenge pilot covers shared linked-list storage, recursive tracing and transactional CSV import. Each now presents an approach, a short guide to key code blocks, a worked trace, common mistakes and a qualified complexity note. The original line-by-line detail remains available but starts collapsed for these three challenges. Reference content still loads only when revealed.
+
+Expanded the recursive solution's conditional expression into an explicit base case and recursive branch. Other reference code was retained. All nine existing checks for the three solutions pass in the Python worker; unfinished starters still fail. Content/guide consistency, typecheck, build and browser reveal checks pass. Further rollout awaits user review of the pilot.

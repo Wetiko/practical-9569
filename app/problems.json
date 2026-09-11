@@ -4249,7 +4249,7 @@
     "minutes": 25,
     "ref": "2.2.5–2.2.7",
     "description": "Implement trace_sum(values) using a recursive helper with index i. Emit [\"enter\", i] before each call checks its base case, including i == len(values). Emit [\"return\", i, total] just before each call returns its suffix sum. Return the complete event list; do not change values. Each recursive call waits for exactly one smaller subproblem.",
-    "solution": "def trace_sum(values):\n    events = []\n    def visit(i):\n        events.append(['enter', i])\n        total = 0 if i == len(values) else values[i] + visit(i + 1)\n        events.append(['return', i, total])\n        return total\n    visit(0)\n    return events\n",
+    "solution": "def trace_sum(values):\n    events = []\n    def visit(i):\n        events.append(['enter', i])\n        if i == len(values):\n            total = 0\n        else:\n            total = values[i] + visit(i + 1)\n        events.append(['return', i, total])\n        return total\n    visit(0)\n    return events\n",
     "starter": "def trace_sum(values):\n    pass\n",
     "tests": [
       {

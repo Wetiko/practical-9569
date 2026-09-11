@@ -72,7 +72,7 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 .motion-paused .canvas-glow i {animation-play-state:paused;will-change:auto}
 @media (prefers-reduced-transparency:reduce), (prefers-contrast:more) {.page-atmosphere {display:none}}
 
-.nav-short-label{display:none}@media(max-width:1100px){.nav-long-label{display:none}.nav-short-label{display:inline}}@media(max-width:760px){.global-nav{grid-template-columns:repeat(6,minmax(0,1fr))}.global-nav button{padding-inline:3px;font-size:10px}}
+.nav-short-label{display:none}@media(max-width:1100px){.nav-long-label{display:none}.nav-short-label{display:inline}}@media(max-width:760px){.global-nav{grid-template-columns:repeat(7,minmax(0,1fr))}.global-nav button{padding-inline:3px;font-size:10px}}
 
 /* Plain translucent surfaces. No decorative washes or specular gradients. */
 :root{--panel-glass:rgba(255,255,255,.66)}
@@ -94,7 +94,7 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 .review-module summary {cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:8px 0}
 .review-module summary span {font-size:13px;color:var(--secondary)}
 .review-question {padding:24px 0;border-top:1px solid var(--border)}
-.review-question>label:first-child {display:block;font-weight:600;line-height:1.6}
+.review-question>label:not(.checkrow) {display:block;font-weight:600;line-height:1.6}
 .review-question textarea,.history textarea {display:block;width:100%;min-height:110px;margin:14px 0;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--background);color:var(--foreground);font:inherit;resize:vertical}
 .review-question details p {line-height:1.7}
 .review-module {background:var(--panel-glass);background-image:none}
@@ -107,3 +107,6 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 .load-recovery h2{font-size:1.2rem;margin:0 0 12px}.load-recovery p{line-height:1.6;color:var(--secondary)}
 .load-recovery>div{display:flex;flex-wrap:wrap;gap:12px}.load-recovery button{padding:12px 16px;min-height:44px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--foreground);cursor:pointer}
 .load-recovery button:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+
+.review-question,.review-module{scroll-margin-top:100px}.review-question>a{display:inline-block;margin-bottom:12px;font-size:.75rem;color:var(--primary)}
+@media(max-width:760px){.global-nav button{padding-inline:2px}.global-nav button span{font-size:10px}}

@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import ts from 'typescript';
+import 'fake-indexeddb/auto';
+const source=await readFile('app/device-store.ts','utf8');
+const js=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const {DeviceStore,ConflictError}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+const validate=x=>{if(!x||x.version!==1||typeof x.draft!=='string')throw Error('Invalid snapshot');return x};
+const name='test-'+Date.now();const a=await DeviceStore.open(validate,name);
+const legacy=JSON.stringify({version:1,draft:'legacy'});
+assert.equal((await a.load(()=>legacy)).value.draft,'legacy');assert.equal((await a.record()).current.draft,'legacy');
+await a.save({version:1,draft:'edited'});assert.equal((await a.previous()).draft,'legacy');
+const b=await DeviceStore.open(validate,name);assert.equal((await b.load(()=>{throw Error('Should not read legacy twice')})).value.draft,'edited');
+const results=await Promise.allSettled([a.save({version:1,draft:'A'}),b.save({version:1,draft:'B'})]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);assert.ok(results.find(r=>r.status==='rejected').reason instanceof ConflictError);
+const latest=await b.load(()=>null);assert.equal(latest.value.draft,'A');await b.save({version:1,draft:'B after resolving'});assert.equal((await b.previous()).draft,'A');
+a.close();b.close();
+const c=await DeviceStore.open(validate,name);assert.equal((await c.load(()=>null)).value.draft,'B after resolving');c.close();
+const invalid=await DeviceStore.open(validate,name+'-invalid');await assert.rejects(invalid.load(()=>'{broken'));assert.equal(await invalid.record(),undefined);invalid.close();
+// Corrupt only the newest stored value: startup must recover its valid predecessor.
+const request=indexedDB.open(name);await new Promise((resolve,reject)=>{request.onsuccess=()=>resolve();request.onerror=reject});const db=request.result;
+await new Promise((resolve,reject)=>{const tx=db.transaction('snapshots','readwrite');tx.objectStore('snapshots').put({revision:9,current:{bad:true},previous:{version:1,draft:'last known good'}},'work');tx.oncomplete=resolve;tx.onerror=reject});db.close();
+const recovered=await DeviceStore.open(validate,name);const result=await recovered.load(()=>null);assert.equal(result.recovered,true);assert.equal(result.value.draft,'last known good');await recovered.save({version:1,draft:'repaired'});assert.equal((await recovered.previous()).draft,'last known good');recovered.close();
+console.log('Device store: migration, reopen, previous snapshot, atomic conflict, explicit resolution and corruption recovery passed.');

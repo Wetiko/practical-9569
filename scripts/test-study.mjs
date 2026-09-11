@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import ts from 'typescript';
 const bank=JSON.parse(await readFile(new URL('../app/problems.json',import.meta.url),'utf8'));
-const source=(await readFile(new URL('../app/study.ts',import.meta.url),'utf8')).replace("import bank from './problems.json';",`const bank=${JSON.stringify(bank)};`);
+const source=(await readFile(new URL('../app/study.ts',import.meta.url),'utf8')).replace("import {bank} from './content';",`const bank=${JSON.stringify(bank)};`);
 const js=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
 const m=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
 assert.deepEqual(m.references('2.5.1–2.5.4'),['2.5.1','2.5.2','2.5.3','2.5.4']);

@@ -1,5 +1,5 @@
 import type {LearningProgress} from './visualisations/engine';
-import bank from './problems.json';
+import {bank} from './content';
 export type ProblemKind='python'|'sql'|'mongo'|'lab';
 export type Problem=(typeof bank)[number];
 export type Attempt={at:string;passed:number;total:number;code:string;sessionId?:string};

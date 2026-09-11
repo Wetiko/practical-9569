@@ -1,0 +1,1 @@
+{"solution":"def gcd(a, b):\n    return a if b == 0 else gcd(b,a % b)\n","steps":[{"line":1,"text":"Define gcd(a, b)."},{"line":2,"text":"Stop when b is zero; otherwise recurse with b and the remainder of a \u00f7 b."}]}

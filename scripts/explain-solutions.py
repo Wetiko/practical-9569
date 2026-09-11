@@ -77,6 +77,8 @@ overrides.update({
 'mongo-delete':{1:'Import the MongoDB emulator.',3:'Accept the collection and exclusive lower-score threshold.',4:'Delete every Computing score below the threshold; missing scores do not match.',5:'Return the number of documents removed.'},
 'mongo-aggregate':{1:'Import the MongoDB emulator.',3:'Accept the collection and minimum eligible Computing score.',4:'Define the aggregation stages in execution order.',5:'Keep only documents meeting the Computing score threshold.',6:'Group by class, averaging Computing scores and counting matching students.',7:'Sort highest averages first, breaking ties by class name ascending.',8:'Finish the list of pipeline stages.',9:'Run the pipeline and turn its cursor into a list of result dictionaries.'}
 })
+for id,notes in json.loads(Path('content/expansion/guide-overrides.json').read_text()).items():
+ overrides.setdefault(id,{}).update({int(line):text for line,text in notes.items()})
 result={}
 for p in bank:
  lines=p['solution'].splitlines();notes={}

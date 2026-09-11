@@ -1,0 +1,1 @@
+{"solution":"def transpose(grid):\n    if not grid: return []\n    return [[grid[i][j] for i in range(len(grid))] for j in range(len(grid[0]))]\n","steps":[{"line":1,"text":"Define transpose(grid)."},{"line":2,"text":"Check whether not (grid). Return an empty list."},{"line":3,"text":"Create one output row per original column, preserving its top-to-bottom order."}]}

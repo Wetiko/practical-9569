@@ -611,6 +611,9 @@ def rank_paths(board, scores, paths):
     return result
 ''',[('Stable ties and invalid moves','rank_paths([["A","B"],["C","D"]],[[1,2],[2,1]],[[0,0,"R"],[0,0,"D"],[0,0,"U"],[1,1,""]])',[['AB',3],['AC',3],['D',1]]),('Repeated visits','rank_paths([["A","B"]],[[1,2]],[[0,0,"RL"],[0,0,"S"]])',[['ABA',4]]),('Invalid starts','rank_paths([["A"]],[[1]],[[-1,0,""],[1,0,""]])',[])],level='Stretch',minutes=35)
 
+from refinements import refine
+refine(new)
+
 if __name__=='__main__':
     bank=json.loads(Path('app/problems.json').read_text())
     ids={p['id'] for p in new};bank=[p for p in bank if p['id'] not in ids]+new

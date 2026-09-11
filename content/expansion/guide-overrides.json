@@ -1,0 +1,30 @@
+{
+  "shared-pool": {
+    "8": "Find the insertion position without changing any links, so duplicates or a full pool can fail safely.",
+    "14": "Detach the first free slot before attaching it to a live list; each slot must have exactly one owner.",
+    "32": "Return the removed slot to the free chain so either list can reuse its capacity."
+  },
+  "master-update": {
+    "8": "Hold one row from each input: storage stays bounded even when the files grow.",
+    "10": "Choose the smaller pending key so output remains ordered without sorting the whole file.",
+    "15": "Apply every transaction for this key in input order; a delete followed by an insert recreates the record.",
+    "23": "Write once after all same-key changes; intermediate versions must never reach the output."
+  },
+  "tournament-tree": {
+    "13": "Reject an unknown or previously reached ID: it represents a broken link, shared child or cycle.",
+    "15": "Mark the node before descending so a link back to an ancestor is detected.",
+    "19": "Reject disconnected records as well as invalid links reachable from the root.",
+    "24": "Change only the payload; child links and traversal structure remain unchanged."
+  },
+  "word-paths": {
+    "11": "Check coordinates before indexing; Python's negative indices would otherwise wrap around incorrectly.",
+    "18": "Reject invalid direction letters before following the path, including the reserved start marker.",
+    "25": "Swap only when the next score is strictly greater. Equal-score paths keep their original order."
+  },
+  "register-import": {
+    "7": "Validate the header before entering the write transaction so incompatible columns cannot be imported.",
+    "9": "Commit the batch on normal exit; an unexpected database exception rolls back every insert in this call.",
+    "14": "Strip all fields before checking them; keep quoted commas inside a CSV field intact.",
+    "18": "Check existing IDs so the first valid record wins, including records already in the database."
+  }
+}

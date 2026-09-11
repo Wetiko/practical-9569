@@ -3260,7 +3260,7 @@
     },
     {
       "line": 7,
-      "text": "Check whether next(rows, None) differs from ['id', 'name', 'score']."
+      "text": "Validate the header before entering the write transaction so incompatible columns cannot be imported."
     },
     {
       "line": 8,
@@ -3268,7 +3268,7 @@
     },
     {
       "line": 9,
-      "text": "Open a managed context for conn; clean it up on exit."
+      "text": "Commit the batch on normal exit; an unexpected database exception rolls back every insert in this call."
     },
     {
       "line": 10,
@@ -3288,7 +3288,7 @@
     },
     {
       "line": 14,
-      "text": "Set (key, name, score) to a list of v.strip() for v in row."
+      "text": "Strip all fields before checking them; keep quoted commas inside a CSV field intact."
     },
     {
       "line": 15,
@@ -3304,7 +3304,7 @@
     },
     {
       "line": 18,
-      "text": "Check whether conn.execute('SELECT 1 FROM Student WHERE id=?', (int(key),)).fetchone()."
+      "text": "Check existing IDs so the first valid record wins, including records already in the database."
     },
     {
       "line": 19,
@@ -3594,7 +3594,7 @@
     },
     {
       "line": 8,
-      "text": "Set (record, change) to (next(masters, None), next(updates, None))."
+      "text": "Hold one row from each input: storage stays bounded even when the files grow."
     },
     {
       "line": 9,
@@ -3602,7 +3602,7 @@
     },
     {
       "line": 10,
-      "text": "Set key to min((int(x[0]) for x in [record, change] if x is not None))."
+      "text": "Choose the smaller pending key so output remains ordered without sorting the whole file."
     },
     {
       "line": 11,
@@ -3622,7 +3622,7 @@
     },
     {
       "line": 15,
-      "text": "Repeat while change is not None and change[0] converted to an integer equals key."
+      "text": "Apply every transaction for this key in input order; a delete followed by an insert recreates the record."
     },
     {
       "line": 16,
@@ -3654,7 +3654,7 @@
     },
     {
       "line": 23,
-      "text": "Call writer.writerow([key, name])."
+      "text": "Write once after all same-key changes; intermediate versions must never reach the output."
     },
     {
       "line": 24,
@@ -3730,7 +3730,7 @@
     },
     {
       "line": 8,
-      "text": "Set (previous, current) to (-1, self.heads[which])."
+      "text": "Find the insertion position without changing any links, so duplicates or a full pool can fail safely."
     },
     {
       "line": 9,
@@ -3754,7 +3754,7 @@
     },
     {
       "line": 14,
-      "text": "Set self.free to self.next[node]."
+      "text": "Detach the first free slot before attaching it to a live list; each slot must have exactly one owner."
     },
     {
       "line": 15,
@@ -3826,7 +3826,7 @@
     },
     {
       "line": 32,
-      "text": "Set (self.next[current], self.free) to (self.free, current)."
+      "text": "Return the removed slot to the free chain so either list can reuse its capacity."
     },
     {
       "line": 33,
@@ -4090,7 +4090,7 @@
     },
     {
       "line": 13,
-      "text": "Check whether key is not in self.nodes or key is in seen."
+      "text": "Reject an unknown or previously reached ID: it represents a broken link, shared child or cycle."
     },
     {
       "line": 14,
@@ -4098,7 +4098,7 @@
     },
     {
       "line": 15,
-      "text": "Record key in seen."
+      "text": "Mark the node before descending so a link back to an ancestor is detected."
     },
     {
       "line": 16,
@@ -4114,7 +4114,7 @@
     },
     {
       "line": 19,
-      "text": "Check whether the length of seen differs from the length of self.nodes."
+      "text": "Reject disconnected records as well as invalid links reachable from the root."
     },
     {
       "line": 20,
@@ -4134,7 +4134,7 @@
     },
     {
       "line": 24,
-      "text": "Set self.nodes[key][0] to value."
+      "text": "Change only the payload; child links and traversal structure remain unchanged."
     },
     {
       "line": 25,
@@ -4718,7 +4718,7 @@
     },
     {
       "line": 11,
-      "text": "Check whether not (0 is at most row and is less than the length of board) or not (0 is at most col and is less than the length of board[0])."
+      "text": "Check coordinates before indexing; Python's negative indices would otherwise wrap around incorrectly."
     },
     {
       "line": 12,
@@ -4746,7 +4746,7 @@
     },
     {
       "line": 18,
-      "text": "Check whether any((d not in moves for d in directions))."
+      "text": "Reject invalid direction letters before following the path, including the reserved start marker."
     },
     {
       "line": 19,
@@ -4774,7 +4774,7 @@
     },
     {
       "line": 25,
-      "text": "Check whether result[i][1] is less than result[i + 1][1]."
+      "text": "Swap only when the next score is strictly greater. Equal-score paths keep their original order."
     },
     {
       "line": 26,

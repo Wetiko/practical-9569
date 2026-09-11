@@ -10,7 +10,9 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs && node scripts/test-mongo.mjs && node scripts/test-visualisations.mjs && node scripts/test-expansion.mjs"
+    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs && node scripts/test-mongo.mjs && node scripts/test-visualisations.mjs && node scripts/test-expansion.mjs && node scripts/test-device-store.mjs && node scripts/test-routes.mjs && node scripts/test-mutations.mjs && node scripts/test-content.mjs",
+    "prebuild": "python3 scripts/split-content.py",
+    "predev": "python3 scripts/split-content.py"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
@@ -53,6 +55,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
+    "fake-indexeddb": "^6.2.5",
     "oxfmt": "0.61.0",
     "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",

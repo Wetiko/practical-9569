@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs && node scripts/test-mongo.mjs && node scripts/test-visualisations.mjs && node scripts/test-expansion.mjs && node scripts/test-device-store.mjs && node scripts/test-routes.mjs && node scripts/test-mutations.mjs && node scripts/test-content.mjs",
+    "test": "node scripts/test-study.mjs && node scripts/test-worker.mjs && node scripts/test-mongo.mjs && node scripts/test-visualisations.mjs && node scripts/test-expansion.mjs && node scripts/test-device-store.mjs && node scripts/test-routes.mjs && node scripts/test-mutations.mjs && node scripts/test-content.mjs && node scripts/test-practice-qol.mjs",
     "prebuild": "python3 scripts/split-content.py",
     "predev": "python3 scripts/split-content.py"
   },

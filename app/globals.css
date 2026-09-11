@@ -110,3 +110,6 @@ main[data-ambient-topic="Web & networks"],main[data-ambient-topic=exam] {--ambie
 
 .review-question,.review-module{scroll-margin-top:100px}.review-question>a{display:inline-block;margin-bottom:12px;font-size:.75rem;color:var(--primary)}
 @media(max-width:760px){.global-nav button{padding-inline:2px}.global-nav button span{font-size:10px}}
+
+.debug-actions{padding:12px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.debug-actions p{flex-basis:100%;margin:0;padding:12px;border-left:3px solid var(--primary);color:var(--foreground);background:var(--selection)}
+.listmeta{flex-wrap:wrap;gap:12px}.listmeta button:disabled{opacity:.5;cursor:not-allowed}

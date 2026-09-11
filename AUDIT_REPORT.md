@@ -57,3 +57,14 @@ On this computer, a fresh-origin local visit reached the editor in 2.32 seconds.
 Tests cover legacy migration, reopening IndexedDB, previous snapshots, corrupt-current recovery, concurrent transactions, explicit revision resolution, hash round-trips, split-content integrity, and the five incorrect solutions. Browser checks confirmed migrated draft content, newer-tab conflict handling, direct question links, filter refresh (eight local labs), Back/Forward, reference reveal, Python execution and a 390 px layout with no horizontal overflow. The existing failed-screen recovery also handled a rebuild while a tab was open.
 
 Scope limits: initial HTML/main-script failures still precede React recovery; IndexedDB is device/browser-local and private-mode storage may be temporary; older deployed tabs still using localStorage should be refreshed before further editing. The legacy snapshot remains available for manual recovery. The five targeted content reviews do not constitute an exhaustive correctness or accessibility audit of every exercise. No accounts, cloud sync or production dependencies were added; fake-indexeddb is used only for automated tests.
+
+## Lightweight practice QoL pass — 11 September 2026
+
+A focused follow-up found friction in repeated run/debug cycles and choosing unfinished work. Implemented four small additions without new dependencies:
+
+- **Editor shortcuts:** Cmd/Ctrl+Enter runs examples; Cmd/Ctrl+Shift+Enter submits. The shortcuts are shown below the editor and are absent for local labs. Existing Tab completion remains intact; execution guards still reject an additional run while busy.
+- **Stale-result feedback:** changing code or standard input after a run displays an explicit warning. Earlier results stay available for comparison, and submissions still record the code actually executed.
+- **Copy debug report:** captures the tested code and input, every test call, expected/actual values, errors, raw returns, stdout and stderr. A text download is offered automatically when clipboard access fails. Reports are produced locally and are not sent to a service.
+- **Unfinished practice:** opens an unfinished challenge from the current filtered list, preferring another challenge over the current one. It respects automated completion and lab self-review, and disables when no unfinished match exists.
+
+Validation: targeted tests cover filtered selection, completed labs, no matches, changed code/input and report fields. Browser checks confirmed both Mac keyboard shortcuts, recorded submission results, the stale-draft warning, and selection of a local lab while the Local labs filter was active. Typecheck and production build pass; deployment runs the full existing suite. This was not another full-site audit.
